@@ -11,7 +11,7 @@
 	//include 'dbconnect.php';
 	//include '../medicinal/functions.php';
 	//echo "<h1>Tropical Database</h1>\n";
-	
+	// hi
 	/*
 	$result = mysql_query("SELECT * FROM `tropicalspecies`"); 
 	echo "<p><b>Last update on 04/03/11:</b> Now containing ".mysql_num_rows($result)." plants.</p>\n	";
