@@ -11,7 +11,7 @@ function togglePrompt (box, focus) {
 </script>
 <?php
 	include 'dbconnect.php';
-	include '../medicinal/functions.php';
+	include 'functions.php';
 ?>
 <div class="HEADERBLOCK">
 <a class="HOME" href="index.php">Tropical Species Database</a>

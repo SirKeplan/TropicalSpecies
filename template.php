@@ -1,4 +1,4 @@
-<?php include_once '../medicinal/functions.php'; ?>
+<?php include_once 'functions.php'; ?>
 <p>
 
 <table width="100%" style=''>
