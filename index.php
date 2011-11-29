@@ -27,9 +27,7 @@
 	
 	echo "<p>This is the about page, it should have some information on it</p>";
 	
-	echo '<p>Hello from rich</p>';
-		include 'footer.php';
-
+	include 'footer.php';
 	mysql_close($db);	
 
 ?>
