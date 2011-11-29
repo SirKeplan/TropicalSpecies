@@ -31,7 +31,10 @@ function togglePrompt (box, focus) {
 	</li><li class="NAVBARLI">
 		<a class="NAVBARITEM" href="letter-index.php">Latin Names</a>
 	</li><li class="NAVBARLI">
+	</li><li class="NAVBARLI">
 		<a class="NAVBARITEM" href="query.php">Search</a>
+	</li><li class="NAVBARLI">
+		<a class="NAVBARITEM" href="contact.php">Contact</a>
 	</li><li class="SEARCH"><form action="query.php" method="get"><div><input type="text" id="searchbox" name="full"  
     value="Search:" onfocus="togglePrompt(this.searchbox, true)" 
     alt="Search" onblur="togglePrompt(this.searchbox, false)" ></div></form>
