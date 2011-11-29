@@ -1,1 +1,12 @@
 Tropical Species database web code, by Ajna Fern
+
+to connect to a database, create the file dbconnect_local.php
+
+with the contents describing giving the variable for php to connect to
+<?php
+	$hostname='localhost';
+	$username='read';
+	$password='pagereed';
+	$dbname='TropicalSpeciesDB';
+?>
+

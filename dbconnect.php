@@ -6,6 +6,8 @@ $username='thefernsherbs';
 $password='Adhyatma0Herbs';
 $dbname='thefernsherbs';
 */
+
+/*
 if ($_SERVER["HTTP_HOST"] == "localhost"|| (strpos($_SERVER["HTTP_HOST"],"10.0.0")) !== false) {
 	#echo $_SERVER["HTTP_HOST"];
 	$hostname='localhost';
@@ -17,11 +19,14 @@ if ($_SERVER["HTTP_HOST"] == "localhost"|| (strpos($_SERVER["HTTP_HOST"],"10.0.0
 	$username='tropicalreader2';
 	$password='Reader001';
 	$dbname='tropicalspecies2';
-}
+}*/
+
 #$hostname='localhost';
 #$username='read';
 #$password='pagereed';
 #$dbname='TropicalSpeciesDB';
+
+include "dbconnect_local.php";
 
 $db = mysql_connect($hostname, $username,$password);
 #$db = mysql_connect('localhost', 'read','pagereed');
