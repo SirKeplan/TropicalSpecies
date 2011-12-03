@@ -8,6 +8,7 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	// timestamp for the error entry
 	//$dt = date("Y-m-d H:i:s (T)");
 	echo "<h1>Sorry an error occured</h1>\n<p>#$errno: $errmsg</p>";
+	//print 'please report bugs to <a href="mailto:webweaver@pfaf.org">webweaver@pfaf.org</a>';
 	die;
 }
 $old_error_handler = set_error_handler("userErrorHandler");
@@ -19,9 +20,8 @@ function safe_query($query)
 	if(!$res) {
 		//print "<h2>Sorry an Error Occured</h2>\n";
 		$err = mysql_error();
-		$err =  "MySQL error Query: " . htmlspecialchars($query);
+		$err =  "MySQL error. Query: " . htmlspecialchars($query);
 		trigger_error($err);
-		//print 'please report bugs to <a href="mailto:webweaver@pfaf.org">webweaver@pfaf.org</a>';
 		exit;
 	}
 	return $res;
@@ -371,7 +371,7 @@ function shorten($string, $length = 150, $ellipse = "...") {
 */
 function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
 	$http_query["pageno"] = 0;
-	echo "<a href=\"$page?".http_build_query($http_query,"","&amp;")."\">First</a> ";
+	echo "<p><a href=\"$page?".http_build_query($http_query,"","&amp;")."\">First</a> ";
 
 
 	if ((($pageno/$amount)+1) > 1) {
@@ -398,7 +398,7 @@ function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
 	}else {
 		$http_query["pageno"] = 0;
 	}
-	echo " <a href=\"$page?".http_build_query($http_query,"","&amp;")."\">Last</a> ";
+	echo " <a href=\"$page?".http_build_query($http_query,"","&amp;")."\">Last</a></p>\n";
 }
 
 ?>
