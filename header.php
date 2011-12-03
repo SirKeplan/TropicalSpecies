@@ -10,16 +10,6 @@ function togglePrompt (box, focus) {
 }
 </script>
 <?php
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
-{
-	// timestamp for the error entry
-	//$dt = date("Y-m-d H:i:s (T)");
-	die("PHP error: $errmsg");
-}
-$old_error_handler = set_error_handler("userErrorHandler");
-
-	include 'dbconnect.php';
 	include 'functions.php';
 ?>
 <div class="HEADERBLOCK">
@@ -50,5 +40,11 @@ $old_error_handler = set_error_handler("userErrorHandler");
 </li>
 </ul>
 </div>
+
+<?php 
+	include 'dbconnect.php';
+?>
+
+
 <div class="CONTENT">
 
