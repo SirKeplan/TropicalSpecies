@@ -1,6 +1,11 @@
 <script type="text/javascript">
 function togglePrompt (box, focus) {
-    box = document.getElementById("searchbox");
+    //	document.write(box);
+    //box = document.getElementById("searchbox");
+    if (box.value != box.defaultValue && box.value != "") {
+		return;
+	}
+    
     box.value = (focus?"":box.defaultValue);
     if (focus) {
 		box.style.cssText = "font-style: normal;color: black;";
@@ -35,9 +40,9 @@ function togglePrompt (box, focus) {
 		<a class="NAVBARITEM" href="query.php">Search</a>
 	</li><li class="NAVBARLI">
 		<a class="NAVBARITEM" href="contact.php">Contact</a>
-	</li><li class="SEARCH"><form action="query.php" method="get"><div><input type="text" id="searchbox" name="full"  
-    value="Search:" onfocus="togglePrompt(this.searchbox, true)" 
-    alt="Search" onblur="togglePrompt(this.searchbox, false)" ></div></form>
+	</li><li class="SEARCH"><form action="query.php" method="get"><div><input type="text" class="searchbox" id="searchbox" name="full"  
+    value="Search:" onfocus="togglePrompt(searchbox, true)" 
+    alt="Search" onblur="togglePrompt(searchbox, false)" ></div></form>
 </li>
 </ul>
 </div>
