@@ -1,8 +1,13 @@
 </div>
 <?php
-$numPlantsRes = mysql_query("SELECT count(*) FROM `tropicalspecies`");
-$numPlantsRow = mysql_fetch_row($result2);
-$numPlants = $row[0];
+	$numPlants = 5500;
+	$numPlantsRes = mysql_query("SELECT count(*) FROM `tropicalspecies`");
+	if (!$numPlantsRes) {
+		$numPlantsRow = mysql_fetch_row($numPlantsRes);
+		if($numPlantsRow) {
+			$numPlants = $row[0];
+		}
+	}
 echo "<p class=\"small\"><b>Last update on 29/11/11:</b> Now containing $numPlants plants.</p>\n";
 
 

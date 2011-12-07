@@ -10,7 +10,6 @@ function togglePrompt (box, focus) {
 }
 </script>
 <?php
-	include 'dbconnect.php';
 	include 'functions.php';
 ?>
 <div class="HEADERBLOCK">
@@ -41,5 +40,11 @@ function togglePrompt (box, focus) {
 </li>
 </ul>
 </div>
+
+<?php 
+	include 'dbconnect.php';
+?>
+
+
 <div class="CONTENT">
 

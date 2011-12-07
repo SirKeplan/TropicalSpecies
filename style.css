@@ -278,3 +278,30 @@ font-weight: bold;
 
 }
 
+
+/* Formatting for main page elements */
+
+
+.mainpage {
+	font-size: large;
+}
+.mainpageletters {
+	font-size: large;
+	margin-left:5ex;
+}
+
+#mainsearchbox {
+	width:"100%";
+	padding-left: 5ex;
+	/*#padding-right:"50px";*/
+	/* border:1px solid red; */
+}
+
+#mainsearchbox input[type="text"] {
+	width: 50ex;
+	font-size: large;
+}
+
+#mainsearchbox input[type="submit"] {
+	font-size: large;
+}
