@@ -68,10 +68,10 @@
 	include 'functions.php';
 	include 'dbconnect.php';
 	
-	$key = mysql_real_escape_string($_GET["id"]);
-	if ($key == "") {
+	if (empty($_GET["id"])) {
 		trigger_error("A plant name must be supplied.");
 	}
+	$key = mysql_real_escape_string($_GET["id"]);
 	#include 'dbconnect.php';
 	/*
 	SELECT *
