@@ -7,10 +7,8 @@ error_reporting(E_ALL | E_STRICT);
 // Error handeler for reporting errors
 function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 {
-	if($shown_header) {
-		include "header.php";
-	}
-	
+	include_once "header.php";
+		
 	// timestamp for the error entry
 	//$dt = date("Y-m-d H:i:s (T)");
 	echo "<h1>Sorry an error occured</h1>\n<p>#$errno: $errmsg</p>";

@@ -32,7 +32,4 @@ function togglePrompt (box, focus) {
 </ul>
 </div>
 
-
-
 <div class="CONTENT">
-<?php $shown_header=true; ?>
