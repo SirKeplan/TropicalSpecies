@@ -94,7 +94,7 @@ if ($row['NomenclatureNotes'] != null) {
 <tr>
 		<td class="PROPERTIESTABLE">Habit</td><td class="PROPERTIESTABLE">
 		<?php 
-		$DEarray = array("D" => "Deciduous", "E" => "Evergreen", "S" => "Semi Deciduous");
+		$DEarray = array("D" => "Deciduous ", "E" => "Evergreen ", "S" => "Semi-deciduous ");
 		//echo "<p>".$row['Deciduous/Evergreen']." ". $row['Habit']."</p>\n";
 		if(array_key_exists($row['Deciduous/Evergreen'],$DEarray)) 
 			echo $DEarray[$row['Deciduous/Evergreen']];
