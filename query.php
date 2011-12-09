@@ -43,7 +43,7 @@ function toggle_vis() {
 	else {
 		$full = $_GET["full"];
 		if(preg_match('/^[\w ]+$/',$full)!=1) {
-			trigger_error("Invalid botanical name: \"".htmlspecialchars($full)."\", must only have letters.");
+			trigger_error("Invalid search term: \"".htmlspecialchars($full)."\", must only contain letters.");
 		}
 	}
 
@@ -79,9 +79,7 @@ function toggle_vis() {
 				<option>Perennial Climber</option>
 				<option>Shrub</option>
 				<option>Tree</option>
-			</select>
-		
-
+			</select>		
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Decid/Evergreen</b></td>
@@ -167,8 +165,6 @@ function toggle_vis() {
 			<td class="TITLE"><b>Poor Soil</b></td>
 			<td><input type="checkbox" name="Poor soil" value="0"/>No
 			<input type="checkbox" name="Poor soil" value="1"/>Yes</td>
-			
-
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Nitrogen Fixer</b></td>
@@ -199,35 +195,28 @@ function toggle_vis() {
 			<td><input type="checkbox" name="Well-drained" value="1"/>Yes
 			<input type="checkbox" name="Well-drained" value="0"/>No</td>
 		</tr>
-		
 		<tr>
 			<td class="TITLE"><b>Tolerates Drought</b></td>
 			<td><input type="checkbox" name="Drought" value="1"/>Yes
 			<input type="checkbox" name="Drought" value="0"/>No</td>
-						
-
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Wind</b></td>
 			<td><input type="checkbox" name="Wind" value="W"/>Light
 			<input type="checkbox" name="Wind" value="M"/>Medium</td>
-						<td></td>
-
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Tolerates Pollution</b></td>
 			<td><input type="checkbox" name="Pollution" value="Y"/>Yes
 			<input type="checkbox" name="Pollution" value="N"/>No</td>
-
 		</tr><tr>
 			<td><input type="submit" value="Search" /></td>
 			
 		</tr>
 	</table>
 	</form>
-	
-
 	</div>
+	
 <?php
     //$result = search($common, "tropicalspecies", array("Common name"));
     $string = 
@@ -255,12 +244,26 @@ function toggle_vis() {
 		$add = "";	
 		$end = false;//var to end when found page numbers in _GET being passed in
 		$parts = array();
+		
+		$allowedKeys = array("Habit","Deciduous/Evergreen","Height","Width","Hardyness","Growth rate",
+			"Soil","Heavy clay","Poor soil","Nitrogen fixer","pH",
+			"Shade","Moisture","Well-drained","Drought","Wind","Pollution","amount","pageno");
+		
 		foreach ($params as $key => $val) {
-			//echo "<p>Key $key Val ".var_export($val)."</p>";
+			
+			// Check if the key is allowed
+			if(!in_array($key,$allowedKeys)) {
+				trigger_error("Invalid key \"".htmlspecialchars($key)."\"");
+			}
+				
 			$booladded = false;
 			$first = true;
 			foreach ($val as $key2 => $individual) {
-			//echo "<p>Key2 $key2 individual $individual</p>";
+			
+				// check if the value is allowed
+				if(preg_match('/^[\w -\/]*$/',$individual)!=1) {
+					trigger_error('Invalid value "'.htmlspecialchars($individual).'"');
+				}
 				if ($key == "pageno" OR $key == "amount") {
 					//echo "yada";
 					$end = true;
