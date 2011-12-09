@@ -22,9 +22,6 @@ function toggle_vis() {
 }
 </script>
 	
-	
-	
-	
 <?php
 
 	include 'functions.php';
@@ -49,12 +46,11 @@ function toggle_vis() {
 			trigger_error("Invalid botanical name: \"".htmlspecialchars($full)."\", must only have letters.");
 		}
 	}
-	
 
 	//echo "<h1>Tropical Database</h1>\n";
 	$full = mysql_real_escape_string($full);
 
-	echo "<p>Latin '$full' common '$common'.</p>\n";
+	//echo "<p>Latin '$full' common '$common'.</p>\n";
 ?>
 	<form method="get" action="query.php">
 		<div>Full text search: <input type="text" name="full" value="<?php echo $full?>" />
@@ -137,18 +133,18 @@ function toggle_vis() {
 		</tr>		
 		<tr>
 			<td class="TITLE"><b>Hardyness</b></td>
-			<td 	><input type="checkbox" name="Hardyness[]" value="1"/>1
-			<input type="checkbox" name="Hardyness[]" value="2"/>2
-			<input type="checkbox" name="Hardyness[]" value="3"/>3
-			<input type="checkbox" name="Hardyness[]" value="4"/>4
-			<input type="checkbox" name="Hardyness[]" value="5"/>5
-			<input type="checkbox" name="Hardyness[]" value="6"/>6
-			<input type="checkbox" name="Hardyness[]" value="7"/>7
-			<input type="checkbox" name="Hardyness[]" value="8"/>8
-			<input type="checkbox" name="Hardyness[]" value="9"/>9
-			<input type="checkbox" name="Hardyness[]" value="10"/>10
-			<input type="checkbox" name="Hardyness[]" value="11"/>11
-			<input type="checkbox" name="Hardyness[]" value="12"/>12</td>
+			<td 	><input type="checkbox" name="Hardyness" value="1"/>1
+			<input type="checkbox" name="Hardyness" value="2"/>2
+			<input type="checkbox" name="Hardyness" value="3"/>3
+			<input type="checkbox" name="Hardyness" value="4"/>4
+			<input type="checkbox" name="Hardyness" value="5"/>5
+			<input type="checkbox" name="Hardyness" value="6"/>6
+			<input type="checkbox" name="Hardyness" value="7"/>7
+			<input type="checkbox" name="Hardyness" value="8"/>8
+			<input type="checkbox" name="Hardyness" value="9"/>9
+			<input type="checkbox" name="Hardyness" value="10"/>10
+			<input type="checkbox" name="Hardyness" value="11"/>11
+			<input type="checkbox" name="Hardyness" value="12"/>12</td>
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Growth Rate</b></td>
@@ -224,7 +220,7 @@ function toggle_vis() {
 			<input type="checkbox" name="Pollution" value="N"/>No</td>
 
 		</tr><tr>
-			<td><input type="submit" value="   GO   " /></td>
+			<td><input type="submit" value="Search" /></td>
 			
 		</tr>
 	</table>
@@ -247,22 +243,24 @@ function toggle_vis() {
     if ($full == null) {
 		$query  = explode('&', $_SERVER['QUERY_STRING']);
 
-		echo htmlspecialchars(urldecode($_SERVER['QUERY_STRING']));
+		//echo htmlspecialchars(urldecode($_SERVER['QUERY_STRING']));
 		$params = array();
 		foreach( $query as $param )
 		{
 		  list($name, $value) = explode('=', $param);
 		  $params[urldecode($name)][] = urldecode($value);
 		}
-		print_r($params);
+		//print_r($params);
 		$string = "SELECT `Latin name`,`Common name` FROM tropicalspecies WHERE ";
 		$add = "";	
 		$end = false;//var to end when found page numbers in _GET being passed in
 		$parts = array();
 		foreach ($params as $key => $val) {
+			//echo "<p>Key $key Val ".var_export($val)."</p>";
 			$booladded = false;
 			$first = true;
 			foreach ($val as $key2 => $individual) {
+			//echo "<p>Key2 $key2 individual $individual</p>";
 				if ($key == "pageno" OR $key == "amount") {
 					//echo "yada";
 					$end = true;
@@ -270,8 +268,13 @@ function toggle_vis() {
 				}
 				$op = "=";
 				if ($key == "Height" OR $key == "Width") {
-					$op = "BETWEEN";
-					
+					$op = " BETWEEN ";
+					if(preg_match('/^(\d+)-(\d+)$/',$individual,$matches)==1) {
+						$individual = $matches[1] . "' AND '" . $matches[2];
+						//echo "HeightWidth: ". htmlspecialchars($individual);
+					} else {
+						trigger_error("Illgal value for $key '$val'");
+					}
 				}
 				#echo $individual.$key2;
 				if ( $first) {
@@ -318,7 +321,7 @@ function toggle_vis() {
 		if(preg_match('/^\d+$/',$amount)!=1) {
 			trigger_error("Invalid amount: \"".htmlspecialchars($amount)."\", must be a number.");
 		}
-		echo htmlspecialchars(urldecode($string));
+		//echo htmlspecialchars(urldecode($string));
 		
 		$http_query = $_GET;
 		$all = safe_query($string); 
