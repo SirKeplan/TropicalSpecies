@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <link rel=stylesheet href="../../medicinal/style.css" type="text/css">
+  <link rel=stylesheet href="style.css" type="text/css">
 
 <?php
 	function link_to_book($string) {
@@ -63,14 +63,14 @@
 		#echo "</p>";
 	}
 	
+	include_once 'functions.php';
 	include 'dbconnect.php';
-	#include_once 'functions.php';
 
-	$key = $_GET["id"];
-	if ($key == "") {
-		echo "you don't want to be here, try <a href=\"index.php\">here</a>";
+	if (empty($_GET["id"])) {
+		trigger_error("A book ID should be specified");
 		return;
 	}
+	$key = mysql_real_escape_string($_GET["id"]);
 	
 	if ($key == "K") {
 		echo "<title>".$row['Title']."</title>";
@@ -87,7 +87,7 @@
 	WHERE `Latin name` = 'Abelmoschus moschatus'
 	*/
 
-	$result = mysql_query("SELECT * FROM `References` WHERE `No` = $key");
+	$result = safe_query("SELECT * FROM `References` WHERE `No` = $key");
 	
 	//echo "<p>";
 	//echo "<table border = \"1\" >";
