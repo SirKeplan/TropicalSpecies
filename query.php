@@ -227,7 +227,8 @@ function toggle_vis() {
 	FROM tropicalspecies
     WHERE MATCH(Author,NomenclatureNotes,`Known hazards`,`Range`,`Habitat`,`GeneralInformation`,
         `Cultivation details`,`Edible uses`,`Medicinal`,`AgroforestryUses`,`Uses notes`,`Propagation 1`,`Names`) 
-        AGAINST (\"$full\")"; // IN BOOLEAN MODE
+        AGAINST (\"$full\")
+    ORDER BY `Latin name` ASC"; // IN BOOLEAN MODE
     $anything = (strlen($_SERVER['QUERY_STRING']) > 1);
     if ($full == null) {
 		$query  = explode('&', $_SERVER['QUERY_STRING']);
