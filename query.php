@@ -28,7 +28,7 @@ function toggle_vis() {
 	include 'dbconnect.php';
 	include 'header.php';
 
-	//mb_regex_encoding("UTF-8");
+	mb_regex_encoding("UTF-8");
 	if(empty($_GET["common"])) {
 		$common = "";
 	}
@@ -43,8 +43,7 @@ function toggle_vis() {
 	}
 	else {
 		$full = $_GET["full"];
-		//if(mb_ereg('^[\wÁáäãçéèêëíłñóôöüý× ]+$',$full)!=1) {
-		if(preg_match('/^[\w ]+$/',$full)!=1) {
+		if(mb_ereg('^[\wÁáäãçéèêëíłñóôöüý× ]+$',$full)!=1) {
 			trigger_error("Invalid search term: \"".htmlspecialchars($full)."\", must only contain letters.");
 		}
 	}
