@@ -329,7 +329,7 @@ function toggle_vis() {
 		
 		$http_query = $_GET;
 		$all = safe_query($string); 
-		$result = safe_query($string." LIMIT $pageno, $amount"); 
+		$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
 		$allcount = mysql_num_rows($all);
 		
 		echo "<p>".mysql_num_rows($all)." records.</p>";
