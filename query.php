@@ -28,6 +28,7 @@ function toggle_vis() {
 	include 'dbconnect.php';
 	include 'header.php';
 
+	//mb_regex_encoding("UTF-8");
 	if(empty($_GET["common"])) {
 		$common = "";
 	}
@@ -42,6 +43,7 @@ function toggle_vis() {
 	}
 	else {
 		$full = $_GET["full"];
+		//if(mb_ereg('^[\wÁáäãçéèêëíłñóôöüý× ]+$',$full)!=1) {
 		if(preg_match('/^[\w ]+$/',$full)!=1) {
 			trigger_error("Invalid search term: \"".htmlspecialchars($full)."\", must only contain letters.");
 		}
@@ -227,8 +229,7 @@ function toggle_vis() {
 	FROM tropicalspecies
     WHERE MATCH(Author,NomenclatureNotes,`Known hazards`,`Range`,`Habitat`,`GeneralInformation`,
         `Cultivation details`,`Edible uses`,`Medicinal`,`AgroforestryUses`,`Uses notes`,`Propagation 1`,`Names`) 
-        AGAINST (\"$full\")
-    ORDER BY `Latin name` ASC"; // IN BOOLEAN MODE
+        AGAINST (\"$full\")"; // IN BOOLEAN MODE
     $anything = (strlen($_SERVER['QUERY_STRING']) > 1);
     if ($full == null) {
 		$query  = explode('&', $_SERVER['QUERY_STRING']);
@@ -315,6 +316,7 @@ function toggle_vis() {
 			//echo $string;
 		//}
 	}
+	
     if ($anything == true) {
 	
 		$pageno = empty($_GET["pageno"]) ? 0 : $_GET["pageno"];
