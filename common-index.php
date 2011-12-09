@@ -9,7 +9,9 @@
 
 
 <?php
+include 'functions.php';
 include 'header.php';
+include 'dbconnect.php';
 
 echo "<h1>Index of common names</h1>\n";
 echo "<p><b>";

@@ -65,13 +65,12 @@
 		#echo "</p>";
 	}
 	
+	include 'functions.php';
 	include 'dbconnect.php';
-	#include_once 'functions.php';
-
-	$key = $_GET["id"];
+	
+	$key = mysql_real_escape_string($_GET["id"]);
 	if ($key == "") {
-		echo "you don't want to be here, try <a href=\"index.php\">here</a>";
-		return;
+		trigger_error("A plant name must be supplied.");
 	}
 	#include 'dbconnect.php';
 	/*
@@ -80,7 +79,7 @@
 	WHERE `Latin name` = 'Abelmoschus moschatus'
 	*/
 
-	$result = mysql_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
+	$result = safe_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
 	
 	//echo "<p>";
 	//echo "<table border = \"1\" >";

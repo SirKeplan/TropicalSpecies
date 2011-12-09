@@ -9,17 +9,8 @@ function togglePrompt (box, focus) {
 	}
 }
 </script>
-<?php
-	include 'functions.php';
-?>
 <div class="HEADERBLOCK">
 <a class="HOME" href="index.php">Tropical Species Database</a>
-<?php
-	//echo '</div>';
-	//$result = mysql_query("SELECT * FROM `tropicalspecies`"); 
-	//echo "<p><b>Last update on 26/06/11:</b> Now containing ".mysql_num_rows($result)." plants.</p>\n	";
-	//echo "<p><a href=\"query.php\">Search</a></p>";
-?>
 	
 <ul class="NAVBAR CURVEBOTH" >
 	<li class="NAVBARLI CURVELEFT">
@@ -41,10 +32,7 @@ function togglePrompt (box, focus) {
 </ul>
 </div>
 
-<?php 
-	include 'dbconnect.php';
-?>
 
 
 <div class="CONTENT">
-
+<?php $shown_header=true; ?>

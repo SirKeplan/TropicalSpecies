@@ -8,8 +8,10 @@
 <body>
 
 <?php
-include 'header.php';
-
+	include 'functions.php';
+	include 'header.php';
+	include 'dbconnect.php';
+	
 echo "<h1>Index of botanical names</h1>\n";
 echo "<p><b>";
 #echo chr(65);#.to_string();

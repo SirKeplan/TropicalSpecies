@@ -5,13 +5,13 @@
 	<tr>
 		<td style=''><a href="viewtropical.php?id=
 		<?php $sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` < '{$row['Latin name']}' ORDER BY `Latin name` DESC LIMIT 1"; 
-		$result1 = mysql_query($sql1); 
+		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
 		echo $row1['Latin name'];?>">Previous</a></td>
 		<!--<td style=''><a href="letter-index.php">Index</a></td>-->
 		<td align="right" style=''><a href="viewtropical.php?id=
 		<?php $sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
-		$result1 = mysql_query($sql1); 
+		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
 		echo $row1['Latin name'];?>">Next</a></td>
 	</tr>
@@ -64,7 +64,7 @@ if ($row['NomenclatureNotes'] != null) {
 
 <h3>Habitat:</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
 
-<!--<h3>Properties:</h3>
+<h3>Properties:</h3>
 <table class="PROPERTIESTABLE">
 
 <tr>
@@ -94,8 +94,11 @@ if ($row['NomenclatureNotes'] != null) {
 <tr>
 		<td class="PROPERTIESTABLE">Habit</td><td class="PROPERTIESTABLE">
 		<?php 
-		$array = array("D" => "Deciduous", "E" => "Evergreen", "S" => "Semi Deciduous");
-		echo $array[$row['Deciduous/Evergreen']]." ".$row['Habit'] ;
+		$DEarray = array("D" => "Deciduous", "E" => "Evergreen", "S" => "Semi Deciduous");
+		//echo "<p>".$row['Deciduous/Evergreen']." ". $row['Habit']."</p>\n";
+		if(array_key_exists($row['Deciduous/Evergreen'],$DEarray)) 
+			echo $DEarray[$row['Deciduous/Evergreen']];
+		echo $row['Habit'] ;
 		#echo $row['Habit']
 		?>	
 		</td>
@@ -115,8 +118,9 @@ if ($row['NomenclatureNotes'] != null) {
 	
 <tr>
 		<td class="PROPERTIESTABLE">Soil</td><td class="PROPERTIESTABLE"><?php 
-		$array = array("L" => "Light", "M" => "Medium", "H" => "Heavy", "LM" => "Light, Medium", "MH" => "Medium, Heavy", "LMH" => "Light, Medium, Heavy");
-		echo $array[$row['Soil']];
+		$Sarray = array("L" => "Light", "M" => "Medium", "H" => "Heavy", "LM" => "Light, Medium", "MH" => "Medium, Heavy", "LMH" => "Light, Medium, Heavy");
+		if(array_key_exists($row['Soil'],$Sarray))
+		echo $Sarray[$row['Soil']];
 		#echo $row['Habit']
 		?></td>
 	</tr>
@@ -219,7 +223,7 @@ if ($row['NomenclatureNotes'] != null) {
 	</tr>
 
 </table>
--->
+
 <h3>Cultivation Details:</h3><?php echo link_to_book(nl2br($row['Cultivation details']));?><br>
 
 <h3>Edible Uses:</h3><?php echo link_to_book(nl2br($row['Edible uses']))?><br>
