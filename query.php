@@ -142,8 +142,8 @@ function toggle_vis() {
 			<input type="checkbox" name="Hardyness" value="8"/>8
 			<input type="checkbox" name="Hardyness" value="9"/>9
 			<input type="checkbox" name="Hardyness" value="10"/>10
-			<input type="checkbox" name="Hardyness" value="11"/>11
-			<input type="checkbox" name="Hardyness" value="12"/>12</td>
+		<!-- 	<input type="checkbox" name="Hardyness" value="11"/>11 Hardyness values in DB only go up to 10
+			<input type="checkbox" name="Hardyness" value="12"/>12  --></td>
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Growth Rate</b></td>
