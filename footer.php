@@ -1,7 +1,7 @@
 </div>
 <?php
 	$numPlants = 5500;
-	$numPlantsRes = mysql_query("SELECT count(*) FROM `tropicalspecies`");
+	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
 	if (!$numPlantsRes) {
 		$numPlantsRow = mysql_fetch_row($numPlantsRes);
 		if($numPlantsRow) {

@@ -83,7 +83,7 @@ else
 
 
 
-	//$result = mysql_query("SELECT * FROM `tropicalspecies` WHERE SUBSTRING(`Common name`, 1, 1) = '$key' ORDER BY `Common name` ASC");
+	//$result = safe_query("SELECT * FROM `tropicalspecies` WHERE SUBSTRING(`Common name`, 1, 1) = '$key' ORDER BY `Common name` ASC");
 	//echo "Showing ".mysql_num_rows($all)." plants beginning with $key.";
 	output_table_query_limited($result, "Nothing", "tropicalspecies",null, "Common name", "viewtropical.php", "id", -1, array("Common name", "Latin name"), "Latin name");
 

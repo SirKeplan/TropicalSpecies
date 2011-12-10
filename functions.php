@@ -11,7 +11,7 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 		
 	// timestamp for the error entry
 	//$dt = date("Y-m-d H:i:s (T)");
-	echo "<h1>Sorry an error occured</h1>\n<p>#$errno: $errmsg</p>";
+	echo "<h1>Sorry an error occured</h1>\n<p>#$errno line $linenum: $errmsg</p>";
 	//print 'please report bugs to <a href="mailto:webweaver@pfaf.org">webweaver@pfaf.org</a>';
 	die;
 }
@@ -79,7 +79,7 @@ function get_col_names($col, $table, $relation, $ignore = array("ID","Dis")) {
 		return;
 	}
 
-	//$result = mysql_query("SELECT * FROM `$table` WHERE `$col` = '$relation'");
+	//$result = safe_query("SELECT * FROM `$table` WHERE `$col` = '$relation'");
 	//echo "<table border = \"1\" >\n";
 
 	// put the column names into an array
@@ -113,7 +113,7 @@ function output_table_sql($sql, $col, $table, $relation, $linkwith = null, $link
 // my nice function
 function output_table_query($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $ignore = array("ID","Dis")) {
 	//include_once "functions.php";
-	/*$result_cols = mysql_query("DESCRIBE `$table`");
+	/*$result_cols = safe_query("DESCRIBE `$table`");
 		if (!$result_cols) {
 	echo 'Could not run query: ' . mysql_error();
 	exit;
@@ -124,7 +124,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 	*/
 	$columns = get_col_names($col, $table, $relation, $ignore);
 
-	$result = $query;//mysql_query($sql);
+	$result = $query;//safe_query($sql);
 		
 	echo "<table class=\"RECORDTABLE\" >\n";
 	echo "<tr>";
@@ -187,7 +187,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 
 function output_table_query_limited($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $names = array(), $linkfrom = null) {
 	//include_once "functions.php";
-	/*$result_cols = mysql_query("DESCRIBE `$table`");
+	/*$result_cols = safe_query("DESCRIBE `$table`");
 		if (!$result_cols) {
 	echo 'Could not run query: ' . mysql_error();
 	exit;
@@ -198,7 +198,7 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 	*/
 	$columns = $names;//get_col_names($col, $table, $relation, $ignore);
 
-	$result = $query;//mysql_query($sql);
+	$result = $query;//safe_query($sql);
 		
 	echo "<table class=\"RECORDTABLE\" >\n";
 	echo "<tr>";
@@ -292,7 +292,7 @@ function search($plain_search, $table, $rows, $start = 0, $length = 10000) {
 		$sql = "SELECT * FROM `$table` ORDER BY `$table`.`$rows[0]` ASC LIMIT $start , $length";
 	}
 	$result = safe_query($sql);
-	$total_count = mysql_num_rows(mysql_query("SELECT * FROM `$table`"));
+	$total_count = mysql_num_rows(safe_query("SELECT * FROM `$table`"));
 
 	/*if ($plain_search) {
 	 $no = mysql_num_rows($result);
@@ -374,6 +374,7 @@ function shorten($string, $length = 150, $ellipse = "...") {
 * Nice function does nice stuff
 */
 function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
+	//echo htmlspecialchars(var_dump($http_query));
 	$http_query["pageno"] = 0;
 	echo "<p><a href=\"$page?".http_build_query($http_query,"","&amp;")."\">First</a> ";
 

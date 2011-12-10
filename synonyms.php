@@ -31,7 +31,7 @@
 		
 		echo "<p><b><i>{$row["LatinName"]}</i></b> {$row["Author"]}</p>\n";
 		
-		#$result = mysql_query("DESCRIBE `Synonyms`");
+		#$result = safe_query("DESCRIBE `Synonyms`");
 		#if (!$result) {
 		 #   echo 'Could not run query: ' . mysql_error();
 		#    exit;

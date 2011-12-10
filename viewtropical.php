@@ -50,7 +50,7 @@
 		######
 		
 		
-		#$result = mysql_query("DESCRIBE `tropicalspecies`");
+		#$result = safe_query("DESCRIBE `tropicalspecies`");
 		#if (!$result) {
 		#    echo 'Could not run query: ' . mysql_error();
 		#    exit;

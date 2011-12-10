@@ -44,7 +44,7 @@
 		######
 		
 		
-		$result = mysql_query("DESCRIBE `References`");
+		$result = safe_query("DESCRIBE `References`");
 		if (!$result) {
 		    echo 'Could not run query: ' . mysql_error();
 		    exit;

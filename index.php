@@ -12,7 +12,7 @@
 	include 'header.php';
 
 	/*
-	$result = mysql_query("SELECT * FROM `tropicalspecies`"); 
+	$result = safe_query("SELECT * FROM `tropicalspecies`"); 
 	echo "<p><b>Last update on 04/03/11:</b> Now containing ".mysql_num_rows($result)." plants.</p>\n	";
 	echo "<p><a href=\"query.php\">Search</a></p>";
 	*/
@@ -24,12 +24,10 @@
 	//echo "<b>Revision 1:</b> Contained 3681 plants.<br>\n	";
 	//echo "Original Contained 3552 plants.</p>";	
 	$numPlants = 5500;
-	$numPlantsRes = mysql_query("SELECT count(*) FROM `tropicalspecies`");
-	if (!$numPlantsRes) {
-		$numPlantsRow = mysql_fetch_row($numPlantsRes);
-		if($numPlantsRow) {
-			$numPlants = $row[0];
-		}
+	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
+	$numPlantsRow = mysql_fetch_row($numPlantsRes);
+	if($numPlantsRow) {
+		$numPlants = $numPlantsRow[0];
 	}
 	echo <<<EOT
 	<p class="mainpage">The Tropical Species Database is a database of useful plant

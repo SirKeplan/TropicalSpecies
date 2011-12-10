@@ -31,12 +31,12 @@ else
 	if(preg_match('/^[A-Z]$/',$key)!=1) {
 		trigger_error("Invalid letter: \"".htmlspecialchars($key)."\", must be a single character.");
 	}
-	$pageno = empty($_GET["pageno"]) ? 0 : $_GET["pageno"];
-	if(preg_match('/^\d+$/',$pageno)!=1) {
+	$pageno = empty($_GET["pageno"]) ? "0" : $_GET["pageno"];
+	if(!ctype_digit($pageno)) {
 		trigger_error("Invalid pageno: \"".htmlspecialchars($pageno)."\", must be a number.");
 	}
-	$amount = empty($_GET["amount"]) ? 100 : $_GET["amount"];
-	if(preg_match('/^\d+$/',$amount)!=1) {
+	$amount = empty($_GET["amount"]) ? "100" : $_GET["amount"];
+	if(!ctype_digit($amount)) {
 		trigger_error("Invalid amount: \"".htmlspecialchars($amount)."\", must be a number.");
 	}
 	
