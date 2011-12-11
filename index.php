@@ -36,9 +36,9 @@
 
 	<form action="query.php" method="get">
 	<div id="mainsearchbox">
-	<input type="text" name="full"
-		value="Search:" onfocus="togglePrompt(this.searchbox, true)"
-		alt="Search" onblur="togglePrompt(this.searchbox, false)" />
+	<input type="text" id="searchbox2" name="full"
+		value="Search:" onfocus="togglePrompt(searchbox2, true)"
+		alt="Search" onblur="togglePrompt(searchbox2, false)" />
 	<input type="submit" value="Submit" />
 	</div>
 	</form>
@@ -59,7 +59,7 @@ EOT;
 		echo "<a href=\"common-index.php?letter=".chr($char)."\">".chr($char)."</a> ";
 	}
 	echo "</b></p>\n";
-	
+	/*
 	echo '<p class="mainpage"><a href="query.php">Advanced search</a>: allows search by habitat and growing conditions.</p>';
 	
 	echo '
@@ -67,7 +67,7 @@ EOT;
     value="Search:" onfocus="togglePrompt(searchbox2, true)" 
     alt="Search" onblur="togglePrompt(searchbox2, false)" > <input type="submit" value="Search"></div></form>
 	';
-	
+	*/
 	include 'footer.php';
 	mysql_close($db);	
 
