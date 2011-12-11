@@ -1,5 +1,8 @@
 </div>
 <?php
+include_once 'functions.php';
+include_once 'dbconnect.php';
+
 $numPlants = 5500;
 $numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
 $numPlantsRow = mysql_fetch_row($numPlantsRes);

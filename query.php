@@ -237,8 +237,11 @@ function toggle_vis() {
 		$params = array();
 		foreach( $query as $param )
 		{
-		  list($name, $value) = explode('=', $param);
-		  $params[urldecode($name)][] = urldecode($value);
+			if (empty($param)) {
+				continue;
+			}
+			list($name, $value) = explode('=', $param);
+			$params[urldecode($name)][] = urldecode($value);
 		}
 		//print_r($params);
 		$string = "SELECT `Latin name`,`Common name` FROM tropicalspecies WHERE ";
