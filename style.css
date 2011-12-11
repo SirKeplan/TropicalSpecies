@@ -261,7 +261,7 @@ font-weight: bold;
 		font-size:10.5px;
 
 }
-#searchbox {
+.searchbox {
 	min-width:80px;
 	width:190px;
 	height: 16px;

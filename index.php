@@ -62,6 +62,12 @@ EOT;
 	
 	echo '<p class="mainpage"><a href="query.php">Advanced search</a>: allows search by habitat and growing conditions.</p>';
 	
+	echo '
+	<form action="query.php" method="get"><div><input type="text" class="searchbox" id="searchbox2" name="full"  
+    value="Search:" onfocus="togglePrompt(searchbox2, true)" 
+    alt="Search" onblur="togglePrompt(searchbox2, false)" > <input type="submit" value="Search"></div></form>
+	';
+	
 	include 'footer.php';
 	mysql_close($db);	
 
