@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <link rel=stylesheet href="../../medicinal/style.css" type="text/css">
+  <link rel=stylesheet href="style.css" type="text/css">
 
 <?php
 
@@ -31,7 +31,7 @@
 		
 		echo "<p><b><i>{$row["LatinName"]}</i></b> {$row["Author"]}</p>\n";
 		
-		#$result = mysql_query("DESCRIBE `Synonyms`");
+		#$result = safe_query("DESCRIBE `Synonyms`");
 		#if (!$result) {
 		 #   echo 'Could not run query: ' . mysql_error();
 		#    exit;
@@ -46,21 +46,21 @@
 		#echo "</p>";
 	}
 	
+	include_once 'functions.php';
 	include 'dbconnect.php';
-	#include_once 'functions.php';
 
-	$key = $_GET["id"];
-	if ($key == "") {
-		echo "you don't want to be here, try <a href=\"index.php\">here</a>\n";
+	if (empty($_GET["id"])) {
+		trigger_error("A latin name should be specified");
 		return;
 	}
+	$key = mysql_real_escape_string($_GET["id"]);
 	#include 'dbconnect.php';
 	/*
 	SELECT *
 	FROM `TropicalSpecies`
 	WHERE `Latin name` = 'Abelmoschus moschatus'
 	*/
-	$result = mysql_query("SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
+	$result = safe_query("SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
 	
 	//echo "<p>";
 	//echo "<table border = \"1\" >";

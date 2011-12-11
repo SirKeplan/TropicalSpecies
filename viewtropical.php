@@ -50,7 +50,7 @@
 		######
 		
 		
-		#$result = mysql_query("DESCRIBE `tropicalspecies`");
+		#$result = safe_query("DESCRIBE `tropicalspecies`");
 		#if (!$result) {
 		#    echo 'Could not run query: ' . mysql_error();
 		#    exit;
@@ -65,14 +65,13 @@
 		#echo "</p>";
 	}
 	
+	include 'functions.php';
 	include 'dbconnect.php';
-	#include_once 'functions.php';
-
-	$key = $_GET["id"];
-	if ($key == "") {
-		echo "you don't want to be here, try <a href=\"index.php\">here</a>";
-		return;
+	
+	if (empty($_GET["id"])) {
+		trigger_error("A plant name must be supplied.");
 	}
+	$key = mysql_real_escape_string($_GET["id"]);
 	#include 'dbconnect.php';
 	/*
 	SELECT *
@@ -80,7 +79,7 @@
 	WHERE `Latin name` = 'Abelmoschus moschatus'
 	*/
 
-	$result = mysql_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
+	$result = safe_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
 	
 	//echo "<p>";
 	//echo "<table border = \"1\" >";

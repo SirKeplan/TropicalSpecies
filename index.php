@@ -7,13 +7,12 @@
 </head>
 <body>
 <?php
+	include 'functions.php';
+	include 'dbconnect.php';
 	include 'header.php';
-	//include 'dbconnect.php';
-	//include '../medicinal/functions.php';
-	//echo "<h1>Tropical Database</h1>\n";
-	
+
 	/*
-	$result = mysql_query("SELECT * FROM `tropicalspecies`"); 
+	$result = safe_query("SELECT * FROM `tropicalspecies`"); 
 	echo "<p><b>Last update on 04/03/11:</b> Now containing ".mysql_num_rows($result)." plants.</p>\n	";
 	echo "<p><a href=\"query.php\">Search</a></p>";
 	*/
@@ -24,8 +23,50 @@
 	//echo "<b>Revision 2:</b> Contained 3940 plants.<br>\n	";
 	//echo "<b>Revision 1:</b> Contained 3681 plants.<br>\n	";
 	//echo "Original Contained 3552 plants.</p>";	
+	$numPlants = 5500;
+	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
+	$numPlantsRow = mysql_fetch_row($numPlantsRes);
+	if($numPlantsRow) {
+		$numPlants = $numPlantsRow[0];
+	}
+	echo <<<EOT
+	<p class="mainpage">The Tropical Species Database is a database of useful plant
+	which can be grown in tropical regions. 
+	It contains details of the edible medicinal and other uses and lists over $numPlants plants.</p>
+
+	<form action="query.php" method="get">
+	<div id="mainsearchbox">
+	<input type="text" name="full"
+		value="Search:" onfocus="togglePrompt(this.searchbox, true)"
+		alt="Search" onblur="togglePrompt(this.searchbox, false)" />
+	<input type="submit" value="Submit" />
+	</div>
+	</form>
 	
-	echo "<p>This is the about page, it should have some information on it</p>";
+	<p class="mainpage">Browse botanical names:</p>
+	
+EOT;
+	echo '<p class="mainpageletters"><b>';
+	#echo chr(65);#.to_string();
+	for ($char = 65; $char <= 90; $char++) {
+		echo "<a href=\"letter-index.php?letter=".chr($char)."\">".chr($char)."</a> ";
+	}
+	echo "</b></p>\n";
+	echo '<p class="mainpage">Browse common names</p>';
+	echo '<p class="mainpageletters"><b>';
+	#echo chr(65);#.to_string();
+	for ($char = 65; $char <= 90; $char++) {
+		echo "<a href=\"common-index.php?letter=".chr($char)."\">".chr($char)."</a> ";
+	}
+	echo "</b></p>\n";
+	
+	echo '<p class="mainpage"><a href="query.php">Advanced search</a>: allows search by habitat and growing conditions.</p>';
+	
+	echo '
+	<form action="query.php" method="get"><div><input type="text" class="searchbox" id="searchbox2" name="full"  
+    value="Search:" onfocus="togglePrompt(searchbox2, true)" 
+    alt="Search" onblur="togglePrompt(searchbox2, false)" > <input type="submit" value="Search"></div></form>
+	';
 	
 	include 'footer.php';
 	mysql_close($db);	

@@ -13,7 +13,7 @@
 	//echo "<h1>Tropical Database</h1>\n";
 	
 	/*
-	$result = mysql_query("SELECT * FROM `tropicalspecies`"); 
+	$result = safe_query("SELECT * FROM `tropicalspecies`"); 
 	echo "<p><b>Last update on 04/03/11:</b> Now containing ".mysql_num_rows($result)." plants.</p>\n	";
 	echo "<p><a href=\"query.php\">Search</a></p>";
 	*/
