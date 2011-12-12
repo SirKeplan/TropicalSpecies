@@ -162,7 +162,7 @@ if ($row['NomenclatureNotes'] != null) {
 <tr>
 		<td class="PROPERTIESTABLE">Moisture</td><td class="PROPERTIESTABLE"><?php 
 		$arrayk = array("D", "M", "We", "Wa");
-		$arrayv = array("D1, ", "M2, ", "We3, ", "Wa4, ");
+		$arrayv = array("Dry, ", "Moist, ", "Wet, ", "Water, ");
 		echo str_replace($arrayk, $arrayv, $row['Moisture']);
 		#echo $row['Habit']
 		?>
