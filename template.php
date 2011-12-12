@@ -48,10 +48,10 @@ echo $s;#"<a href=\"synonyms.php?id=".$row['Latin name']."\">Show Synonyms.</a>"
 	?>
 </div>
 
-<h3 class="SHORT">General Information:</h3><?php echo link_to_book(nl2br($row['GeneralInformation']))?><br>
+<h3 class="SHORT">General Information</h3><?php echo link_to_book(nl2br($row['GeneralInformation']))?><br>
 
-<h3 class="SHORT">Known Hazards:</h3><?php echo link_to_book(nl2br($row['Known hazards']))?><br>
-<h3 class="SHORT">Botanical References:</h3><?php echo link_to_book($row['Botanical references'], true)?><br>
+<h3 class="SHORT">Known Hazards</h3><?php echo link_to_book(nl2br($row['Known hazards']))?><br>
+<h3 class="SHORT">Botanical References</h3><?php echo link_to_book($row['Botanical references'], true)?><br>
 <!--<?php
 if ($row['NomenclatureNotes'] != null) {
 	echo "<h3 class=\"SHORT\">Nomenclature Notes:</h3>".link_to_book(nl2br($row['NomenclatureNotes']))."<br>";
@@ -60,11 +60,17 @@ if ($row['NomenclatureNotes'] != null) {
 <!--
 <h3 class="SHORT">Nomenclature Notes:</h3><?php echo $row['NomenclatureNotes']?><br>
 -->
-<h3>Range:</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
+<h3>Range</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
 
+<<<<<<< HEAD
+<h3>Habitat</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
+
+<h3>Properties</h3>
+=======
 <h3>Habitat:</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
-
+<!--
 <h3>Properties:</h3>
+>>>>>>> branch 'master' of https://RichardMorris@github.com/Ajna/TropicalSpecies.git
 <table class="PROPERTIESTABLE">
 
 <tr>
@@ -223,28 +229,32 @@ if ($row['NomenclatureNotes'] != null) {
 	</tr>
 
 </table>
+<<<<<<< HEAD
 
+<h3>Cultivation Details</h3><?php echo link_to_book(nl2br($row['Cultivation details']));?><br>
+=======
+-->
 <h3>Cultivation Details:</h3><?php echo link_to_book(nl2br($row['Cultivation details']));?><br>
+>>>>>>> branch 'master' of https://RichardMorris@github.com/Ajna/TropicalSpecies.git
 
-<h3>Edible Uses:</h3><?php echo link_to_book(nl2br($row['Edible uses']))?><br>
+<h3>Edible Uses</h3><?php echo link_to_book(nl2br($row['Edible uses']))?><br>
 
-<h3>Medicinal:</h3><?php echo link_to_book(nl2br($row['Medicinal']))?><br>
+<h3>Medicinal</h3><?php echo link_to_book(nl2br($row['Medicinal']))?><br>
 
 
 <?php
 if ($row['AgroforestryUses'] != null) {
-	echo "<h3>Agroforestry Uses:</h3>".link_to_book(nl2br($row['AgroforestryUses']))."<br>";
+	echo "<h3>Agroforestry Uses:</h3><p>".link_to_book(nl2br($row['AgroforestryUses']))."</p>";
 }
 ?>
 <!--
-<h3>Agroforestry Uses:</h3><?php echo link_to_book(nl2br($row['AgroforestryUses']))?><br>
+<h3>Agroforestry Uses</h3><p><?php echo link_to_book(nl2br($row['AgroforestryUses']))?></p>
 -->
-<h3>Uses Notes:</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
+<h3>Uses Notes</h3><p><?php echo link_to_book(nl2br($row['Uses notes']))?></p>
 
-<h3>Propagation:</h3><?php echo link_to_book(nl2br($row['Propagation 1']))?><br>
+<h3>Propagation</h3><p><?php echo link_to_book(nl2br($row['Propagation 1']))?></p>
 <!--
-<h3>Conservation Status:</h3><?php echo $row['ConservationStatus']?><br>
+<h3>Conservation Status</h3><p><?php echo $row['ConservationStatus']?></p>
 
-<h3>Weed Potential:</h3><?php echo $row['WeedPotential']?><br>
+<h3>Weed Potential</h3><p><?php echo $row['WeedPotential']?></p>
 -->
-</p>
