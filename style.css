@@ -283,10 +283,10 @@ font-weight: bold;
 
 
 .mainpage {
-	font-size: large;
+	font-size: larger;
 }
 .mainpageletters {
-	font-size: large;
+	font-size: larger;
 	margin-left:5ex;
 }
 
@@ -299,7 +299,7 @@ font-weight: bold;
 
 #mainsearchbox input[type="text"] {
 	width: 50ex;
-	font-size: large;
+	font-size: larger;
 	border-style:solid;
 	border-width:1px;
 	border-color:gray;
@@ -308,5 +308,5 @@ font-weight: bold;
 }
 
 #mainsearchbox input[type="submit"] {
-	font-size: large;
+	font-size: larger;
 }

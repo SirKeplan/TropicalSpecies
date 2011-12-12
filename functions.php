@@ -406,4 +406,13 @@ function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
 	echo " <a href=\"$page?".http_build_query($http_query,"","&amp;")."\">Last</a></p>\n";
 }
 
+
+function letter_index($page, $class) {
+	echo "<p class=\"$class\"><b>";
+	#echo chr(65);#.to_string();
+	for ($char = 65; $char <= 90; $char++) {
+		echo "<a href=\"$page?letter=".chr($char)."\">".chr($char)."</a> ";
+	}
+	echo "</b></p>\n";
+}
 ?>
