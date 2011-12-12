@@ -22,27 +22,6 @@
 	}
 
 	function OutputRecord($row) {
-		#$order = array( "Latin name","Common name","Author",
-		#				"Botanical references","Family","Range",
-		#				"Habitat","Known hazards","Cultivation details",
-		#				"Edible uses","Uses notes","Medicinal",
-		#				"Propagation 1","WeedPotential",
-		#				"ConservationStatus","AgroforestryUses",
-		#				"NomenclatureNotes","GeneralInformation");
-		#echo "<p>";
-		#foreach ($order as $col) {
-		#	print_r("<h3>".$col.":</h3>");
-		#	print_r($row1[$col]."<br>\n\n");
-		#}
-		
-		#######
-		#echo link_to_book($row['Cultivation details']);
-		
-		#include ('template.php');
-
-
-		######
-		
 		
 		$result = safe_query("DESCRIBE `References`");
 		if (!$result) {
@@ -52,15 +31,23 @@
 		if (mysql_num_rows($result) > 0) {
 		    while ($row1 = mysql_fetch_row($result)) {
 				$col_name = $row1[0];
+				if(!array_key_exists($col_name,$row)) {
+					continue;
+				}
+
 				print_r("<h3>".$col_name.":</h3>");
 				if ($col_name == "Href") {
-					print_r("<a target=\"_blank\" href=\"".$row[$col_name]."\">".$row[$col_name]."</a><br>\n\n");
+					$url = $row[$col_name];
+
+					if (!parse_url($url, PHP_URL_SCHEME) && $url) {
+						$url = "http://$url";
+					}
+					print_r("<a target=\"_blank\" href=\"".$url."\">".$url."</a><br>\n\n");
 				} else {
 					print_r(link_to_book($row[$col_name])."<br>\n\n");
 				}
 		    }
 		}
-		#echo "</p>";
 	}
 	
 	include_once 'functions.php';
@@ -73,38 +60,29 @@
 	$key = mysql_real_escape_string($_GET["id"]);
 	
 	if ($key == "K") {
-		echo "<title>".$row['Title']."</title>";
+		echo "<title>Plants for a Future</title>";
 		echo "</head>\n<body>";	
+		echo '<div class="CONTENT">';
 		OutputRecord( array("No" => "K", "Title" => "Plants for a Future", "Author" => "Ken Fern ", "Description" => "Notes from observations, tasting etc at Plants For A Future and on field trips."));
 
 		mysql_close($db);
 		return;
 	}
-	#include 'dbconnect.php';
-	/*
-	SELECT *
-	FROM `TropicalSpecies`
-	WHERE `Latin name` = 'Abelmoschus moschatus'
-	*/
 
 	$result = safe_query("SELECT * FROM `References` WHERE `No` = $key");
 	
-	//echo "<p>";
-	//echo "<table border = \"1\" >";
-	//echo "<th>Latin Name</th><th>Commom Name</th><th></th>";
-
 	$row = mysql_fetch_assoc($result);
 	if ($row) {
 		echo "<title>".$row['Title']."</title>";
 		echo "</head>\n<body>";	
-			#echo link_to_book($row['Cultivation details']);
-		#global $row;
-		#include('template.php' );
+		echo '<div class="CONTENT">';
+
 		OutputRecord($row);
 	} else {
 		echo "<title>".$key."</title>";
 		echo "</head>\n<body>";
-		//include 'header.php';
+		echo '<div class="CONTENT">';
+
 		echo "<p><b>No record for \"".$key."\"</b></p>";
 		
 	}
@@ -112,6 +90,6 @@
 
 	mysql_close($db);
 ?>
-
+</div>
 </body>
 </html>
