@@ -62,15 +62,10 @@ if ($row['NomenclatureNotes'] != null) {
 -->
 <h3>Range</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
 
-<<<<<<< HEAD
+
 <h3>Habitat</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
 
 <h3>Properties</h3>
-=======
-<h3>Habitat:</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
-<!--
-<h3>Properties:</h3>
->>>>>>> branch 'master' of https://RichardMorris@github.com/Ajna/TropicalSpecies.git
 <table class="PROPERTIESTABLE">
 
 <tr>
@@ -229,13 +224,8 @@ if ($row['NomenclatureNotes'] != null) {
 	</tr>
 
 </table>
-<<<<<<< HEAD
 
 <h3>Cultivation Details</h3><?php echo link_to_book(nl2br($row['Cultivation details']));?><br>
-=======
--->
-<h3>Cultivation Details:</h3><?php echo link_to_book(nl2br($row['Cultivation details']));?><br>
->>>>>>> branch 'master' of https://RichardMorris@github.com/Ajna/TropicalSpecies.git
 
 <h3>Edible Uses</h3><?php echo link_to_book(nl2br($row['Edible uses']))?><br>
 

@@ -54,6 +54,8 @@ function toggle_vis() {
 	//echo "<p>Latin '$full' common '$common'.</p>\n";
 ?>
 	<h2>Database Search</h2>
+
+	<p>
 	<form method="get" action="query.php">
 		<div>Full text search: <input type="text" name="full" value="<?php echo $full?>" />
 		<input type="submit" value="GO" /></div>
@@ -240,8 +242,11 @@ function toggle_vis() {
 		$params = array();
 		foreach( $query as $param )
 		{
-		  list($name, $value) = explode('=', $param);
-		  $params[urldecode($name)][] = urldecode($value);
+			if (empty($param)) {
+				continue;
+			}
+			list($name, $value) = explode('=', $param);
+			$params[urldecode($name)][] = urldecode($value);
 		}
 
 		//print_r($params);
