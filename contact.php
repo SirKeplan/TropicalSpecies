@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <link rel=stylesheet href="style.css" type="text/css">
-  <title>Tropical Species Database Index</title>
+  <title>Tropical Species Database Contact</title>
 </head>
 <body>
 <?php
@@ -24,41 +24,45 @@
 	//echo "<b>Revision 2:</b> Contained 3940 plants.<br>\n	";
 	//echo "<b>Revision 1:</b> Contained 3681 plants.<br>\n	";
 	//echo "Original Contained 3552 plants.</p>";	
-	
-		echo '<p>For queries about the website and online database contact us at: <span id="admin-email"><b>email address hidden with javascript to reduce spamming, enable javascript in your browser to view address</b></span></p>
+	echo <<<EOT
+	<p>For queries about the website and online database contact us at: <span id="admin-email"><b>email address hidden with javascript to reduce spamming, enable javascript in your browser to view address</b></span></p>
 
-<script type="text/javascript">
-<!--
+	<script type="text/javascript">
+	<!--
 
-	/*
-	any experienced webmasters kow if my method actually works at all?
-	*/
-	var urly = ":otliam".split("").reverse().join("");
-	var name = "nimda".split("").reverse().join("");
-	var domain= "ofni.snrefeht".split("").reverse().join("");
-	var addr = name+"@"+domain;
+		/*
+		any experienced webmasters kow if my method actually works at all?
+		*/
+		var urly = ":otliam".split("").reverse().join("");
+		var name = "nimda".split("").reverse().join("");
+		var domain= "ofni.snrefeht".split("").reverse().join("");
+		var addr = name+"@"+domain;
 
-    document.getElementById("admin-email").innerHTML="<a href=\""+urly+addr+"\">"+addr+"<\/a>";
--->
-</script>
-</p>';
-	echo '<p>You can email ken at: <span id="ken-email"><b>email address hidden with javascript to reduce spamming, enable javascript in your browser to view address</b></span></p>
+		document.getElementById("admin-email").innerHTML="<a href=\""+urly+addr+"\">"+addr+"<\/a>";
+	-->
+	</script>
+	</p>
+EOT;
 
-<script type="text/javascript">
-<!--
+	echo <<<EOT
+	<p>You can email ken at: <span id="ken-email"><b>email address hidden with javascript to reduce spamming, enable javascript in your browser to view address</b></span></p>
 
-	/*
-	any experienced webmasters kow if my method actually works at all?
-	*/
-	var urly = ":otliam".split("").reverse().join("");
-	var name = "nek".split("").reverse().join("");
-	var domain= "ofni.snrefeht".split("").reverse().join("");
-	var addr = name+"@"+domain;
+	<script type="text/javascript">
+	<!--
 
-    document.getElementById("ken-email").innerHTML="<a href=\""+urly+addr+"\">"+addr+"<\/a>";
--->
-</script>
-</p>';
+		/*
+		any experienced webmasters kow if my method actually works at all?
+		*/
+		var urly = ":otliam".split("").reverse().join("");
+		var name = "nek".split("").reverse().join("");
+		var domain= "ofni.snrefeht".split("").reverse().join("");
+		var addr = name+"@"+domain;
+
+		document.getElementById("ken-email").innerHTML="<a href=\""+urly+addr+"\">"+addr+"<\/a>";
+	-->
+	</script>
+	</p>
+EOT;
 	
 	include 'footer.php';
 
