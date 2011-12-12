@@ -17,9 +17,9 @@ function togglePrompt (box, focus) {
 <div class="HEADERBLOCK">
 <a class="HOME" href="index.php">Tropical Species Database</a>
 	
-<ul class="NAVBAR CURVEBOTH" >
-	<li class="NAVBARLI CURVELEFT">
-		<a class="NAVBARITEM CURVELEFT" href="./">Home</a>
+<ul class="NAVBAR" >
+	<li class="NAVBARLI">
+		<a class="NAVBARITEM" href="./">Home</a>
 	</li><li class="NAVBARLI">
 		<a class="NAVBARITEM" href="common-index.php">Common Names</a>
 	</li><li class="NAVBARLI">

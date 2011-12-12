@@ -53,13 +53,16 @@ function toggle_vis() {
 
 	//echo "<p>Latin '$full' common '$common'.</p>\n";
 ?>
+	<h2>Database Search</h2>
+
 	<p>
 	<form method="get" action="query.php">
 		<div>Full text search: <input type="text" name="full" value="<?php echo $full?>" />
 		<input type="submit" value="GO" /></div>
 	</form>
+
+	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Advanced search</a></div>
 	
-	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Advanced</a></div>
 	<div id="options" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
 	<p>Use the form below to search all plants by fields you select, selecting less options will return more plants.<br/> Note: currently a lot of this information is incomplete and some fields will return few results.</p>
 	<form method="get" action="query.php">
@@ -220,7 +223,6 @@ function toggle_vis() {
 	</div>
 	
 <?php
-    //$result = search($common, "tropicalspecies", array("Common name"));
     $string = 
     "SELECT *,
 		MATCH(Author,NomenclatureNotes,`Known hazards`,`Range`,`Habitat`,`GeneralInformation`,
@@ -230,11 +232,13 @@ function toggle_vis() {
     WHERE MATCH(Author,NomenclatureNotes,`Known hazards`,`Range`,`Habitat`,`GeneralInformation`,
         `Cultivation details`,`Edible uses`,`Medicinal`,`AgroforestryUses`,`Uses notes`,`Propagation 1`,`Names`) 
         AGAINST (\"$full\")"; // IN BOOLEAN MODE
+    
     $anything = (strlen($_SERVER['QUERY_STRING']) > 1);
-    if ($full == null) {
-		$query  = explode('&', $_SERVER['QUERY_STRING']);
+	//	echo htmlspecialchars(urldecode($_SERVER['QUERY_STRING']));
 
-		//echo htmlspecialchars(urldecode($_SERVER['QUERY_STRING']));
+    if ($full == null && $anything ) {
+		$query  = explode('&', $_SERVER['QUERY_STRING']);
+		
 		$params = array();
 		foreach( $query as $param )
 		{
@@ -244,6 +248,7 @@ function toggle_vis() {
 			list($name, $value) = explode('=', $param);
 			$params[urldecode($name)][] = urldecode($value);
 		}
+
 		//print_r($params);
 		$string = "SELECT `Latin name`,`Common name` FROM tropicalspecies WHERE ";
 		$add = "";	
