@@ -11,7 +11,8 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 		
 	// timestamp for the error entry
 	//$dt = date("Y-m-d H:i:s (T)");
-	echo "<h1>Sorry an error occured</h1>\n<p>#$errno line $linenum: $errmsg</p>";
+	echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
+	echo "</body></html>\n";
 	//print 'please report bugs to <a href="mailto:webweaver@pfaf.org">webweaver@pfaf.org</a>';
 	die;
 }
