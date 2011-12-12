@@ -39,7 +39,7 @@
 				if ($col_name == "Href") {
 					$url = $row[$col_name];
 
-					if (!parse_url($url, PHP_URL_SCHEME)) {
+					if (!parse_url($url, PHP_URL_SCHEME) && $url) {
 						$url = "http://$url";
 					}
 					print_r("<a target=\"_blank\" href=\"".$url."\">".$url."</a><br>\n\n");
