@@ -53,11 +53,12 @@ function toggle_vis() {
 
 	//echo "<p>Latin '$full' common '$common'.</p>\n";
 ?>
+	<p>
 	<form method="get" action="query.php">
 		<div>Full text search: <input type="text" name="full" value="<?php echo $full?>" />
 		<input type="submit" value="GO" /></div>
 	</form>
-
+	
 	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Advanced</a></div>
 	<div id="options" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
 	<p>Use the form below to search all plants by fields you select, selecting less options will return more plants.<br/> Note: currently a lot of this information is incomplete and some fields will return few results.</p>

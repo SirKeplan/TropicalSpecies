@@ -63,7 +63,7 @@ if ($row['NomenclatureNotes'] != null) {
 <h3>Range:</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
 
 <h3>Habitat:</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
-
+<!--
 <h3>Properties:</h3>
 <table class="PROPERTIESTABLE">
 
@@ -223,7 +223,7 @@ if ($row['NomenclatureNotes'] != null) {
 	</tr>
 
 </table>
-
+-->
 <h3>Cultivation Details:</h3><?php echo link_to_book(nl2br($row['Cultivation details']));?><br>
 
 <h3>Edible Uses:</h3><?php echo link_to_book(nl2br($row['Edible uses']))?><br>
