@@ -1,13 +1,14 @@
 </div>
 <?php
-	$numPlants = 5500;
-	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
-	if (!$numPlantsRes) {
-		$numPlantsRow = mysql_fetch_row($numPlantsRes);
-		if($numPlantsRow) {
-			$numPlants = $row[0];
-		}
-	}
+include_once 'functions.php';
+include_once 'dbconnect.php';
+
+$numPlants = 5500;
+$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
+$numPlantsRow = mysql_fetch_row($numPlantsRes);
+if($numPlantsRow) {
+	$numPlants = $numPlantsRow[0];
+}
 echo "<p class=\"small\"><b>Last update on 29/11/11:</b> Now containing $numPlants plants.</p>\n";
 
 
