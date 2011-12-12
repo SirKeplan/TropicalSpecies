@@ -37,7 +37,12 @@
 
 				print_r("<h3>".$col_name.":</h3>");
 				if ($col_name == "Href") {
-					print_r("<a target=\"_blank\" href=\"".$row[$col_name]."\">".$row[$col_name]."</a><br>\n\n");
+					$url = $row[$col_name];
+
+					if (!parse_url($url, PHP_URL_SCHEME)) {
+						$url = "http://$url";
+					}
+					print_r("<a target=\"_blank\" href=\"".$url."\">".$url."</a><br>\n\n");
 				} else {
 					print_r(link_to_book($row[$col_name])."<br>\n\n");
 				}
