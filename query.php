@@ -64,7 +64,9 @@ function toggle_vis() {
 	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Advanced search</a></div>
 	
 	<div id="options" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
-	<p>Use the form below to search all plants by fields you select, selecting less options will return more plants.<br/> Note: currently a lot of this information is incomplete and some fields will return few results.</p>
+	<p>Use the form below to search all plants by fields you select, selecting less options will return more plants.<br/>
+	Note: currently a lot of this information is incomplete and some fields will return few results.<br/>
+	Fields marked with * have incomplete information</p>
 	<form method="get" action="query.php">
 	<table id="QUERYTABLE">
 		<tr>
@@ -156,18 +158,18 @@ function toggle_vis() {
 			<input type="checkbox" name="Growth rate" value="S"/>Slow</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Soil</b></td>
+			<td class="TITLE"><b>Soil *</b></td>
 			<td><input type="checkbox" name="Soil" value="L"/>Light
 			<input type="checkbox" name="Soil" value="M"/>Medium
 			<input type="checkbox" name="Soil" value="H"/>Heavy</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Heavy Clay</b></td>
+			<td class="TITLE"><b>Heavy Clay *</b></td>
 			<td><input type="checkbox" name="Heavy clay" value="0"/>No
 			<input type="checkbox" name="Heavy clay" value="1"/>Yes</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Poor Soil</b></td>
+			<td class="TITLE"><b>Poor Soil *</b></td>
 			<td><input type="checkbox" name="Poor soil" value="0"/>No
 			<input type="checkbox" name="Poor soil" value="1"/>Yes</td>
 		</tr>
@@ -177,41 +179,56 @@ function toggle_vis() {
 			<input type="checkbox" name="Nitrogen fixer" value="1"/>Yes</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>PH</b></td>
+			<td class="TITLE"><b>PH *</b></td>
 			<td><input type="checkbox" name="pH" value="A"/>Acid
 			<input type="checkbox" name="pH" value="N"/>Neutral
 			<input type="checkbox" name="pH" value="B"/>Base</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Shade</b></td>
+			<td class="TITLE"><b>Acid *</b></td>
+			<td><input type="checkbox" name="Acid" value="0"/>No
+			<input type="checkbox" name="Acid" value="1"/>Yes
+		</tr>
+		<tr>
+			<td class="TITLE"><b>Alkaline *</b></td>
+			<td><input type="checkbox" name="Alkaline" value="0"/>No
+			<input type="checkbox" name="Alkaline" value="1"/>Yes
+		</tr>
+		<tr>
+			<td class="TITLE"><b>Saline *</b></td>
+			<td><input type="checkbox" name="Saline" value="0"/>No
+			<input type="checkbox" name="Saline" value="1"/>Yes
+		</tr>
+		<tr>
+			<td class="TITLE"><b>Shade *</b></td>
 			<td><input type="checkbox" name="Shade" value="F"/>Full
 			<input type="checkbox" name="Shade" value="S"/>Semi
 			<input type="checkbox" name="Shade" value="N"/>None</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Moisture</b></td>
+			<td class="TITLE"><b>Moisture *</b></td>
 			<td><input type="checkbox" name="Moisture" value="D"/>Dry
 			<input type="checkbox" name="Moisture" value="M"/>Moist
 			<input type="checkbox" name="Moisture" value="We"/>Wet or Boggy
 			<input type="checkbox" name="Moisture" value="Wa"/>Water</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Well Drained</b></td>
+			<td class="TITLE"><b>Well Drained *</b></td>
 			<td><input type="checkbox" name="Well-drained" value="1"/>Yes
 			<input type="checkbox" name="Well-drained" value="0"/>No</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Tolerates Drought</b></td>
+			<td class="TITLE"><b>Tolerates Drought *</b></td>
 			<td><input type="checkbox" name="Drought" value="1"/>Yes
 			<input type="checkbox" name="Drought" value="0"/>No</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Wind</b></td>
+			<td class="TITLE"><b>Wind *</b></td>
 			<td><input type="checkbox" name="Wind" value="W"/>Light
 			<input type="checkbox" name="Wind" value="M"/>Medium</td>
 		</tr>
 		<tr>
-			<td class="TITLE"><b>Tolerates Pollution</b></td>
+			<td class="TITLE"><b>Tolerates Pollution *</b></td>
 			<td><input type="checkbox" name="Pollution" value="Y"/>Yes
 			<input type="checkbox" name="Pollution" value="N"/>No</td>
 		</tr><tr>
