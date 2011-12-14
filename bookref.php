@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <link rel=stylesheet href="style.css" type="text/css">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<link rel=stylesheet href="style.css" type="text/css">
 
 <?php
 	function link_to_book($string) {
@@ -29,24 +29,33 @@
 		    exit;
 		}
 		if (mysql_num_rows($result) > 0) {
+			echo "<dl>\n";
 		    while ($row1 = mysql_fetch_row($result)) {
 				$col_name = $row1[0];
 				if(!array_key_exists($col_name,$row)) {
 					continue;
 				}
 
-				print_r("<h3>".$col_name.":</h3>");
 				if ($col_name == "Href") {
-					$url = $row[$col_name];
+					if(!empty($row[$col_name]) ) {
+						echo "<dt>Website</dt>";
+						echo "<dd>";
+						$url = $row[$col_name];
 
-					if (!parse_url($url, PHP_URL_SCHEME) && $url) {
-						$url = "http://$url";
+						if (!parse_url($url, PHP_URL_SCHEME) && $url) {
+							$url = "http://$url";
+						}
+						echo "<a target=\"_blank\" href=\"".$url."\">".$url."</a>";
+						echo "</dd>\n";
 					}
-					print_r("<a target=\"_blank\" href=\"".$url."\">".$url."</a><br>\n\n");
 				} else {
-					print_r(link_to_book($row[$col_name])."<br>\n\n");
+					echo "<dt>".$col_name."</dt>";
+					echo "<dd>";
+					echo link_to_book($row[$col_name]);
+					echo "</dd>\n";
 				}
 		    }
+		    echo "</dl>\n";
 		}
 	}
 	
@@ -91,5 +100,17 @@
 	mysql_close($db);
 ?>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
