@@ -83,6 +83,8 @@ padding:0px;
 padding-bottom:4px;
 padding-left:8px;
 height:20px;/*needed by chrome for some reason*/
+
+overflow:hidden;
 /*
 padding-top:6px;
 padding-bottom:6px;*/
@@ -93,8 +95,10 @@ li.NAVBARLI {
 padding:0px;
 padding-top:4px;
 
-float:none;
+float:left;
 display:inline-table;
+
+height:20px;
 }
 
 .CURVELEFT {
@@ -314,3 +318,28 @@ font-weight: bold;
 #mainsearchbox input[type="submit"] {
 	font-size: larger;
 }
+
+.ref {
+
+}
+
+.ref > div
+{  
+	visibility:hidden;
+	background:#FFD079;
+	border:1px solid;
+	opacity:0;
+	max-width:250px;
+	padding:.5em;
+	box-shadow: 3px 3px 5px #888888;
+	-moz-transition:visibility 0s linear 0.2s,opacity 0.2s linear;
+	position: absolute;
+}
+
+.ref:hover > div
+{  
+	visibility:visible;
+	opacity:1;
+	-moz-transition-delay:0s;
+}
+

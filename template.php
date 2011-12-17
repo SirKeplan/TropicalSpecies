@@ -35,8 +35,75 @@ if ($row['NomenclatureNotes'] != null) {
 <?php 
 $n = $row['Latin name'];
 $s = "<a href=\"synonyms.php?id=$n\" onClick=\"RefWindow=window.open('synonyms.php?id=$n','RefWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=400,height=610,left=50,top=150'); RefWindow.focus(); return false;\">Synonyms.</a>";
-echo $s;#"<a href=\"synonyms.php?id=".$row['Latin name']."\">Show Synonyms.</a>";?>
 
+#echo $s;#"<a href=\"synonyms.php?id=".$row['Latin name']."\">Show Synonyms.</a>";#
+
+$full = "123";
+echo <<<EOT
+	<script type="text/javascript">
+function toggle_vis() {
+	var val = document.getElementById('synonyms').style.display;
+	if (val == 'none') {
+		document.getElementById('synonyms').style.display = 'block';
+		document.getElementById('syn_text').innerHTML = "- Synonyms"
+
+	} else {
+		document.getElementById('synonyms').style.display = 'none';
+		document.getElementById('syn_text').innerHTML = "+ Synonyms"
+
+	}
+}
+</script>
+
+<!--
+<span class="ref"><a href="#">lala</a><div><dl>
+<dt>No</dt><dd>422</dd>
+<dt>Title</dt><dd>Fruits of the Guianan Flora</dd>
+<dt>Author</dt><dd>van Roosmalen. M.G.M.</dd>
+
+<dt>Publisher</dt><dd>Institute of Systematic Boyany, Utrecht University; Netherlands.</dd>
+<dt>Year</dt><dd>1985</dd>
+<dt>ISBN</dt><dd>90-9000988-4</dd>
+<dt>Description</dt><dd>Terse descriptions of over 1,700 species from the Guianas that bear fruits - not necessarily edible! Often mentions if the fruit is edible, plus gives brief description of habit and habitat.</dd>
+</dl>
+</div>
+
+
+
+</span> um te tum
+
+-->
+EOT;
+?>
+	
+	<div><a id="syn_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Synonyms</a></div>
+	<div id="synonyms" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
+	<?php 
+
+	function OutputRecordSyn($row) {
+		echo "<p><b><i>{$row["LatinName"]}</i></b> {$row["Author"]}</p>\n";
+	}
+	$key = $n;
+
+	$result2 = safe_query("SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
+
+	#echo "<h2>Synonyms for $key</h2>\n";
+
+	while ($row2 = mysql_fetch_assoc($result2)) {
+		
+		if ($row2) {
+			OutputRecordSyn($row2);
+		} else {
+			echo "<p><b>No record for \"".$key."\"</b></p>";
+		}
+	}
+	mysql_free_result($result2);
+
+?>	
+
+	</div>
+	
+	
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
 	<div class="NOIMAGE">No Image.</div>
