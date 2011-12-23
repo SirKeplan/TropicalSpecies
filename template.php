@@ -55,12 +55,10 @@ function toggle_vis() {
 }
 </script>
 
-<!--
-<span class="ref"><a href="#">lala</a><div><dl>
-<dt>No</dt><dd>422</dd>
+
+alallalalalalalalalalallaal<span class="ref"><a href="#">[422]</a><div><dl class="refview">
 <dt>Title</dt><dd>Fruits of the Guianan Flora</dd>
 <dt>Author</dt><dd>van Roosmalen. M.G.M.</dd>
-
 <dt>Publisher</dt><dd>Institute of Systematic Boyany, Utrecht University; Netherlands.</dd>
 <dt>Year</dt><dd>1985</dd>
 <dt>ISBN</dt><dd>90-9000988-4</dd>
@@ -72,7 +70,7 @@ function toggle_vis() {
 
 </span> um te tum
 
--->
+
 EOT;
 ?>
 	

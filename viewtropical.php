@@ -18,7 +18,34 @@
 		for ($i = 0; $i < count($matches[1]); $i++) {
 			$pat[$i] = $regex;#"/{$matches[$i]}/";
 			$rep[$i] = '<a href="bookref.php?id=$1" onClick="RefWindow=window.open(\'bookref.php?id=$1\',\'RefWindow\',\'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=400,height=610,left=50,top=150\'); RefWindow.focus(); return false;">$1</a>';
-			##
+			
+			$key = $matches[1][$i];
+			
+			if ($key == "K") {
+				echo "<title>Plants for a Future</title>";
+				echo "</head>\n<body>";	
+				echo '<div class="CONTENT">';
+				$row2 = array("No" => "K", "Title" => "Plants for a Future", "Author" => "Ken Fern ", "Description" => "Notes from observations, tasting etc at Plants For A Future and on field trips.");
+
+				#mysql_close($db);
+				return;
+			} else {
+				if ($key) {
+					$result2 = safe_query("SELECT * FROM `References` WHERE `No` = ".$key);
+					$row2 = mysql_fetch_assoc($result2);
+					#echo $row2["Title"];
+				}
+			}
+			if ($key) {
+				$out = "";
+				$out .= '<span class="ref"><a href="#">$1</a><span>';
+				$out .= OutputBookRefRecord($row2);
+				$out .= '</span></span>';
+			
+			
+			$rep[$i] = $out;
+}
+
 			
 		}
 		$newstring = preg_replace($pat, $rep, $string, -1, $count);
