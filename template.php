@@ -56,7 +56,7 @@ function toggle_vis() {
 </script>
 
 
-alallalalalalalalalalallaal<span class="ref"><a href="#">[422]</a><div><dl class="refview">
+alallalalalalalalalalallaal<span class="ref"><a href="#">[422]</a><span><dl class="refview">
 <dt>Title</dt><dd>Fruits of the Guianan Flora</dd>
 <dt>Author</dt><dd>van Roosmalen. M.G.M.</dd>
 <dt>Publisher</dt><dd>Institute of Systematic Boyany, Utrecht University; Netherlands.</dd>
@@ -64,7 +64,7 @@ alallalalalalalalalalallaal<span class="ref"><a href="#">[422]</a><div><dl class
 <dt>ISBN</dt><dd>90-9000988-4</dd>
 <dt>Description</dt><dd>Terse descriptions of over 1,700 species from the Guianas that bear fruits - not necessarily edible! Often mentions if the fruit is edible, plus gives brief description of habit and habitat.</dd>
 </dl>
-</div>
+</span>
 
 
 
@@ -304,6 +304,7 @@ if ($row['NomenclatureNotes'] != null) {
 <h3>Edible Uses</h3><?php echo link_to_book(nl2br($row['Edible uses']))?><br>
 
 <h3>Medicinal</h3><?php echo link_to_book(nl2br($row['Medicinal']))?><br>
+
 
 
 <?php

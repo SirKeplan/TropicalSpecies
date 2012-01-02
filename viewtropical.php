@@ -5,6 +5,42 @@
   <link rel=stylesheet href="style.css" type="text/css">
 
 <?php
+	function callback($matches) {
+		
+		#echo "|";
+		#print_r( $matches);
+		#echo "|";
+		
+		$key = $matches[1];
+		
+		if ($key == "K") {
+			$row2 = array("No" => "K", "Title" => "Plants for a Future", "Author" => "Ken Fern ", "Description" => "Notes from observations, tasting etc at Plants For A Future and on field trips.");
+
+			#mysql_close($db);
+			#return;
+		} else {
+			if ($key) {
+				$result2 = safe_query("SELECT * FROM `References` WHERE `No` = ".$key);
+				$row2 = mysql_fetch_assoc($result2);
+				#echo $row2["Title"];
+			} else {
+				return $key;
+			}
+		}
+		$out = "";
+		if ($row2) {
+			$out = "";
+			$out = '<span class="ref"><a href="#">'.$key.'</a><span>'.OutputBookRefRecord($row2).'</span></span>';
+			
+			#$out .= OutputBookRefRecord($row2);
+			#$out .= 
+		}
+		echo "function:";
+		#echo htmlspecialchars ($out);
+		return $out;//$matches[0];//$matches[0];
+	}
+
+
 	function link_to_book($string, $other = false) {
 		if ($other){			
 			$regex = '/(?<=^|,\s)(\d*)/';
@@ -15,20 +51,23 @@
 
 		$rep = array();
 		$pat = array();
+		#$out = "";
+		/*
 		for ($i = 0; $i < count($matches[1]); $i++) {
 			$pat[$i] = $regex;#"/{$matches[$i]}/";
 			$rep[$i] = '<a href="bookref.php?id=$1" onClick="RefWindow=window.open(\'bookref.php?id=$1\',\'RefWindow\',\'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=400,height=610,left=50,top=150\'); RefWindow.focus(); return false;">$1</a>';
 			
 			$key = $matches[1][$i];
+			$row2 = null;
+			$row2 = array("No" => $key, "Title" => "Plants for a Future", "Author" => "Ken Fern ", "Description" => "Notes from observations, tasting etc at Plants For A Future and on field trips.");
+
+			
 			
 			if ($key == "K") {
-				echo "<title>Plants for a Future</title>";
-				echo "</head>\n<body>";	
-				echo '<div class="CONTENT">';
 				$row2 = array("No" => "K", "Title" => "Plants for a Future", "Author" => "Ken Fern ", "Description" => "Notes from observations, tasting etc at Plants For A Future and on field trips.");
 
 				#mysql_close($db);
-				return;
+				#return;
 			} else {
 				if ($key) {
 					$result2 = safe_query("SELECT * FROM `References` WHERE `No` = ".$key);
@@ -36,20 +75,23 @@
 					#echo $row2["Title"];
 				}
 			}
-			if ($key) {
-				$out = "";
-				$out .= '<span class="ref"><a href="#">$1</a><span>';
-				$out .= OutputBookRefRecord($row2);
-				$out .= '</span></span>';
 			
-			
-			$rep[$i] = $out;
-}
+			if ($row2) {
+				$rep[$i] = "";
+				$rep[$i] .= '<span class="ref"><a href="#">$1</a><span>';
+				$rep[$i] .= OutputBookRefRecord($row2);
+				$rep[$i] .= '</span></span>';
+				#$rep[$i] = $out;
+			}
+			#echo "INDEX~~".$i."</br>";
 
 			
 		}
-		$newstring = preg_replace($pat, $rep, $string, -1, $count);
-                  
+		*/
+		#print_r ($rep);
+		$newstring = preg_replace_callback($regex, "callback", $string);
+		#$newstring = preg_replace($pat, $rep, $string);
+		#$newstring = str_replace($matches[1], $rep, $string);
 		return $newstring;
 	}
 
