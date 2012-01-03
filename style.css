@@ -321,13 +321,15 @@ font-weight: bold;
 
 .ref {
 	display:inline;
-	/*position: relative;*/
+	position:relative;
 }
 
 .ref > span
-{	display:block;
-
-	position: absolute;
+{	display:inline;
+	
+	z-index: 99;
+	/*position: absolute;*/
+	position:absolute; left:-1px; top:1.25em; width:250px; height:250px;
 	overflow:auto;
 	visibility:hidden;
 	background:#FFD992;
