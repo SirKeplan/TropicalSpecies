@@ -35,7 +35,7 @@
 			#$out .= OutputBookRefRecord($row2);
 			#$out .= 
 		}
-		echo "function:";
+		#echo "function:";
 		#echo htmlspecialchars ($out);
 		return $out;//$matches[0];//$matches[0];
 	}
