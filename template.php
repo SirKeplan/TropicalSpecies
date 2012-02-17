@@ -55,22 +55,6 @@ function toggle_vis() {
 }
 </script>
 
-
-alallalalalalalalalalallaal<span class="ref"><a href="#">[422]</a><span><dl class="refview">
-<dt>Title</dt><dd>Fruits of the Guianan Flora</dd>
-<dt>Author</dt><dd>van Roosmalen. M.G.M.</dd>
-<dt>Publisher</dt><dd>Institute of Systematic Boyany, Utrecht University; Netherlands.</dd>
-<dt>Year</dt><dd>1985</dd>
-<dt>ISBN</dt><dd>90-9000988-4</dd>
-<dt>Description</dt><dd>Terse descriptions of over 1,700 species from the Guianas that bear fruits - not necessarily edible! Often mentions if the fruit is edible, plus gives brief description of habit and habitat.</dd>
-</dl>
-</span>
-
-
-
-</span> um te tum
-
-
 EOT;
 ?>
 	
@@ -309,15 +293,15 @@ if ($row['NomenclatureNotes'] != null) {
 
 <?php
 if ($row['AgroforestryUses'] != null) {
-	echo "<h3>Agroforestry Uses:</h3><p>".link_to_book(nl2br($row['AgroforestryUses']))."</p>";
+	echo "<h3>Agroforestry Uses:</h3>".link_to_book(nl2br($row['AgroforestryUses']))."<br>";
 }
 ?>
 <!--
 <h3>Agroforestry Uses</h3><p><?php echo link_to_book(nl2br($row['AgroforestryUses']))?></p>
 -->
-<h3>Uses Notes</h3><p><?php echo link_to_book(nl2br($row['Uses notes']))?></p>
+<h3>Uses Notes</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
 
-<h3>Propagation</h3><p><?php echo link_to_book(nl2br($row['Propagation 1']))?></p>
+<h3>Propagation</h3><?php echo link_to_book(nl2br($row['Propagation 1']))?><br>
 <!--
 <h3>Conservation Status</h3><p><?php echo $row['ConservationStatus']?></p>
 
