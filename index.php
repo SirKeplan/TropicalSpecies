@@ -3,6 +3,7 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <link rel=stylesheet href="style.css" type="text/css">
+  <link rel="shortcut icon" href="thing.ico">
   <title>Tropical Species Database Index</title>
 </head>
 <body>

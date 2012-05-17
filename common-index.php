@@ -14,7 +14,7 @@ include 'header.php';
 include 'dbconnect.php';
 
 echo "<h1>Index of common names</h1>\n";
-echo "<p><b>";
+echo '<p class="mainpageletters"><b>';
 #echo chr(65);#.to_string();
 for ($char = 65; $char <= 90; $char++) {
 	echo "<a href=\"common-index.php?letter=".chr($char)."\">".chr($char)."</a> ";
