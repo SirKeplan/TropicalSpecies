@@ -33,7 +33,7 @@
 	echo <<<EOT
 	<p class="mainpage">The Tropical Species Database is a database of useful plant
 	which can be grown in tropical regions. 
-	It contains details of the edible medicinal and other uses and lists over $numPlants plants.</p>
+	It contains details of the edible medicinal and other uses and currently lists $numPlants plants.</p>
 
 	<form action="query.php" method="get">
 	<div id="mainsearchbox">
