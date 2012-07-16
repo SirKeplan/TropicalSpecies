@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <link rel=stylesheet href="style.css" type="text/css">
-  <title>Tropical Species Database Contact</title>
+  <title>Tropical Species Database About</title>
 </head>
 <body>
 <?php

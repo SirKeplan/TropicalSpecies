@@ -236,7 +236,7 @@ if ($row['NomenclatureNotes'] != null) {
 	?>
 </tr>
 <tr>
-	<td class="PROPERTIESTABLE">Well-drained</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Well-drained'])?></td>
+	<td class="PROPERTIESTABLE">Well-drained</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Drainage'])?></td>
 </tr>
 <tr>
 	<td class="PROPERTIESTABLE">Drought</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Drought'])?></td>
