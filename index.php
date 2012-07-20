@@ -43,7 +43,7 @@ float:right;margin-left:1em;margin-bottom:1em;"src="front.png"</img>
 	<input type="text" id="searchbox2" name="full"
 		value="Search:" onfocus="togglePrompt(searchbox2, true)"
 		alt="Search" onblur="togglePrompt(searchbox2, false)" />
-	<input type="submit" value="Submit" />
+	<input type="submit" value="Search" />
 	</div>
 	</form>
 	
