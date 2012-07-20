@@ -24,6 +24,8 @@ echo "</b></p>\n";
 if (empty($_GET["letter"])) {
 	echo "<p>Click a letter to list all plants with the common names starting with that letter.</p>";
 
+	echo "<p>Not all plants have their common name in the database, and many plants have multiple common names.<br>Only one common name is given for each plant in the database.</p>";
+
 	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies` WHERE `Common name` <> ''");
 	$numPlants = 0;
 	$numPlantsRow = mysql_fetch_row($numPlantsRes);
