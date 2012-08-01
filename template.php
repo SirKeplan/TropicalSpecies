@@ -29,7 +29,7 @@
 </table>
 <?php
 if ($row['NomenclatureNotes'] != null) {
-	echo link_to_book(nl2br($row['NomenclatureNotes']))."<br>";
+	echo link_to_book(nl2br($row['NomenclatureNotes']))."<br><br>";
 }
 ?>
 <?php 
@@ -45,11 +45,11 @@ function toggle_vis() {
 	var val = document.getElementById('synonyms').style.display;
 	if (val == 'none') {
 		document.getElementById('synonyms').style.display = 'block';
-		document.getElementById('syn_text').innerHTML = "- Synonyms"
+		document.getElementById('syn_text').innerHTML = "<b>- Synonyms</b>"
 
 	} else {
 		document.getElementById('synonyms').style.display = 'none';
-		document.getElementById('syn_text').innerHTML = "+ Synonyms"
+		document.getElementById('syn_text').innerHTML = "<b>+ Synonyms</b>"
 
 	}
 }
@@ -58,7 +58,7 @@ function toggle_vis() {
 EOT;
 ?>
 	
-	<div><a id="syn_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Synonyms</a></div>
+	<div><a id="syn_text" onclick="toggle_vis();"><b><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Synonyms</b></a></div>
 	<div id="synonyms" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
 	<?php 
 

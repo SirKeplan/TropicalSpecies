@@ -12,7 +12,7 @@ if(!$selected) {
 }
 #mb_internal_encoding( 'utf-8' );
 
-safe_query("SET NAMES 'utf8'");
+#safe_query("SET NAMES 'utf8'");
 #safe_query("SET CHARACTER SET utf8");
 #safe_query("SET CHARACTER_SET_RESULTS=utf8'");
 ?>

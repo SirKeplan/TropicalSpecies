@@ -1,9 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="style.css" type="text/css">
-<title>Tropical Species Database Index</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <link rel=stylesheet href="style.css" type="text/css">
+  <link rel="shortcut icon" href="flower.ico">
+  <title>Tropical Species Database Index</title>
 </head>
 <body>
 
