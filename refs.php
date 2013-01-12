@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -16,7 +17,7 @@
 		$row = mysql_fetch_assoc($result);
 		#print_r($row);
 		
-		echo "<a name=".$row["No"]."></a><br/>";
+		echo "<a name=".$row["No"]."></a><br/><b>Reference: ".$row["No"]."</b>";
 		echo OutputBookRefRecord($row);
 	}
 	
