@@ -9,7 +9,7 @@ $numPlantsRow = mysql_fetch_row($numPlantsRes);
 if($numPlantsRow) {
 	$numPlants = $numPlantsRow[0];
 }
-echo "<p class=\"small\"><b>Last update on 14/07/12:</b> Now containing $numPlants plants.</p>\n";
+echo "<p class=\"small\"><b>Last update on 08/03/13:</b> Now containing $numPlants plants.</p>\n";
 
 
 ?>
