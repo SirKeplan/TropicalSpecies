@@ -6,22 +6,22 @@
 <link rel=stylesheet href="style.css" type="text/css">  
 <link rel="shortcut icon" href="flower.ico">
 </head>
-
 <body>
-	<script type="text/javascript">
+  <script type="text/javascript">
+		
 function toggle_vis() {
 	var val = document.getElementById('options').style.display;
 	if (val == 'none') {
 		document.getElementById('options').style.display = 'block';
-		document.getElementById('adv_text').innerHTML = "- Advanced"
+		document.getElementById('adv_text').innerHTML = "- Advanced search"
 
 	} else {
 		document.getElementById('options').style.display = 'none';
-		document.getElementById('adv_text').innerHTML = "+ Advanced"
+		document.getElementById('adv_text').innerHTML = "+ Advanced search"
 
 	}
 }
-</script>
+  </script>
 	
 <?php
 
@@ -57,36 +57,37 @@ function toggle_vis() {
 	<h2>Database Search</h2>
 
 	<p>
-	<form method="get" action="query.php">
+	<!--<form method="get" action="query.php">
 		<div>Full text search: <input type="text" name="full" value="<?php echo $full?>" />
 		<input type="submit" value="GO" /></div>
 	</form>
+	-->
 
 	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Advanced search</a></div>
 	
 	<div id="options" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
-	<p>Use the form below to search all plants by fields you select, selecting less options will return more plants.<br/>
+	<p>Use this form to search all plants by fields you select, selecting less options will return more plants.<br/>
 	Note: currently a lot of this information is incomplete and some fields will return few results.<br/>
 	Fields marked with * have incomplete information</p>
-	<form method="get" action="query.php">
+	<form id="QueryForm" method="get" action="query.php">
 	<table id="QUERYTABLE">
 		<tr>
 			<td class="TITLE"><b>Habit</b></td>
 			<td><select multiple="multiple" name="Habit" size="5">
-				<option>Annual</option>
-				<option>Annual Climber</option>
-				<option>Annual/Biennial</option>
-				<option>Annual/Perennial</option>
-				<option>Bamboo</option>
-				<option>Biennial</option>
-				<option>Bulb</option>
-				<option>Climber</option>
-				<option>Corm</option>
-				<option>Fern</option>
-				<option>Perennial</option>
-				<option>Perennial Climber</option>
-				<option>Shrub</option>
-				<option>Tree</option>
+				<option id="Annual">Annual</option>
+				<option id="Annual Climber">Annual Climber</option>
+				<option id="Annual/Biennial">Annual/Biennial</option>
+				<option id="Annual/Perennial">Annual/Perennial</option>
+				<option id="Bamboo">Bamboo</option>
+				<option id="Biennial">Biennial</option>
+				<option id="Bulb">Bulb</option>
+				<option id="Climber">Climber</option>
+				<option id="Corm">Corm</option>
+				<option id="Fern">Fern</option>
+				<option id="Perennial">Perennial</option>
+				<option id="Perennial Climber">Perennial Climber</option>
+				<option id="Shrub">Shrub</option>
+				<option id="Tree">Tree</option>
 			</select>		
 		</tr>
 		<tr>
@@ -139,7 +140,7 @@ function toggle_vis() {
 		</tr>		
 		<tr>
 			<td class="TITLE"><b>Hardyness</b></td>
-			<td 	><input type="checkbox" name="Hardyness" value="1"/>1
+			<td><input type="checkbox" name="Hardyness" value="1"/>1
 			<input type="checkbox" name="Hardyness" value="2"/>2
 			<input type="checkbox" name="Hardyness" value="3"/>3
 			<input type="checkbox" name="Hardyness" value="4"/>4
@@ -215,8 +216,8 @@ function toggle_vis() {
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Well Drained *</b></td>
-			<td><input type="checkbox" name="Well-drained" value="1"/>Yes
-			<input type="checkbox" name="Well-drained" value="0"/>No</td>
+			<td><input type="checkbox" name="Drainage" value="1"/>Yes
+			<input type="checkbox" name="Drainage" value="0"/>No</td>
 		</tr>
 		<tr>
 			<td class="TITLE"><b>Tolerates Drought *</b></td>
@@ -258,6 +259,7 @@ function toggle_vis() {
 		$query  = explode('&', $_SERVER['QUERY_STRING']);
 		
 		$params = array();
+		global $params;
 		foreach( $query as $param )
 		{
 			if (empty($param)) {
@@ -274,8 +276,9 @@ function toggle_vis() {
 		$parts = array();
 		
 		$allowedKeys = array("Habit","Deciduous/Evergreen","Height","Width","Hardyness","Growth rate",
-			"Soil","Heavy clay","Poor soil","Nitrogen fixer","pH",
-			"Shade","Moisture","Well-drained","Drought","Wind","Pollution","amount","pageno");
+			"Soil","Heavy clay","Poor soil","Nitrogen fixer","pH","Acid","Alkaline","Saline",
+			"Shade","Moisture","Drainage","Drought","Wind","Pollution","amount","pageno");
+
 		
 		foreach ($params as $key => $val) {
 			
@@ -304,7 +307,7 @@ function toggle_vis() {
 						$individual = $matches[1] . "' AND '" . $matches[2];
 						//echo "HeightWidth: ". htmlspecialchars($individual);
 					} else {
-						trigger_error("Illgal value for $key '$val'");
+						trigger_error("Illegal value for $key '$val'");
 					}
 				}
 				#echo $individual.$key2;
@@ -355,13 +358,21 @@ function toggle_vis() {
 		}
 		//echo htmlspecialchars(urldecode($string));
 		
+		//for passing on to other pages to keep same results
 		$http_query = $_GET;
+		
+		//for getting totla record count
 		$all = safe_query($string); 
 		$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
 		$allcount = mysql_num_rows($all);
 		
-		echo "<p>".mysql_num_rows($all)." records.</p>";
+		echo "<p>".mysql_num_rows($all)." records";
 		
+		if($full) {
+			echo " found for \"$full\".</p>";
+		}else{
+			echo ".</p>";
+		}
 		
 		$http_query["amount"] = $amount;
 
@@ -377,5 +388,55 @@ function toggle_vis() {
 
 	mysql_close($db);
 ?>
+	
+<script type="text/javascript">
+
+	//function setFormVars() {
+		//TODO Fix this ajna.......
+		form = document.getElementById('QueryForm');
+		<?php
+		
+		//echo "alert(form.elements[\"Acid\"][0].checked);\n";
+		global $params;
+		//echo var_dump($params);
+		foreach ($params as $key => $val) {
+			foreach ($val as $inkey) {
+				if ($key == "Height" OR $key == "Width") {
+					continue;
+				}
+echo <<<EOT
+		
+		var control = form.elements["$key"];
+		for (var no = 0; no < control.length; no++) {
+			if (control[no].value == "$inkey") {
+				//alert(control[no].type);
+				if (control[no] instanceof HTMLOptionElement ) {
+					//control[no].value = "$inkey";
+					document.getElementById("$inkey").selected=true;
+				} else {
+					control[no].checked = true;
+				}
+			}
+			//alert(control[no].name);
+		}
+		//control["$inkey"].checked = true;
+
+EOT;
+				
+			}
+		}
+		?>
+		//document.write(table);
+		//for (ele in form.elements) {
+		//	document.write(ele.nodeName);
+			//ele.value = 1;
+		//}
+		//document.write(form.elements["Height"].value);
+		//form.elements["Acid"][0].checked = true;
+		//alert(form.elements["Acid"][1].checked);
+
+	//}
+</script>
 </body>
+
 </html>
