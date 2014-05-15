@@ -1,9 +1,10 @@
 
 body {
 	font-family: Arial, Sans-Serif;
-	font-size: 12.5px; 
+	font-size:small;
 	clear:both;
 	margin:0px;
+	height:100%;
 
 }
 
@@ -13,18 +14,29 @@ a:hover {color:#FF0000;}   /* mouse over link */
 a:active {color:#00FF00;}  /* selected link */
 
 a.HOME {    
-	font-size:25px;
+	font-size:x-large;
 	font-weight:bold;
 	text-decoration:none;
 	color:#003300;
 	padding-left: 8px;
 	/*margin:8px;*/
 }
+h2{
+	font-size:1.5em;
+
+}
+
 h3{
 	color:#98bf21;
 	font-weight: bold; 
 	font-size:large;
 }
+
+h4{
+	font-size:1em;
+
+}
+
 h3.SHORT{
 	color:#98bf21;
 	font-weight: bold; 
@@ -32,16 +44,7 @@ h3.SHORT{
 	/*margin-RIGHT: 310px;*/	
 
 }
-.SEARCH {
-float:right;
-    padding-right:1px; 
-    padding-top:1px; 
-    margin-bottom:0px; 
-	min-width:80px;
-	width:196px;
-	font-size: 12px;
 
-}
 
 /*div.GREENBAR {
     background-color:#98bf21;
@@ -67,7 +70,8 @@ float:right;
 
 	margin:0px;
 	padding:8px 0px 0px 0px;
-	border:0px
+	border:0px;
+	height:100%;
 
 
 }
@@ -75,14 +79,16 @@ float:right;
 
 ul.NAVBAR
 {
+	font-size:medium;
 	background-color:#98aa21;
 	list-style-type:none;
 	margin: 8px 0px 0px 0px;
 	padding:0px;
 	/*padding-top:0px;*/
-	padding-bottom:4px;
+	padding-bottom:0px;
 	padding-left:8px;
-	height:20px;/*needed by chrome for some reason*/
+	/*height:25px;needed by chrome for some reason*/
+	height:100%;
 
 	overflow:hidden;
 	/*
@@ -93,12 +99,68 @@ ul.NAVBAR
 li.NAVBARLI {
 
 	padding:0px;
-	padding-top:4px;
+	padding-top:0px;
+	/*background-color:#980000;*/
 
 	float:left;
-	display:inline-table;
+	height:100%;
+  vertical-align: middle;
 
-	height:20px;
+    display:inline-block;
+
+}
+
+a.NAVBARITEM:link, a.NAVBARITEM:visited
+{
+    border-right-style:solid;
+    border-color:#557711;
+    border-width:1px;
+	font-weight:bold;
+	color:#FFFFFF;
+	background-color:#98aa21;
+	/*background-color:#009800;*/
+
+	/*width:140px;*/
+	height:100%;
+	text-align:center;
+	padding:0px 4px 0px 4px;
+	line-height:25px;
+
+	text-decoration:none;
+
+    display:inline-block;
+}
+a.NAVBARITEM:hover,a.NAVBARITEM:active
+{
+	background-color:#7A991A;
+}
+/*a.NAVBAR:hover {color:#FF0000;}*/ 
+/*a.NAVBAoR:active {color:#00FF00;} */
+
+.SEARCH {
+	float:right;
+    padding:0px; 
+    margin:0px; 
+	min-width:80px;
+	width:196px;
+	height:100%;
+
+	/*background-color:#980000;*/
+
+}
+
+.searchbox {
+	min-width:80px;
+	width:190px;
+	margin:1px; 
+	border-style:solid;
+	border-width:1px;
+	border-color:gray;
+	font-style: italic;
+	color: grey;
+	height:100%;
+	font-size: 1em;
+	display:block;
 }
 
 .CURVELEFT {
@@ -118,38 +180,18 @@ li.NAVBARLI {
 	/*behavior: url(border-radius.htc);*/
 }
 
-a.NAVBARITEM:link, a.NAVBARITEM:visited
-{
-	font-size:13.5px;
-    border-right-style:solid;
-    border-color:#557711;
-    border-width:1px;
-	font-weight:bold;
-	color:#FFFFFF;
-	background-color:#98aa21;
-	width:140px;
-	text-align:center;
-	padding:4px;
-	text-decoration:none;
-}
-a.NAVBARITEM:hover,a.NAVBARITEM:active
-{
-	background-color:#7A991A;
-}
-/*a.NAVBAR:hover {color:#FF0000;}*/ 
-/*a.NAVBAoR:active {color:#00FF00;} */
-
 .PBOX
 {
 	float:right;
 	border:1px dotted black;
 	width:304px;
-	height:250px;
+	min-height:220px;
 	/*background-color: #D0D0D0;*/
 	text-align:center;
 	font-size:30px;
 	margin-right:10px;
 	margin-left:10px;
+	padding:0px;
 
 	background-image:
 	  -moz-linear-gradient(45deg, #ccc 25%, transparent 25%), 
@@ -180,13 +222,19 @@ a.NAVBARITEM:hover,a.NAVBARITEM:active
 }
 .NOIMAGE {
 	font-style:italic;
-	line-height:250px;
+	line-height:200px;
+	z-index:0;	
 }
 .PIC
 {
-	margin:2px 2px 0px 2px;	
-	width:300px;
-	height:220px;
+	margin:0px 0px 0px 0px;
+	/*margin:2px 2px 0px 2px;*/	
+	max-width:304px;
+	max-height:304px;
+	display:block;
+	z-index:100;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 table.PROPERTIESTABLE
@@ -265,21 +313,14 @@ font-weight: bold;
 
 .small {
 	text-align:center;
-
-	font-size:10.5px;
+	/*background-color: #D0D0D0;*/
+	font-size:0.85em;
+	margin-left:auto;
+	margin-right:auto;
+	width:600px;
 
 }
-.searchbox {
-	min-width:80px;
-	width:190px;
-	height: 16px;
-	margin-top:1px; 
-	border-style:solid;
-	border-width:1px;
-	border-color:gray;
-	font-style: italic;
-	color: grey;
-}
+
 .CONTENT {
 	padding-left:25px;
 	padding-right:25px;
@@ -374,5 +415,53 @@ dl.refview > dd:nth-child(2) {
 }
 dl.refview > dd {
 	margin-left:1.5em;
+
+}
+
+@media only screen and (max-device-width: 480px) {
+body {
+	-moz-text-size-adjust:none;	
+
+}	
+
+
+.HEADERBLOCK {
+}
+.CONTENT {
+}
+
+.PBOX
+{
+	float:none;
+    margin-left: auto;
+    margin-right: auto;
+}
+.NOIMAGE {
+	font-style:italic;
+	line-height:200px;
+	z-index:0;	
+}
+.PIC
+{
+
+}
+.small {
+	width:480px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.SEARCH {
+	
+}
+.searchbox {
+
+	
+
+}
+
+ul.NAVBAR
+{
+	
 
 }

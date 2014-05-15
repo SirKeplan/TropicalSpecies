@@ -15,14 +15,12 @@
 	
 echo "<h1>Index of botanical names</h1>\n";
 echo '<p class="mainpageletters"><b>';
-#echo chr(65);#.to_string();
+
 for ($char = 65; $char <= 90; $char++) {
 	echo "<a href=\"letter-index.php?letter=".chr($char)."\">".chr($char)."</a> ";
 }
 echo "</b></p>\n";
 
-// The following may be undefined.
-// 	$key = $_GET["letter"];
 if (empty($_GET["letter"])) {
 	echo "<p>Click a letter to list all plants with the botanical names begining with that letter.</p>";
 }

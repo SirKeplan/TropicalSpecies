@@ -16,7 +16,7 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	//print 'please report bugs to <a href="mailto:webweaver@pfaf.org">webweaver@pfaf.org</a>';
 	die;
 }
-$old_error_handler = set_error_handler("userErrorHandler");
+//$old_error_handler = //set_error_handler("userErrorHandler");
 
 // wrap a mysql query in code to test for sucessful query
 function safe_query($query)

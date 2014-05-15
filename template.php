@@ -88,14 +88,30 @@ EOT;
 	
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
-	<div class="NOIMAGE">No Image.</div>
 	<?php
-	$var = $row['Latin name'];
-	if (file_exists($var)) {
-		echo '<img class="PIC" src="'.$var.'"/>';
+	$imgdir = "plantimages/";
+	$var1 = $imgdir.$row['Latin name'].".png";
+	$var2 = $imgdir.$row['Latin name'].".jpg";
+	if (file_exists($var1)) {
+		//echo <<<EOT
+		//<span class="NOIMAGE">Image Loading.</span>
+//EOT;
+		echo '<img class="PIC" src="'.$var1.'"/>';
+	} else {
+		if (file_exists($var2)) {
+			//echo <<<EOT
+			//<span class="NOIMAGE">Image Loading.</span>
+	//EOT;
+			echo '<img class="PIC" src="'.$var2.'"/>';
+		} else {
+		echo <<<EOT
+		<div class="NOIMAGE">No Image.</div>
+EOT;
+		}
 	}
 	?>
 </div>
+
 
 <h3 class="SHORT">General Information</h3><?php echo link_to_book(nl2br($row['GeneralInformation']))?><br>
 

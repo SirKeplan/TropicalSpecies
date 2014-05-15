@@ -9,14 +9,14 @@ $numPlantsRow = mysql_fetch_row($numPlantsRes);
 if($numPlantsRow) {
 	$numPlants = $numPlantsRow[0];
 }
-echo "<p class=\"small\"><b>Last update on 08/03/13:</b> Now containing $numPlants plants.</p>\n";
+echo "<br/><p class=\"small\"><b>Last update on 01/05/14:</b> Now containing $numPlants plants.</p>\n";
 
 
 ?>
-<p>
+<p class="small">
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img
   alt="Creative Commons License" 
-  style="border-width:0; padding-left:10px; padding-right:10px; float: left"
+  style="border-width:0; padding-left:10px; padding-right:10px;	vertical-align:text-top;float:left;"
   src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">Tropical Species Database</span> 2012 by <a xmlns:cc="http://creativecommons.org/ns#" href="http://theferns.info/" property="cc:attributionName" rel="cc:attributionURL">Ken Fern</a>, 
    web interface by 

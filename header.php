@@ -20,19 +20,23 @@ function togglePrompt (box, focus) {
 <ul class="NAVBAR" >
 	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="./">Home</a>
-	</li><li class="NAVBARLI">
+	</li>
+	<!--<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="common-index.php">Common Names</a>
-	</li><li class="NAVBARLI">
-	</li><li class="NAVBARLI">
+	</li>
+	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="letter-index.php">Latin Names</a>
-	</li><li class="NAVBARLI">
-	</li><li class="NAVBARLI">
+	</li> -->
+	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="query.php">Search</a>
-	</li><li class="NAVBARLI">
+	</li>
+	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="contact.php">Contact</a>
-	</li><li class="NAVBARLI">
+	</li>
+	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="about.php">About</a>
-	</li><li class="SEARCH"><form action="query.php" method="get"><div><input type="text" class="searchbox" id="searchbox" name="full"  
+	</li>
+	<li class="SEARCH"><form action="query.php" method="get"><div><input type="text" class="searchbox" id="searchbox" name="full"  
     value="Search:" onfocus="togglePrompt(searchbox, true)" 
     alt="Search" onblur="togglePrompt(searchbox, false)" ></div></form>
 </li>
