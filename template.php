@@ -164,7 +164,7 @@ if ($row['NomenclatureNotes'] != null) {
 	if ($row['CultivationStatus']) {
 		$arrayk = array("C", "O", "W", "S");
 		$arrayv = array("Cultivated, ", "Ornamental, ", "Wild, ", "Semi-cultivated, ");
-		echo sprintf($format, "Cultivation Status", str_replace($arrayk, $arrayv, $row['CultivationStatus']));
+		echo sprintf($format, "Cultivation Status", substr(str_replace($arrayk, $arrayv, $row['CultivationStatus']), 0, -2));
 		
 	}
 ?>

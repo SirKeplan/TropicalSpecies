@@ -80,16 +80,19 @@ h3.SHORT{
 ul.NAVBAR
 {
 	font-size:medium;
-	background-color:#98aa21;
+	/*background-color:#98aa21;*/
 	list-style-type:none;
 	margin: 8px 0px 0px 0px;
 	padding:0px;
 	/*padding-top:0px;*/
 	padding-bottom:0px;
 	padding-left:8px;
+	padding-right:8px;
 	/*height:25px;needed by chrome for some reason*/
 	height:100%;
-
+	background-image: -moz-linear-gradient(left,
+	rgba(152, 170, 33, 1) 50%, rgba(152, 170, 33, 0) 100%
+	);
 	overflow:hidden;
 	/*
 	padding-top:6px;
