@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -163,6 +163,7 @@
 			#echo link_to_book($row['Cultivation details']);
 		global $row;
 		include('template.php' );
+		echo "<script src=\"boxmove.js\"></script>";
 		#include('commentsform.php' );
 		
 		#OutputRecord($row);
