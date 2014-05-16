@@ -1,6 +1,6 @@
 
 body {
-	font-family: Arial, Sans-Serif;
+	font-family: Arial, Helvetica, sans-serif; 
 	font-size:small;
 	clear:both;
 	margin:0px;
@@ -80,7 +80,7 @@ h3.SHORT{
 ul.NAVBAR
 {
 	font-size:medium;
-	/*background-color:#98aa21;*/
+	background-color:#98aa21;
 	list-style-type:none;
 	margin: 8px 0px 0px 0px;
 	padding:0px;
@@ -90,9 +90,9 @@ ul.NAVBAR
 	padding-right:8px;
 	/*height:25px;needed by chrome for some reason*/
 	height:100%;
-	background-image: -moz-linear-gradient(left,
+	/*background-image: -moz-linear-gradient(left,
 	rgba(152, 170, 33, 1) 50%, rgba(152, 170, 33, 0) 100%
-	);
+	);*/
 	overflow:hidden;
 	/*
 	padding-top:6px;
@@ -296,14 +296,24 @@ td.NORMAL {
 .ANCHORH { /*width: 25%;*/ }
 .ANCHOR { font-weight:bold;	width: 25%; padding: 0.1cm 0.2cm; vertical-align:top;}
 
-TABLE#QUERYTABLE {
-
-
+#fancy {
+	border: 1px solid #386C38;
+	display: inline-block
 }
 
+TABLE#QUERYTABLE {
+	margin: -2px;
+}
+
+
+
 #QUERYTABLE tr:nth-child(even) {background-color: #FFF}
-#QUERYTABLE tr:nth-child(odd) {background-color: #C0C0C0}
-#QUERYTABLE td:nth-of-type(1) {background-color: #D0D0D0}
+#QUERYTABLE tr:nth-child(odd) {background-color: #559655}
+#QUERYTABLE td:nth-of-type(1) {background-color: #78A578}
+
+#QUERYTABLE td, table th  {  }
+
+
 /*td.TITLE{
 	background-color: #C0C0C0 
 }

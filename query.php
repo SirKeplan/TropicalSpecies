@@ -70,6 +70,7 @@ function toggle_vis() {
 	Note: currently a lot of this information is incomplete and some fields will return few results.<br/>
 	Fields marked with * have incomplete information</p>
 	<form id="QueryForm" method="get" action="query.php">
+	<div id="fancy">
 	<table id="QUERYTABLE">
 		<tr>
 			<td class="TITLE"><b>Habit</b></td>
@@ -238,6 +239,7 @@ function toggle_vis() {
 			
 		</tr>
 	</table>
+	</div>
 	</form>
 	</div>
 	
