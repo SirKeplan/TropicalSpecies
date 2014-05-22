@@ -17,16 +17,9 @@
 	</tr>
 </table>
 
-<table style='border-collapse:collapse;
-	border:0px;
-	padding:0px;
-	margin:0px; display: block;'>
-	<tr>
-		<td style='padding-right:75px;'><h2><?php echo $row['Latin name']?></h2></td>
-		<td style='padding-right:75px;'><h4><?php echo $row['Author']?></h4></td>
-		<td><h4><?php echo $row['Family']?></h4></td>
-	</tr>
-</table>
+<div class="latin_name"><h2><?php echo $row['Latin name']?></h2></div>
+<div class="author"><h4><?php echo $row['Author']?></h4></div>
+<div class="family"><h4><?php echo $row['Family']?></h4></div>
 <?php
 if ($row['NomenclatureNotes'] != null) {
 	echo link_to_book(nl2br($row['NomenclatureNotes']))."<br><br>";

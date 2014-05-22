@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
   <link rel=stylesheet href="style.css" type="text/css">
   <link rel="shortcut icon" href="flower.ico">
   <title>Tropical Species Database Index</title>
@@ -31,19 +32,19 @@
 		$numPlants = $numPlantsRow[0];
 	}
 	echo <<<EOT
-	<img style="float:right;margin-left:1em;margin-bottom:1em;"src="front.png"</img>
+	<img class="mainimage"src="front.png"</img>
 	<p class="mainpage">The Tropical Species Database is a database of useful plants
 	which can be grown in tropical regions. 
 	It contains details of the edible medicinal and other uses and currently lists $numPlants species.</p>
 
-	<form action="query.php" method="get">
 	<div id="mainsearchbox">
+	<form action="query.php" method="get">
 	<input type="text" id="searchbox2" name="full"
 		value="Search:" onfocus="togglePrompt(searchbox2, true)"
 		alt="Search" onblur="togglePrompt(searchbox2, false)" />
 	<input type="submit" value="Search" />
-	</div>
 	</form>
+	</div>
 	
 	<p class="mainpage">Browse botanical names:</p>
 	

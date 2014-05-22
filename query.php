@@ -3,6 +3,7 @@
 <head>
 <title>Tropical Species Database Search</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
 <link rel=stylesheet href="style.css" type="text/css">  
 <link rel="shortcut icon" href="flower.ico">
 </head>
@@ -52,6 +53,13 @@ function toggle_vis() {
 	//echo "<h1>Tropical Database</h1>\n";
 	$full = mysql_real_escape_string($full);
 
+    $anything = (strlen($_SERVER['QUERY_STRING']) > 1);
+
+	//Shows advanced search if user didnt send a simple fulltext query
+	$adv_search_shown = ($full == null);
+	
+	//Shows advanced search if they didn't send anything as a query;
+	$adv_search_shown = ($anything);
 	//echo "<p>Latin '$full' common '$common'.</p>\n";
 ?>
 	<h2>Database Search</h2>
@@ -63,9 +71,9 @@ function toggle_vis() {
 	</form>
 	-->
 
-	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Advanced search</a></div>
+	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($adv_search_shown) { echo "+"; } else {echo "-";} ?> Advanced search</a></div>
 	
-	<div id="options" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
+	<div id="options" style="<?php if ($adv_search_shown) { echo "display:none"; } else {echo "display:block";} ?>">
 	<p>Use this form to search all plants by fields you select, selecting less options will return more plants.<br/>
 	Note: currently a lot of this information is incomplete and some fields will return few results.<br/>
 	Fields marked with * have incomplete information</p>
@@ -254,7 +262,6 @@ function toggle_vis() {
         `Cultivation details`,`Edible uses`,`Medicinal`,`AgroforestryUses`,`Uses notes`,`Propagation 1`,`Names`) 
         AGAINST (\"$full\")"; // IN BOOLEAN MODE
     
-    $anything = (strlen($_SERVER['QUERY_STRING']) > 1);
 	//	echo htmlspecialchars(urldecode($_SERVER['QUERY_STRING']));
 
     if ($full == null && $anything ) {

@@ -25,15 +25,26 @@ h2{
 	font-size:1.5em;
 
 }
-
+.latin_name{
+	display:inline-block;
+	vertical-align: baseline;
+	padding-right:75px;
+}
 h3{
 	color:#98bf21;
 	font-weight: bold; 
 	font-size:large;
+	
 }
 
 h4{
 	font-size:1em;
+}
+
+.author, .family{
+	display:inline-block;
+	vertical-align: baseline;
+	padding-right:75px;
 
 }
 
@@ -334,6 +345,14 @@ font-weight: bold;
 
 }
 
+.cclicense{
+	border-width:0; 
+	padding-left:10px; 
+	padding-right:10px;
+	vertical-align:text-top;
+	float:left;
+}
+
 .CONTENT {
 	padding-left:25px;
 	padding-right:25px;
@@ -343,34 +362,45 @@ font-weight: bold;
 
 /* Formatting for main page elements */
 
+.mainimage{
+	float:right;
+	margin-left:1em;
+	margin-bottom:1em;	
+	display:block;
 
+}
 .mainpage {
 	font-size: larger;
+	display:inlineblock;
+
 }
 .mainpageletters {
-	font-size: larger;
 	margin-left:5ex;
+	font-size: larger;
 }
 
 #mainsearchbox {
-	width:"100%";
+	/*make slightly smaller in fiture*/
+	font-size: larger;
 	padding-left: 5ex;
 	/*#padding-right:"50px";*/
 	/* border:1px solid red; */
 }
 
 #mainsearchbox input[type="text"] {
-	width: 50ex;
-	font-size: larger;
+	overflow: hidden; width: auto;
+	font-size: 100%;
+	width:40ex;
+
 	border-style:solid;
 	border-width:1px;
-	border-color:gray;
+	border-color:grey;
 	font-style: italic;
 	color: grey;
 }
 
 #mainsearchbox input[type="submit"] {
-	font-size: larger;
+	font-size: 100%;	
 }
 
 .ref {
@@ -431,8 +461,9 @@ dl.refview > dd {
 
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
 body {
+	/*not sure if this is needed*/
 	-moz-text-size-adjust:none;	
 
 }	
@@ -443,6 +474,18 @@ body {
 .CONTENT {
 }
 
+#mainsearchbox input[type="text"] {
+	width: 100%;
+}
+
+#mainsearchbox input[type="submit"] {
+	float:right;
+
+}
+
+.latin_name{
+
+}
 .PBOX
 {
 	float:none;
@@ -459,11 +502,16 @@ body {
 
 }
 .small {
-	width:480px;
+	width:100%;
     margin-left: 0px;
     margin-right: 0px;
 }
-
+.cclicense{
+	display:block;
+	float:none;
+    margin-left: auto;
+    margin-right: auto;
+}
 .SEARCH {
 	
 }
