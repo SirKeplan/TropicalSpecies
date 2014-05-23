@@ -211,27 +211,34 @@ a.NAVBARITEM:hover,a.NAVBARITEM:active
 	padding:0px;
 
 	background-image:
-	  -moz-linear-gradient(45deg, #ccc 25%, transparent 25%), 
-	  -moz-linear-gradient(-45deg, #ccc 25%, transparent 25%),
-	  -moz-linear-gradient(45deg, transparent 75%, #ccc 75%),
-	  -moz-linear-gradient(-45deg, transparent 75%, #ccc 75%);
+	  -moz-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), 
+	  -moz-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
+	/*this old webkit gradient code is actually now wrong, but it kinda 
+	 * makes an interesting pattern on the few old devices where it will
+	 *  show up*/
 	background-image:
 	  -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #ccc), color-stop(.25, transparent)), 
 	  -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #ccc), color-stop(.25, transparent)),
 	  -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #ccc)),
 	  -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #ccc));
 	background-image:
-	  -o-linear-gradient(45deg, #ccc 25%, transparent 25%), 
-	  -o-linear-gradient(-45deg, #ccc 25%, transparent 25%),
-	  -o-linear-gradient(45deg, transparent 75%, #ccc 75%),
-	  -o-linear-gradient(-45deg, transparent 75%, #ccc 75%);
+	  -webkit-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), 
+	  -webkit-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
+	background-image:
+	  -o-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), 
+	  -o-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
 	
-	-moz-background-size:40px 40px;
+	background-image: 
+		linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), 
+		linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
+	
 	background-size:40px 40px;
-	-webkit-background-size:40px 40px; /* override value for shitty webkit */
+	-moz-background-size:40px 40px;
+	-webkit-background-size:40px 40px;
+	-o-background-size:40px 40px;
 
 	background-position:0 0, 20px 0, 20px -20px, 0px 20px;
-
+	background-position:0 0, 20px 20px;
 	-moz-box-shadow: 1px 1px 8px gray;
 	-webkit-box-shadow: 1px 1px 8px gray;
 	box-shadow: 1px 1px 8px gray;
@@ -530,9 +537,16 @@ body {
 	
 
 }
+/*
+.NAVBAR {
+	list-style-type: none;
+    display: table;
+    table-layout: fixed;
+        width:100%;
 
-ul.NAVBAR
-{
-	
-
+}
+NAVBARLI {
+	display: table-cell;
+    text-align: center;
+}*/
 }

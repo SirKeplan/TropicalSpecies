@@ -14,7 +14,7 @@ $words = safe_query("SHOW TABLE STATUS LIKE 'tropicalspecies'");
 $row = mysql_fetch_row($words);
  $date =  date('Y-m-d', strtotime($row[11]));
 
-echo "<br/><p class=\"small\"><b>Last update on {$date}:</b> Now containing $numPlants plants.</p>\n";
+echo "</div><div class=\"FOOTER\"><br/><p class=\"small\"><b>Last update on {$date}:</b> Now containing $numPlants plants.</p>\n";
 
 
 ?>

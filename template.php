@@ -136,8 +136,9 @@ if ($row['NomenclatureNotes'] != null) {
 	}
 	if ($row['ConservationStatus'])
 	echo sprintf($format, "Conservation Status", $row['ConservationStatus']);
-	if ($row['EdibilityRating'])
-	echo sprintf($format, "Edibility Rating", $row['EdibilityRating']);
+	if ($row['EdibilityRating']) {
+		echo sprintf($format, "Edibility Rating", output_bananas($row['EdibilityRating']));
+	}
 	if ($row['MedicinalRating'])
 	echo sprintf($format, "Medicinal Rating", $row['MedicinalRating']);
 	if ($row['OtherUsesRating'])
@@ -160,7 +161,7 @@ if ($row['NomenclatureNotes'] != null) {
 	if ($row['Pollinators'])
 	echo sprintf($format, "Pollinators", $row['Pollinators']);
 	if ($row['Self-fertile'])
-	echo sprintf($format, "Self-fertile", $row['Self-fertile']);
+	echo sprintf($format, "Self-fertile", sbool_to_string($row['Self-fertile']));
 	if ($row['CultivationStatus']) {
 		$arrayk = array("C", "O", "W", "S");
 		$arrayv = array("Cultivated, ", "Ornamental, ", "Wild, ", "Semi-cultivated, ");

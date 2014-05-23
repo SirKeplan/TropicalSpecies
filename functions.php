@@ -542,4 +542,13 @@ function find_images($name) {
 
 }
 
+function output_bananas($no) {
+	$monkey = "";
+	$banana = '<img src="banana.png" width="24px" alt="Banana"/>';
+	for ($i = 0;$i < $no; $i ++) {
+		$monkey=$monkey.$banana;
+	}
+	return $monkey;
+}
+
 ?>

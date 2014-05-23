@@ -32,7 +32,7 @@
 		$numPlants = $numPlantsRow[0];
 	}
 	echo <<<EOT
-	<img class="mainimage"src="front.png"</img>
+	<img class="mainimage" src="front.png"/>
 	<p class="mainpage">The Tropical Species Database is a database of useful plants
 	which can be grown in tropical regions. 
 	It contains details of the edible medicinal and other uses and currently lists $numPlants species.</p>
