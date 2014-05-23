@@ -2,12 +2,15 @@
 // Set up error reporting to catch all errors
 //error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 //error_reporting(E_ERROR);
-error_reporting(E_ALL | E_STRICT);
-
+error_reporting(E_ALL ^ E_DEPRECATED);
 // Error handeler for reporting errors
 function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 {
-	include_once "header.php";
+	if (!(error_reporting() & $errno)) {
+		// This error code is not included in error_reporting
+		return;
+    }
+    include_once "header.php";
 		
 	// timestamp for the error entry
 	//$dt = date("Y-m-d H:i:s (T)");
@@ -16,7 +19,7 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	//print 'please report bugs to <a href="mailto:webweaver@pfaf.org">webweaver@pfaf.org</a>';
 	die;
 }
-//$old_error_handler = //set_error_handler("userErrorHandler");
+$old_error_handler = set_error_handler("userErrorHandler");
 
 // wrap a mysql query in code to test for sucessful query
 function safe_query($query)
@@ -528,4 +531,15 @@ function BookRef() {
 	mysql_free_result($result);
 
 }
+
+function find_images($name) {
+	$imgs = array();
+	$result = safe_query("SELECT `FileName` FROM `PlantPictures` WHERE `LatinName` = '$name'");
+	while ($row = mysql_fetch_array($result)) {
+		$imgs[] = $row[0];
+	}
+	return $imgs;
+
+}
+
 ?>

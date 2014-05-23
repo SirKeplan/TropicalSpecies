@@ -146,7 +146,7 @@ function toggle_vis() {
 			<td><input type="checkbox" name="Width" value="4' AND '10"/>4-10</td>
 			<td><input type="checkbox" name="Width" value="10' AND '20"/>10-20</td>
 			<td><input type="checkbox" name="Width" value="20' AND '50"/>20-50</td>-->
-		</tr>		
+		</tr>	<!-- 	
 		<tr>
 			<td class="TITLE"><b>Hardyness</b></td>
 			<td><input type="checkbox" name="Hardyness" value="1"/>1
@@ -160,8 +160,8 @@ function toggle_vis() {
 			<input type="checkbox" name="Hardyness" value="9"/>9
 			<input type="checkbox" name="Hardyness" value="10"/>10
 		<!-- 	<input type="checkbox" name="Hardyness" value="11"/>11 Hardyness values in DB only go up to 10
-			<input type="checkbox" name="Hardyness" value="12"/>12  --></td>
-		</tr>
+			<input type="checkbox" name="Hardyness" value="12"/>12  </td>
+		</tr> -->
 		<tr>
 			<td class="TITLE"><b>Growth Rate</b></td>
 			<td><input type="checkbox" name="Growth rate" value="F"/>Fast
@@ -390,7 +390,9 @@ function toggle_vis() {
 		
 		//echo "<a href=query.php?".http_build_query($http_query).">Next page</a> ";
 		output_table_query_limited($result, "Nothing", "tropicalspecies",null, "Latin name", "viewtropical.php", "id", -1, array("Latin name", "Common name"));
-
+		//nav controls
+		nav_controls("query.php", $http_query, $pageno, $amount, $allcount);
+		
 	}
 
 	include 'footer.php';

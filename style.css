@@ -5,7 +5,10 @@ body {
 	clear:both;
 	margin:0px;
 	height:100%;
-
+	/*for a later time.
+	margin:auto;
+	max-width:1000px;
+	*/
 }
 
 a:link {color:green;}    /* unvisited link */
@@ -262,6 +265,13 @@ table.PROPERTIESTABLE
 	/*margin-left: 25px;
 	margin-right: 25px;*/	
 	padding: 5px;
+}
+table.PROPERTIESTABLE td + td {
+	min-width:200px;
+
+}
+table.PROPERTIESTABLE td:first-child {
+	/*font-weight:bold;*/
 }
 
 table.RECORDTABLE

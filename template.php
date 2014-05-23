@@ -17,12 +17,12 @@
 	</tr>
 </table>
 
-<div class="latin_name"><h2><?php echo $row['Latin name']?></h2></div>
+<div class="latin_name"><h1><?php echo $row['Latin name']?></h1></div>
 <div class="author"><h4><?php echo $row['Author']?></h4></div>
 <div class="family"><h4><?php echo $row['Family']?></h4></div>
 <?php
 if ($row['NomenclatureNotes'] != null) {
-	echo link_to_book(nl2br($row['NomenclatureNotes']))."<br><br>";
+	echo "<br>".link_to_book(nl2br($row['NomenclatureNotes']))."<br><br>";
 }
 ?>
 <?php 
@@ -82,26 +82,25 @@ EOT;
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
 	<?php
-	$imgdir = "plantimages/";
-	$var1 = $imgdir.$row['Latin name'].".png";
-	$var2 = $imgdir.$row['Latin name'].".jpg";
+	$imglist = find_images($row['Latin name']);
+	if ($imglist) {
+		$var1 = $imglist[0];
+	}
+	//$imgdir = "plantimages/";
+	//$var1 = $imgdir.$row['Latin name'].".png";
+	//$var2 = $imgdir.$row['Latin name'].".jpg";
 	if (file_exists($var1)) {
 		//echo <<<EOT
 		//<span class="NOIMAGE">Image Loading.</span>
-//EOT;
+		//EOT;
 		echo '<img class="PIC" src="'.$var1.'"/>';
 	} else {
-		if (file_exists($var2)) {
-			//echo <<<EOT
-			//<span class="NOIMAGE">Image Loading.</span>
-	//EOT;
-			echo '<img class="PIC" src="'.$var2.'"/>';
-		} else {
+
 		echo <<<EOT
 		<div class="NOIMAGE">No Image.</div>
 EOT;
-		}
 	}
+	
 	?>
 </div>
 
@@ -129,8 +128,11 @@ if ($row['NomenclatureNotes'] != null) {
 	$format = "<tr>\n\t<td class=\"PROPERTIESTABLE\">%s</td><td class=\"PROPERTIESTABLE\">%s</td>\n</tr>\t\n";
 
 		
-	if ($row['WeedPotential'])
-	echo sprintf($format, "Weed Potential", $row['WeedPotential']);
+	if ($row['WeedPotential']) {
+		$arrayk = array("0", "1");
+		$arrayv = array("No", "Yes");
+		echo sprintf($format, "Weed Potential", str_replace($arrayk, $arrayv, $row['WeedPotential']));
+	}
 	if ($row['ConservationStatus'])
 	echo sprintf($format, "Conservation Status", $row['ConservationStatus']);
 	if ($row['EdibilityRating'])
@@ -139,17 +141,21 @@ if ($row['NomenclatureNotes'] != null) {
 	echo sprintf($format, "Medicinal Rating", $row['MedicinalRating']);
 	if ($row['OtherUsesRating'])
 	echo sprintf($format, "Other Uses Rating", $row['OtherUsesRating']);
-	if ($row['Habit'])
+	if ($row['Habit']) {
 		$DEarray = array("D" => "Deciduous ", "E" => "Evergreen ", "S" => "Semi-deciduous ");
 		if(array_key_exists($row['Deciduous/Evergreen'],$DEarray)) {
 			echo sprintf($format, "Habit", $DEarray[$row['Deciduous/Evergreen']].$row['Habit']);
 		} else {
 			echo sprintf($format, "Habit", $row['Habit']);
 		}
+	}
 	if ($row['Height'])
 	echo sprintf($format, "Height", $row['Height']);
-	if ($row['Growth rate'])
-	echo sprintf($format, "Growth Rate", $row['Growth rate']);
+	if ($row['Growth rate']) {
+		$arrayk = array("F", "M", "S");
+		$arrayv = array("Fast, ", "Medium, ", "Slow, ");
+		echo sprintf($format, "Growth Rate", substr(str_replace($arrayk, $arrayv, $row['Growth rate']), 0, -2));
+	}
 	if ($row['Pollinators'])
 	echo sprintf($format, "Pollinators", $row['Pollinators']);
 	if ($row['Self-fertile'])
@@ -161,135 +167,6 @@ if ($row['NomenclatureNotes'] != null) {
 		
 	}
 ?>
-<!--
-<tr>
-	<td class="PROPERTIESTABLE">Hardyness</td><td class="PROPERTIESTABLE"><?php echo $row['Hardyness']?></td>
-</tr>
-
-<tr>
-	<td class="PROPERTIESTABLE">Weed Potential</td><td class="PROPERTIESTABLE"><?php echo $row['WeedPotential']?></td>
-</tr>	
-<tr>
-	<td class="PROPERTIESTABLE">Conservation Status</td><td class="PROPERTIESTABLE"><?php echo $row['ConservationStatus']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Edibility Rating</td><td class="PROPERTIESTABLE"><?php echo $row['EdibilityRating']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Medicinal Rating</td><td class="PROPERTIESTABLE"><?php echo $row['MedicinalRating']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Other Uses Rating</td><td class="PROPERTIESTABLE"><?php echo $row['OtherUsesRating']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Habit</td><td class="PROPERTIESTABLE">
-		<?php 
-		$DEarray = array("D" => "Deciduous ", "E" => "Evergreen ", "S" => "Semi-deciduous ");
-		//echo "<p>".$row['Deciduous/Evergreen']." ". $row['Habit']."</p>\n";
-		if(array_key_exists($row['Deciduous/Evergreen'],$DEarray)) 
-			echo $DEarray[$row['Deciduous/Evergreen']];
-		echo $row['Habit'] ;
-		#echo $row['Habit']
-		?>	
-	</td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Height</td><td class="PROPERTIESTABLE"><?php echo $row['Height']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Width</td><td class="PROPERTIESTABLE"><?php echo $row['Width']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Growth Rate</td><td class="PROPERTIESTABLE"><?php echo $row['Growth rate']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Soil</td><td class="PROPERTIESTABLE"><?php 
-		$Sarray = array("L" => "Light", "M" => "Medium", "H" => "Heavy", "LM" => "Light, Medium", "MH" => "Medium, Heavy", "LMH" => "Light, Medium, Heavy");
-		if(array_key_exists($row['Soil'],$Sarray))
-		echo $Sarray[$row['Soil']];
-		#echo $row['Habit']
-		?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Heavy Clay</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Heavy clay'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Poor Soil</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Poor soil'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Nitrogen Fixer</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Nitrogen fixer'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">pH</td><td class="PROPERTIESTABLE"><?php 
-		$arrayk = array("A", "N", "B");
-		$arrayv = array("Acid, ", "Neutral, ", "Alkaline, ");
-		echo str_replace($arrayk, $arrayv, $row['pH']);
-		#echo $row['Habit']
-		?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Acid</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Acid'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Alkaline</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Alkaline'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Saline</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Saline'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Moisture</td><td class="PROPERTIESTABLE"><?php 
-	$arrayk = array("D", "M", "We", "Wa");
-	$arrayv = array("Dry, ", "Moist, ", "Wet, ", "Water, ");
-	echo str_replace($arrayk, $arrayv, $row['Moisture']);
-	#echo $row['Habit']
-	?>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Well-drained</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Drainage'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Drought</td><td class="PROPERTIESTABLE"><?php echo bool_to_string($row['Drought'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Shade</td><td class="PROPERTIESTABLE"><?php 
-	$arrayk = array("F", "S", "N");
-	$arrayv = array("Full, ", "Semi, ", "None");
-	echo str_replace($arrayk, $arrayv, $row['Shade']);
-	#echo $row['Habit']
-	?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Wind</td><td class="PROPERTIESTABLE"><?php echo $row['Wind']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Pollution</td><td class="PROPERTIESTABLE"><?php echo sbool_to_string($row['Pollution'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Flower Type</td><td class="PROPERTIESTABLE"><?php 
-	$arrayk = array("H", "M", "D");
-	$arrayv = array("Hermaphrodite", "Monoecious", "Dioecious");
-	echo str_replace($arrayk, $arrayv, $row['Flower Type']);
-	#echo $row['Habit']
-	?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Pollinators</td><td class="PROPERTIESTABLE"><?php echo $row['Pollinators']?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Self-fertile</td><td class="PROPERTIESTABLE"><?php echo sbool_to_string($row['Self-fertile'])?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">CultivationStatus</td><td class="PROPERTIESTABLE"><?php 
-	$arrayk = array("C", "O", "W", "S");
-	$arrayv = array("Cultivated, ", "Ornamental, ", "Wild, ", "Semi-cultivated, ");
-	echo str_replace($arrayk, $arrayv, $row['CultivationStatus']);
-	#echo $row['Habit']
-	?></td>
-</tr>
-<tr>
-	<td class="PROPERTIESTABLE">Scented</td><td><?php echo bool_to_string($row['Scented'])?></td>
-</tr>
--->
 </table>
 
 <h3>Cultivation Details</h3><?php echo link_to_book(nl2br($row['Cultivation details']));?><br>
