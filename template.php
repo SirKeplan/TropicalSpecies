@@ -82,6 +82,7 @@ EOT;
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
 	<?php
+	$var1 = "";
 	$imglist = find_images($row['Latin name']);
 	if ($imglist) {
 		$var1 = $imglist[0];

@@ -373,6 +373,7 @@ function toggle_vis() {
 		//for getting totla record count
 		$all = safe_query($string); 
 		$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
+		//$result = safe_query($string." LIMIT $pageno, $amount"); 
 		$allcount = mysql_num_rows($all);
 		
 		echo "<p>".mysql_num_rows($all)." records";
