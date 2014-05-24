@@ -183,7 +183,7 @@ a.NAVBARITEM:hover,a.NAVBARITEM:active
 .CURVELEFT {
 	border-radius: 8px 0px 0px 8px;
 	-moz-border-radius: 8px 0px 0px 8px;
-	behavior: url(border-radius.htc);
+	/*behavior: url(border-radius.htc);*/
 }
 .CURVERIGHT {
 	border-radius: 0px 8px 8px 0px;

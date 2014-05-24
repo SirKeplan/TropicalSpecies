@@ -2,3 +2,4 @@ dbconnect_local.php
 /.settings
 /.project
 /.gitignore
+.directory
