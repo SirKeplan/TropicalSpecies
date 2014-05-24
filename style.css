@@ -85,7 +85,7 @@ h3.SHORT{
 	margin:0px;
 	padding:8px 0px 0px 0px;
 	border:0px;
-	height:100%;
+	/*height:100%;*/
 
 
 }
@@ -103,7 +103,7 @@ ul.NAVBAR
 	padding-left:8px;
 	padding-right:8px;
 	/*height:25px;needed by chrome for some reason*/
-	height:100%;
+	/*height:100%;*/
 	/*background-image: -moz-linear-gradient(left,
 	rgba(152, 170, 33, 1) 50%, rgba(152, 170, 33, 0) 100%
 	);*/
@@ -120,7 +120,7 @@ li.NAVBARLI {
 	/*background-color:#980000;*/
 
 	float:left;
-	height:100%;
+	/*height:100%;*/
   vertical-align: middle;
 
     display:inline-block;
@@ -138,7 +138,7 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited
 	/*background-color:#009800;*/
 
 	/*width:140px;*/
-	height:100%;
+	/*height:100%;*/
 	text-align:center;
 	padding:0px 4px 0px 4px;
 	line-height:25px;
@@ -160,7 +160,7 @@ a.NAVBARITEM:hover,a.NAVBARITEM:active
     margin:0px; 
 	min-width:80px;
 	width:196px;
-	height:100%;
+	/*height:100%;*/
 
 	/*background-color:#980000;*/
 
@@ -200,7 +200,7 @@ a.NAVBARITEM:hover,a.NAVBARITEM:active
 .PBOX
 {
 	float:right;
-	border:1px dotted black;
+	/*border:1px solid grey;*/
 	width:304px;
 	min-height:220px;
 	/*background-color: #D0D0D0;*/
@@ -418,6 +418,27 @@ font-weight: bold;
 
 #mainsearchbox input[type="submit"] {
 	font-size: 100%;	
+}
+
+#synonyms {
+    -moz-transition:height .3s ease;
+    -o-transition:height .3s ease;
+    -webkit-transition:height .3s ease;
+    transition:height .3s ease;
+  	/*overflow hidden causes childs margins to be added to this divs 
+  	 * margins for some annoying reason*/
+  	overflow: hidden;
+	height:0px;	
+}
+#measurement {
+	/*overflow hidden causes childs margins to be added to this divs
+	 *  margins for some annoying reason, need to have this one 
+	 * overflow too so it's same size as parent*/
+  	overflow: hidden;
+}
+#measurement > p {
+
+	margin-bottom:0px;
 }
 
 .ref {

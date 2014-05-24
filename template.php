@@ -35,15 +35,18 @@ $full = "123";
 echo <<<EOT
 	<script type="text/javascript">
 function toggle_vis() {
-	var val = document.getElementById('synonyms').style.display;
-	if (val == 'none') {
-		document.getElementById('synonyms').style.display = 'block';
-		document.getElementById('syn_text').innerHTML = "<b>- Synonyms</b>"
-
+	var ele = document.getElementById('synonyms');
+	var val = ele.className;
+	var eletext = document.getElementById('syn_text');
+	var measure = document.querySelector('#measurement');
+	if (val == 'synhid') {
+		ele.className = "synshown";
+		ele.style.height = measure.clientHeight+'px';
+		eletext.innerHTML = "<b>- Synonyms</b>"
 	} else {
-		document.getElementById('synonyms').style.display = 'none';
-		document.getElementById('syn_text').innerHTML = "<b>+ Synonyms</b>"
-
+		ele.className = "synhid";
+		ele.style.height = "0";
+		eletext.innerHTML = "<b>+ Synonyms</b>"
 	}
 }
 </script>
@@ -52,7 +55,8 @@ EOT;
 ?>
 	
 	<div><a id="syn_text" onclick="toggle_vis();"><b><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Synonyms</b></a></div>
-	<div id="synonyms" style="<?php if ($full != null) { echo "display:none"; } else {echo "display:block";} ?>">
+	<div id="synonyms" class="<?php if ($full != null) { echo "synhid"; } else {echo "synshown";} ?>">
+	<div id="measurement">
 	<?php 
 
 	function OutputRecordSyn($row) {
@@ -75,7 +79,7 @@ EOT;
 	mysql_free_result($result2);
 
 ?>	
-
+	</div>
 	</div>
 	
 	
