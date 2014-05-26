@@ -431,7 +431,7 @@ function link_to_book2($string) {
 	$pat = array();
 	for ($i = 0; $i < count($matches[1]); $i++) {
 		$pat[$i] = $regex;#"/{$matches[$i]}/";
-		$rep[$i] = '<a href="bookref.php?id=$1">$1</a>';
+		$rep[$i] = '<a href="refs.php#$1">$1</a>';
 	}
 	$newstring = preg_replace($pat, $rep, $string, -1, $count);
 			  
