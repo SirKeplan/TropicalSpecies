@@ -446,7 +446,7 @@ font-weight: bold;
 	position:relative;
 }
 
-.ref > span
+.ref > div
 {	display:inline;
 	
 	z-index: 99;
@@ -468,7 +468,7 @@ font-weight: bold;
 	-o-transition:visibility 0s linear 0.2s,opacity 0.2s linear;
 }
 
-.ref:hover > span
+.ref:hover > div
 {  
 	visibility:visible;
 	opacity:1;

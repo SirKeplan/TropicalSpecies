@@ -3,17 +3,17 @@
 
 <table width="100%" style=''>
 	<tr>
-		<td style=''><a href="viewtropical.php?id=
-		<?php $sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` < '{$row['Latin name']}' ORDER BY `Latin name` DESC LIMIT 1"; 
+		<td style=''><a href="viewtropical.php?id=<?php
+		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` < '{$row['Latin name']}' ORDER BY `Latin name` DESC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
-		echo $row1['Latin name'];?>"><img img border="0" src="ArrowLeft.png" height="14"  alt="Previous"/></a></td>
+		echo rawurlencode($row1['Latin name']);?>"><img border="0" src="ArrowLeft.png" height="14"  alt="Previous"/></a></td>
 		<!--<td style=''><a href="letter-index.php">Index</a></td>-->
-		<td align="right" style=''><a href="viewtropical.php?id=
-		<?php $sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
+		<td align="right" style=''><a href="viewtropical.php?id=<?php
+		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
-		echo $row1['Latin name'];?>"><img img border="0" src="ArrowRight.png" height="14" alt="Next"/></a></td>
+		echo rawurlencode($row1['Latin name']);?>"><img border="0" src="ArrowRight.png" height="14" alt="Next"/></a></td>
 	</tr>
 </table>
 

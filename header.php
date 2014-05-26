@@ -36,10 +36,15 @@ function togglePrompt (box, focus) {
 	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="about.php">About</a>
 	</li>
-	<li class="SEARCH"><form action="query.php" method="get"><div><input type="text" class="searchbox" id="searchbox" name="full"  
-    value="Search:" onfocus="togglePrompt(searchbox, true)" 
-    alt="Search" onblur="togglePrompt(searchbox, false)" ></div></form>
-</li>
+	<li class="SEARCH">
+		<form action="query.php" method="get">
+			<div>
+				<input type="text" class="searchbox" id="searchbox" name="full"  
+				value="Search:" onfocus="togglePrompt(searchbox, true)" 
+				onblur="togglePrompt(searchbox, false)" >
+			</div>
+		</form>
+	</li>
 </ul>
 </div>
 
