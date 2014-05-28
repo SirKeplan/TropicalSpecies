@@ -48,7 +48,7 @@ function togglePrompt (box, focus) {
 		<a class="NAVBARITEM" href="about.php">About</a>
 	</li>
 	<li class="SEARCHBUTTON" id="SEARCHBUTTON">
-		<a onclick="showHideSearch()"><img src="searchicon.png" height="25" /></a>
+		<a onclick="showHideSearch()"><img src="searchicon.png" height="25" alt="Show Search"/></a>
 	</li>
 	<li class="SEARCH" id="SEARCH">
 		<form action="query.php" method="get">
