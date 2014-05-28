@@ -419,7 +419,16 @@ font-weight: bold;
 #mainsearchbox input[type="submit"] {
 	font-size: 100%;	
 }
-
+#options {
+    -moz-transition:height .3s ease;
+    -o-transition:height .3s ease;
+    -webkit-transition:height .3s ease;
+    transition:height .3s ease;
+  	/*overflow hidden causes childs margins to be added to this divs 
+  	 * margins for some annoying reason*/
+  	overflow: hidden;
+	
+}
 #synonyms {
     -moz-transition:height .3s ease;
     -o-transition:height .3s ease;
@@ -429,6 +438,12 @@ font-weight: bold;
   	 * margins for some annoying reason*/
   	overflow: hidden;
 	height:0px;	
+}
+#measure {
+	/*overflow hidden causes childs margins to be added to this divs
+	 *  margins for some annoying reason, need to have this one 
+	 * overflow too so it's same size as parent*/
+  	overflow: hidden;
 }
 #measurement {
 	/*overflow hidden causes childs margins to be added to this divs

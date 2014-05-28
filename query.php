@@ -9,17 +9,23 @@
 </head>
 <body>
   <script type="text/javascript">
-		
+	window.onload = function () {
+		var ele = document.getElementById('options');
+		ele.style.height = measure.clientHeight+'px';
+	}	
 function toggle_vis() {
-	var val = document.getElementById('options').style.display;
-	if (val == 'none') {
-		document.getElementById('options').style.display = 'block';
-		document.getElementById('adv_text').innerHTML = "- Advanced search"
-
+	var ele = document.getElementById('options');
+	var val = ele.className;
+	var eletext = document.getElementById('adv_text');
+	var measure = document.querySelector('#measure');
+	if (val == 'synhid') {
+		ele.className = "synshown";
+		ele.style.height = measure.clientHeight+'px';
+		eletext.innerHTML = "<b>- Advanced search</b>"
 	} else {
-		document.getElementById('options').style.display = 'none';
-		document.getElementById('adv_text').innerHTML = "+ Advanced search"
-
+		ele.className = "synhid";
+		ele.style.height = "0";
+		eletext.innerHTML = "<b>+ Advanced search</b>"
 	}
 }
   </script>
@@ -73,7 +79,8 @@ function toggle_vis() {
 
 	<div><a id="adv_text" onclick="toggle_vis();"><?php if ($adv_search_shown) { echo "+"; } else {echo "-";} ?> Advanced search</a></div>
 	
-	<div id="options" style="<?php if ($adv_search_shown) { echo "display:none"; } else {echo "display:block";} ?>">
+	<div id="options" class="<?php if ($adv_search_shown) { echo "synhid"; } else {echo "synshown";} ?>">
+	<div id="measure">
 	<p>Use this form to search all plants by fields you select, selecting less options will return more plants.<br/>
 	Note: currently a lot of this information is incomplete and some fields will return few results.<br/>
 	Fields marked with * have incomplete information</p>
@@ -249,6 +256,7 @@ function toggle_vis() {
 	</table>
 	</div>
 	</form>
+	</div>
 	</div>
 	
 <?php
