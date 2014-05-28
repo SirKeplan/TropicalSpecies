@@ -502,12 +502,10 @@ font-weight: bold;
 
 dl.refview {
 	margin:0px;
-	
 }
 dl.refview > dt:nth-child(1) {
 	color:red;
 	display:none;
-
 }
 
 dl.refview > dd:nth-child(2) {
@@ -518,16 +516,14 @@ dl.refview > dd:nth-child(2) {
 }
 dl.refview > dd {
 	margin-left:1.5em;
-
+	word-wrap: break-word;
 }
 
 @media only screen and (max-width: 480px) {
 body {
 	/*not sure if this is needed*/
 	-moz-text-size-adjust:none;	
-
 }	
-
 
 .HEADERBLOCK {
 }
