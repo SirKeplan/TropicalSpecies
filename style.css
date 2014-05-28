@@ -554,6 +554,10 @@ body {
 	
 
 }
+.RECORDTABLE {
+	width: 100%;
+}
+.ANCHOR { width: auto;}
 /*
 .NAVBAR {
 	list-style-type: none;
