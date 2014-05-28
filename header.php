@@ -1,4 +1,15 @@
 <script type="text/javascript">
+function showHideSearch() {
+	var disp = document.getElementById("SEARCH").style.display;
+	if (disp == "block") {
+		disp = "none";
+	}else {
+		disp = "block";
+	}	
+	document.getElementById("SEARCH").style.display = disp;
+	document.getElementById("searchbox").focus();
+
+}
 function togglePrompt (box, focus) {
     //	document.write(box);
     //box = document.getElementById("searchbox");
@@ -16,7 +27,7 @@ function togglePrompt (box, focus) {
 </script>
 <div class="HEADERBLOCK">
 <a class="HOME" href="index.php">Tropical Species Database</a>
-	
+<div class="NAVDIV">
 <ul class="NAVBAR" >
 	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="./">Home</a>
@@ -36,7 +47,10 @@ function togglePrompt (box, focus) {
 	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="about.php">About</a>
 	</li>
-	<li class="SEARCH">
+	<li class="SEARCHBUTTON" id="SEARCHBUTTON">
+		<a onclick="showHideSearch()"><img src="searchicon.png" height="25" /></a>
+	</li>
+	<li class="SEARCH" id="SEARCH">
 		<form action="query.php" method="get">
 			<div>
 				<input type="text" class="searchbox" id="searchbox" name="full"  
@@ -46,6 +60,7 @@ function togglePrompt (box, focus) {
 		</form>
 	</li>
 </ul>
+</div>
 </div>
 
 <div class="CONTENT">
