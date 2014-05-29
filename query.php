@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tropical Species Database Search</title>
+<title>Search - Useful Tropical Plants</title>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width">
 <link rel=stylesheet href="style.css" type="text/css">  

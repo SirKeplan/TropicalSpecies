@@ -158,7 +158,7 @@
 
 	$row = mysql_fetch_assoc($result);
 	if ($row) {
-		echo "<title>".$row['Latin name']."</title>";
+		echo "<title>".$row['Latin name']." - Useful Tropical Plants</title>";
 		echo "</head>\n<body>";	
 		include 'header.php';
 			#echo link_to_book($row['Cultivation details']);

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <link rel=stylesheet href="style.css" type="text/css">
   <link rel="shortcut icon" href="flower.ico">
-  <title>Tropical Species Database Index</title>
+  <title>Botanical Names - Useful Tropical Plants</title>
 </head>
 <body>
 
