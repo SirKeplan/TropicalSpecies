@@ -11,7 +11,12 @@
   <script type="text/javascript">
 	window.onload = function () {
 		var ele = document.getElementById('options');
-		ele.style.height = measure.clientHeight+'px';
+		var val = ele.className;
+		if (val == 'synhid') {
+			ele.style.height = "0";
+		}else {			
+			ele.style.height = measure.clientHeight+'px';
+		}
 	}	
 function toggle_vis() {
 	var ele = document.getElementById('options');
