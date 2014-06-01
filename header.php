@@ -26,7 +26,7 @@ function togglePrompt (box, focus) {
 }
 </script>
 <div class="HEADERBLOCK">
-<a class="HOME" href="index.php">Useful Tropical Plants Database</a>
+<a class="HOME" href="index.php">Useful Tropical Plants</a>
 <div class="NAVDIV">
 <ul class="NAVBAR" >
 	<li class="NAVBARLI">
