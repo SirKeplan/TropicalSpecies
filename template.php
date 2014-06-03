@@ -143,10 +143,12 @@ if ($row['NomenclatureNotes'] != null) {
 	if ($row['EdibilityRating']) {
 		echo sprintf($format, "Edibility Rating", output_bananas($row['EdibilityRating']));
 	}
-	if ($row['MedicinalRating'])
-	echo sprintf($format, "Medicinal Rating", $row['MedicinalRating']);
-	if ($row['OtherUsesRating'])
-	echo sprintf($format, "Other Uses Rating", $row['OtherUsesRating']);
+	if ($row['MedicinalRating']) {
+		echo sprintf($format, "Medicinal Rating", output_greeny($row['MedicinalRating']));
+	}
+	if ($row['OtherUsesRating']) {
+		echo sprintf($format, "Other Uses Rating", output_other($row['OtherUsesRating']));
+	}
 	if ($row['Habit']) {
 		$DEarray = array("D" => "Deciduous ", "E" => "Evergreen ", "S" => "Semi-deciduous ");
 		if(array_key_exists($row['Deciduous/Evergreen'],$DEarray)) {
@@ -191,7 +193,7 @@ if ($row['AgroforestryUses'] != null) {
 <!--
 <h3>Agroforestry Uses</h3><p><?php echo link_to_book(nl2br($row['AgroforestryUses']))?></p>
 -->
-<h3>Uses Notes</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
+<h3>Other Uses</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
 
 <h3>Propagation</h3><?php echo link_to_book(nl2br($row['Propagation 1']))?><br>
 <!--
