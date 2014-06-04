@@ -540,7 +540,7 @@ body {
 
 li.SEARCHBUTTON {
     display:inline-block;
-    width:25%;
+    width:25%;/*100 divided by no of header items */
     display: inline-block;
 }
 
@@ -558,7 +558,7 @@ li.SEARCHBUTTON {
     -webkit-box-sizing: border-box;
 }
 .NAVBARLI {
-    width:25%;
+    width:25%;/*100 divided by no of header items */
 	display: inline-block;
 }
 a.NAVBARITEM:link, a.NAVBARITEM:visited {
