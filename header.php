@@ -44,9 +44,9 @@ function togglePrompt (box, focus) {
 	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="contact.php">Contact</a>
 	</li>
-	<li class="NAVBARLI">
+	<!--<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="about.php">About</a>
-	</li>
+	</li> -->
 	<li class="SEARCHBUTTON" id="SEARCHBUTTON">
 		<a onclick="showHideSearch()"><img src="searchicon.png" height="25" alt="Show Search"/></a>
 	</li>

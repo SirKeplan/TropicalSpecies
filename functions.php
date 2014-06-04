@@ -543,7 +543,24 @@ function find_images($name) {
 }
 
 function output_bananas($no) {
-	$words = array("0 - No known uses, may be poisonous", "1 - Some reported edibility/minor, may be poisonous", "2 - Minor uses. Confirmed to be edible", "3 - Confimed to be eaten locally", "4 - Good, commonly used", "5 - Excellent, widely consumed");	
+	$words = array(
+	"0 - The plant has no uses in that category", 
+	"1 - We either have insufficient information (ie ‘The plant".
+	" has medicinal uses’) or its use is incredibly minor or has".
+	" significant negative drawbacks - such as being poisonous.", 
+	"2 - Minor uses, or probably minor uses, with no significant".
+	" drawbacks", 
+	"3 - A probably quite useful plant, often only used locally. There".
+	" are various criteria for judging this. For example, the plant".
+	" might be cultivated locally; it might be gathered from the wild".
+	" and sold in local markets; it might have a reference to being".
+	" locally popular.", 
+	"4 - A very useful plant, probably cultivated outside of its".
+	" native range. Also includes lesser known plants that I feel have".
+	" a big potential.", 
+	"5 - Exceptionally useful. Some of the best known medicinal herbs,".
+	" food etc are included here, but also some lesser known plants".
+	" that I feel have exceptional potential");	
 	return output_graphic($no, "banana.png", $words);
 }
 
