@@ -16,6 +16,7 @@ a:visited {color:#003300;} /* visited link */
 a:hover {color:#FF0000;}   /* mouse over link */
 a:active {color:#00FF00;}  /* selected link */
 
+/*The title text in the header*/
 a.HOME {    
 	font-size:x-large;
 	font-weight:bold;
@@ -24,26 +25,33 @@ a.HOME {
 	padding-left: 8px;
 	/*margin:8px;*/
 }
+
+/*main headings, eg Latin name*/
+h1{ }
+
 h2{
 	font-size:1.5em;
-
 }
+
+/*used for a div to surround h1 for latin name*/
 .latin_name{
 	display:inline-block;
 	vertical-align: baseline;
 	padding-right:75px;
 }
+
+/*being used as field headings, maybe i should change to h2?*/
 h3{
 	color:#98bf21;
 	font-weight: bold; 
-	font-size:large;
-	
+	font-size:large;	
 }
 
 h4{
 	font-size:1em;
 }
 
+/*used for a div to surround h4*/
 .author, .family{
 	display:inline-block;
 	vertical-align: baseline;
@@ -51,25 +59,18 @@ h4{
 
 }
 
+/*TODO delete*/
 h3.SHORT{
 	color:#98bf21;
 	font-weight: bold; 
 	font-size:large;
 	/*margin-RIGHT: 310px;*/	
-
 }
 
+/*header formatting below*/
 
-/*div.GREENBAR {
-    background-color:#98bf21;
-    margin:0;
-    padding:0;
-    padding-bottom:4px; 
-}
-*/
 .HEADERBLOCK {
     
-
 	background-color: #336E1A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#336E1A), to(#71D339)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #336E1A, #71D339); /* Chrome 10+, Saf5.1+ */
@@ -78,68 +79,44 @@ h3.SHORT{
 	background-image:      -o-linear-gradient(top, #336E1A, #71D339); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #336E1A, #71D339);
 
-
-
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#336E1A', EndColorStr='#71D339', GradientType=0)"; /* IE6–IE9 */
 
 	margin:0px;
 	padding:8px 0px 0px 0px;
 	border:0px;
-	/*height:100%;*/
-
 
 }
 .NAVDIV {
-font-size:medium;
+	font-size:medium;
 	background-color:#98aa21;
 }
 
-ul.NAVBAR
-{
+ul.NAVBAR {
 	list-style-type:none;
 	margin: 8px 8px 0px 8px;
 	padding:0px;
-	/*padding-top:0px;*/
-	/*padding-bottom:0px;
-	padding-left:8px;
-	padding-right:8px;*/
-	/*height:25px;needed by chrome for some reason*/
-	/*height:100%;*/
-	/*background-image: -moz-linear-gradient(left,
-	rgba(152, 170, 33, 1) 50%, rgba(152, 170, 33, 0) 100%
-	);*/
+
 	overflow:hidden;
-	/*
-	padding-top:6px;
-	padding-bottom:6px;*/
 }
 
 li.NAVBARLI {
 
 	padding:0px;
 	padding-top:0px;
-	/*background-color:#980000;*/
 
 	float:left;
-	/*height:100%;*/
-  vertical-align: middle;
-
+	vertical-align: middle;
     display:inline-block;
-
 }
 
-a.NAVBARITEM:link, a.NAVBARITEM:visited
-{
+a.NAVBARITEM:link, a.NAVBARITEM:visited {
     border-right-style:solid;
     border-color:#557711;
     border-width:1px;
 	font-weight:bold;
 	color:#FFFFFF;
 	background-color:#98aa21;
-	/*background-color:#009800;*/
-
-	/*width:140px;*/
-	/*height:100%;*/
+	
 	text-align:center;
 	padding:0px 4px 0px 4px;
 	line-height:25px;
@@ -148,20 +125,14 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited
 
     display:inline-block;
 }
-a.NAVBARITEM:hover,a.NAVBARITEM:active
-{
+a.NAVBARITEM:hover,a.NAVBARITEM:active {
 	background-color:#7A991A;
 }
-/*a.NAVBAR:hover {color:#FF0000;}*/ 
-/*a.NAVBAoR:active {color:#00FF00;} */
 
 li.SEARCHBUTTON {
 
 	padding:0px;
-	/*background-color:#980000;*/
-
 	float:left;
-	/*height:100%;*/
 
 	/*only show in mobile view*/
     display:none;
@@ -182,10 +153,6 @@ li.SEARCHBUTTON > a > img {
     margin:0px; 
 	min-width:80px;
 	width:196px;
-	/*height:100%;*/
-
-	/*background-color:#980000;*/
-
 }
 
 .searchbox {
@@ -219,8 +186,9 @@ li.SEARCHBUTTON > a > img {
 	/*behavior: url(border-radius.htc);*/
 }
 
-.PBOX
-{
+/*code for plant pictures*/
+
+.PBOX {
 	float:right;
 	/*border:1px solid grey;*/
 	width:304px;
@@ -266,34 +234,34 @@ li.SEARCHBUTTON > a > img {
 	box-shadow: 1px 1px 8px gray;
 
 }
+
 .NOIMAGE {
 	font-style:italic;
 	line-height:200px;
 	z-index:0;	
 }
-.PIC
-{
+
+.PIC {
 	margin:0px 0px 0px 0px;
-	/*margin:2px 2px 0px 2px;*/	
+	margin-left: auto;
+    margin-right: auto;
+	
 	max-width:304px;
 	max-height:304px;
+	
 	display:block;
 	z-index:100;
-    margin-left: auto;
-    margin-right: auto;
-
 }
-table.PROPERTIESTABLE
-{
-    /*-moz-border-radius: 5px;*/
-    /*able-layout:auto;*/
+
+/*different tables*/
+
+table.PROPERTIESTABLE {
 	width:remainder;
+	padding: 5px;
+
 	border-collapse:collapse;
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
 	font-size: small;
-	/*margin-left: 25px;
-	margin-right: 25px;*/	
-	padding: 5px;
 }
 table.PROPERTIESTABLE td + td {
 	min-width:200px;
@@ -303,32 +271,21 @@ table.PROPERTIESTABLE td:first-child {
 	/*font-weight:bold;*/
 }
 
-table.RECORDTABLE
-{
-    /*-moz-border-radius: 5px;*/
-    /*able-layout:auto;*/
-	/*width:remainder;*/
+table.RECORDTABLE {
+   	/*width:remainder;*/
 	border-collapse:collapse;
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
 	font-size: small;
-	/* margin-left: 25px;
-	margin-right: 25px; */	
 }
+
 tr:nth-child(even) {background-color: #C4E2C4}
+
 th {
 	color:white;
 	background:green;
 }
-.INVISIBLE{
-border-collapse:collapse;
-	border:0px;
-	padding:0px;
-	margin:0px;	/*border: 1px solid black;*/
-	
 
-}
-table.RECORDTABLE, th, td.NORMAL, td.ANCHOR
-{
+table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	border: 1px solid black;
 }
 
@@ -338,7 +295,6 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR
 }
 
 td.NORMAL {	
-	//width:5000px;
 	padding-left: 5px;
 }
 .TABLETITLE {margin-left: 25px; margin-bottom: 0px;}
@@ -355,33 +311,29 @@ TABLE#QUERYTABLE {
 	margin: -2px;
 }
 
-
-
 #QUERYTABLE tr:nth-child(even) {background-color: #FFF}
 #QUERYTABLE tr:nth-child(odd) {background-color: #559655}
 #QUERYTABLE td:nth-of-type(1) {background-color: #78A578}
 
 #QUERYTABLE td, table th  {  }
 
-
-/*td.TITLE{
-	background-color: #C0C0C0 
+.INVISIBLE {
+	border-collapse:collapse;
+	border:0px;
+	padding:0px;
+	margin:0px;
 }
-*/
+
 #adv_text {
-font-weight: bold; 
+	font-weight: bold; 
 }
-
-
 
 .small {
 	text-align:center;
-	/*background-color: #D0D0D0;*/
 	font-size:0.85em;
 	margin-left:auto;
 	margin-right:auto;
 	width:600px;
-
 }
 
 .cclicense{
@@ -398,7 +350,6 @@ font-weight: bold;
 
 }
 
-
 /* Formatting for main page elements */
 
 .mainimage{
@@ -410,6 +361,7 @@ font-weight: bold;
 	display:block;
 }
 
+/*formatting for image subtexts*/
 .subtext {
  margin-top:.4em;
 }
@@ -425,11 +377,8 @@ font-weight: bold;
 }
 
 #mainsearchbox {
-	/*make slightly smaller in fiture*/
 	font-size: larger;
 	padding-left: 5ex;
-	/*#padding-right:"50px";*/
-	/* border:1px solid red; */
 }
 
 #mainsearchbox input[type="text"] {
@@ -493,7 +442,7 @@ font-weight: bold;
 {	display:inline;
 	
 	z-index: 99;
-	/*position: absolute;*/
+
 	position:absolute; left:-1px; top:1.25em; width:250px; height:250px;
 	overflow:auto;
 	visibility:hidden;
