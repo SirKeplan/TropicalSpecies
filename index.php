@@ -32,10 +32,13 @@
 		$numPlants = $numPlantsRow[0];
 	}
 	echo <<<EOT
-	<img class="mainimage" src="front.png"/>
-	<p class="mainpage">The Tropical Species Database is a database of useful plants
-	which can be grown in tropical regions. 
-	It contains details of the edible medicinal and other uses and currently lists $numPlants species.</p>
+	<div class="mainimage"><img width="200"src="front2.jpg"/>
+	<p class="subtext">Carica Papaya (Papaya)<br> growing in a woodland garden.</p>
+	</div>
+	<p class="mainpage">The <i><b>Useful Tropical Plants Database</b></i> contains information on the edible, medicinal and many other uses of several thousand plants that can be grown in tropical regions.<br><br> 
+	It is very much a work in progress, with new records being entered and older records being updated on a regular basis. <br><br> 
+	The plants can be browsed using the buttons below (please note that common names are not currently present for most of the records), or it is possible to search on any keyword. There is also a more advanced <a href="query.php">search feature</a> available.<br><br> 
+	Any feedback and offers of assistance (especially in obtaining photographs of the plants) will be gratefully received. <br><br>The database currently lists $numPlants species.</p>
 
 	<div id="mainsearchbox">
 	<form action="query.php" method="get">
