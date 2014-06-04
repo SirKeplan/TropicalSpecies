@@ -325,7 +325,7 @@ function toggle_vis() {
 				$op = "=";
 				if ($key == "Height" OR $key == "Width") {
 					$op = " BETWEEN ";
-					if(preg_match('/^(\d+)-(\d+)$/',$individual,$matches)==1) {
+					if(preg_match('/^([\.\d]+)-([\.\d]+)$/',$individual,$matches)==1) {
 						$individual = $matches[1] . "' AND '" . $matches[2];
 						//echo "HeightWidth: ". htmlspecialchars($individual);
 					} else {

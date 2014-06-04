@@ -158,7 +158,7 @@ if ($row['NomenclatureNotes'] != null) {
 		}
 	}
 	if ($row['Height'])
-	echo sprintf($format, "Height", $row['Height']);
+	echo sprintf($format, "Height", $row['Height']." m");
 	if ($row['Growth rate']) {
 		$arrayk = array("F", "M", "S");
 		$arrayv = array("Fast, ", "Medium, ", "Slow, ");
