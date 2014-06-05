@@ -252,6 +252,10 @@ li.SEARCHBUTTON > a > img {
 	display:block;
 	z-index:100;
 }
+figcaption {
+		font-size: small;
+
+}
 
 /*different tables*/
 

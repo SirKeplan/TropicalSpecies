@@ -32,7 +32,7 @@
 		$out = "";
 		if ($row2) {
 			$out = "";
-			$out = '<div class="ref"><a href="refs.php#'.$key.'">'.$key.'</a><div>'.OutputBookRefRecord($row2).'</div></div>';
+			$out = '<div class="ref"><a href="refs.php#'.$key.'">'.$key.'</a><div class=".entry-unrelated">'.OutputBookRefRecord($row2).'</div></div>';
 			
 			#$out .= OutputBookRefRecord($row2);
 			#$out .= 
