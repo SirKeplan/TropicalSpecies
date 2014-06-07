@@ -23,8 +23,8 @@
 		$out = "";
 		if ($row2) {
 			$out = "";
-			$out = '<div class="ref"><a href="refs.php#'.$key.'">'.$key.'</a><div>'.OutputBookRefRecord($row2).'</div></div>';
 
+			$out = '<div class="ref"><a href="refs.php#'.$key.'">'.$key.'</a><div class=".entry-unrelated">'.OutputBookRefRecord($row2).'</div></div>';
 		}
 		return $out;
 	}
@@ -53,6 +53,11 @@
 	}
 	$key = mysql_real_escape_string($_GET["id"]);
 
+	$redir = null;
+	if (! empty($_GET["redir"])) {
+		$redir = mysql_real_escape_string($_GET["redir"]);
+	}
+
 	$result = safe_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
 	
 	$row = mysql_fetch_assoc($result);
@@ -61,6 +66,7 @@
 		echo "</head>\n<body>";	
 		include 'header.php';
 
+		global $redir;
 		global $row;
 		include('template.php' );
 		echo "<script src=\"boxmove.js\"></script>";
@@ -69,7 +75,31 @@
 		echo "<title>".$key."</title>";
 		echo "</head>\n<body>";
 		include 'header.php';
-		echo "<p><b>No record for \"".$key."\"</b></p>";
+		$names = array();
+		#mysql string comparisons aren't case sensitive, no need to convert case
+		$synresult = safe_query('SELECT * FROM `Synonyms`WHERE `LatinName` = "'.$key.'"');
+		while ($row = mysql_fetch_assoc($synresult)) {
+			$names[] = $row["TrueLatinName"];
+		}
+		if (count($names) < 1) {
+			echo "<p>We have no record for <b>\"".$key."\"</b></p>";
+			echo "<p>Try running a search.</p>";
+
+
+		} else if (count($names) == 1) {
+			#redirect...
+			header('Location: viewtropical.php?id='.urlencode($names[0]).'&redir='.urlencode($key), TRUE, 303);
+			#script shouldn't actualy reach here in theory
+			echo '<p>You probably want:';
+			echo '<a href="viewtropical.php?id='.urlencode($names[0]).'&redir='.urlencode($key).'">'.$names[0].'</a>';
+			echo '</p>';
+		}else {
+			echo "<p>No record for <b>\"".$key."\"</b></p>";
+			echo "<p>\"$key\" is a synonym of the following plants.</p>";
+			mysql_data_seek($synresult, 0);
+			output_table_query($synresult, "Nothing", "Synonyms", null, "TrueLatinName", "viewtropical.php", "id",-1 , array("LatinName"), array("TrueLatinName" => "Latin Name", "Author" => "Author"));
+			#print_r( $names);
+		}
 		
 	}
 	mysql_free_result($result);

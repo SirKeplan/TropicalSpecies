@@ -115,7 +115,7 @@ function output_table_sql($sql, $col, $table, $relation, $linkwith = null, $link
 }
 
 // my nice function
-function output_table_query($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $ignore = array("ID","Dis")) {
+function output_table_query($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $ignore = array("ID","Dis"), $fnames = null) {
 	//include_once "functions.php";
 	/*$result_cols = safe_query("DESCRIBE `$table`");
 		if (!$result_cols) {
@@ -133,10 +133,11 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 	echo "<table class=\"RECORDTABLE\" >\n";
 	echo "<tr>";
 	foreach ($columns as $row2) {
+		$col_name = ($fnames == null ? $row2 : $fnames[$row2]);
 		if ($linkwith != null && $linkwith == $row2) {
-			echo ("<th class=\"ANCHORH\">".$row2."</th>");
+			echo ("<th class=\"ANCHORH\">".$col_name."</th>");
 		} else {
-			echo ("<th>".$row2."</th>");
+			echo ("<th>".$col_name."</th>");
 		}
 	}
 	echo "</tr>\n";
