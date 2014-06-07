@@ -22,8 +22,6 @@
 		}
 		$out = "";
 		if ($row2) {
-			$out = "";
-
 			$out = '<div class="ref"><a href="refs.php#'.$key.'">'.$key.'</a><div class=".entry-unrelated">'.OutputBookRefRecord($row2).'</div></div>';
 		}
 		return $out;
