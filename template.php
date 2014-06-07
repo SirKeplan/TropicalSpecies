@@ -18,7 +18,7 @@
 </table>
 <?php 
 if ($redir) {
-	echo "<p>(Redirected from <b>$redir</b>)</p>";
+	echo "<p class=\"redir\">(Redirected from <b>$redir</b>)</p>";
 }
 ?>	
 <div class="latin_name"><h1><?php echo $row['Latin name']?></h1></div>
