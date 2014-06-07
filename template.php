@@ -16,7 +16,11 @@
 		echo urlencode($row1['Latin name']);?>"><img border="0" src="ArrowRight.png" height="14" alt="Next"/></a></td>
 	</tr>
 </table>
-
+<?php 
+if ($redir) {
+	echo "<p>(Redirected from <b>$redir</b>)</p>";
+}
+?>	
 <div class="latin_name"><h1><?php echo $row['Latin name']?></h1></div>
 <div class="author"><h4><?php echo $row['Author']?></h4></div>
 <div class="family"><h4><?php echo $row['Family']?></h4></div>

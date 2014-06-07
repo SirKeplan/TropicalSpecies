@@ -384,15 +384,22 @@ function toggle_vis() {
 		$http_query = $_GET;
 		
 		//for getting totla record count
-		$all = safe_query($string); 
-		$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
-		//$result = safe_query($string." LIMIT $pageno, $amount"); 
+		$all = safe_query($string);
+		
+		$result = null;
+		$orderbest = true;//whether to order by best result or alphabetically
+		if ($orderbest) {
+			$result = safe_query($string." LIMIT $pageno, $amount"); 
+		}else {
+			$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
+		}
+
 		$allcount = mysql_num_rows($all);
 		
 		echo "<p>".mysql_num_rows($all)." records";
 		
 		if($full) {
-			echo " found for \"$full\".</p>";
+			echo " found for <b>\"$full\"</b>".($orderbest? " Showing best results first.":" Showing alphabetically.")."</p>";
 		}else{
 			echo ".</p>";
 		}
