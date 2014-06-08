@@ -1,6 +1,5 @@
 <?php include_once 'functions.php'; ?>
 <p>
-
 <table style="width:100%;">
 	<tr>
 		<td style=''><a href="viewtropical.php?id=<?php
@@ -30,9 +29,6 @@ if ($row['NomenclatureNotes'] != null) {
 }
 ?>
 <?php 
-$n = $row['Latin name'];
-$s = "<a href=\"synonyms.php?id=$n\" onClick=\"RefWindow=window.open('synonyms.php?id=$n','RefWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=400,height=610,left=50,top=150'); RefWindow.focus(); return false;\">Synonyms.</a>";
-
 $full = "123";
 echo <<<EOT
 	<script type="text/javascript">
@@ -60,11 +56,11 @@ EOT;
 	<div id="synonyms" class="<?php if ($full != null) { echo "synhid"; } else {echo "synshown";} ?>">
 	<div id="measurement">
 	<?php 
-
+	#output an individual synonym.
 	function OutputRecordSyn($row) {
 		echo "<p><b><i>{$row["LatinName"]}</i></b> {$row["Author"]}</p>\n";
 	}
-	$key = $n;
+	$key = $row['Latin name'];
 
 	$result2 = safe_query("SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
 
@@ -85,6 +81,8 @@ EOT;
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
 	<?php
+	#loads an array of images for the record
+	#each array element is an associative array, containing the image path and other data for the image
 	$imgdata = null;
 	$imglist = find_images($row['Latin name']);
 
@@ -96,7 +94,7 @@ EOT;
 
 		echo '<img class="PIC" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/>';
 		if ($imgdata["caption"]) {
-			echo "	<div class=\"caption\">${imgdata["caption"]}</div>";
+			echo "\n	<div class=\"caption\">${imgdata["caption"]}</div>";
 		}
 	} else {
 
@@ -106,8 +104,8 @@ EOT;
 	}
 	
 	?>
-</div>
 
+</div>
 
 <h3 class="SHORT">General Information</h3><?php echo link_to_book(nl2br($row['GeneralInformation']))?><br>
 
@@ -122,8 +120,9 @@ EOT;
 <h3>Properties</h3>
 <table class="PROPERTIESTABLE">
 <?php 
+	#output a table, various "properties" of the plant, 
+	#most fields are only output if they contain any data
 	$format = "<tr>\n\t<td class=\"PROPERTIESTABLE\">%s</td><td class=\"PROPERTIESTABLE\">%s</td>\n</tr>\t\n";
-
 		
 	if ($row['WeedPotential']) {
 		$arrayk = array("0", "1");
@@ -184,4 +183,3 @@ if ($row['AgroforestryUses'] != null) {
 <h3>Other Uses</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
 
 <h3>Propagation</h3><?php echo link_to_book(nl2br($row['Propagation 1']))?><br>
-
