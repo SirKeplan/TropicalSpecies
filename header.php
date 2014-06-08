@@ -1,4 +1,5 @@
 <script type="text/javascript">
+/** show or hide the search bos(for small screens) */
 function showHideSearch() {
 	var disp = document.getElementById("SEARCH").style.display;
 	if (disp == "block") {
@@ -8,15 +9,12 @@ function showHideSearch() {
 	}	
 	document.getElementById("SEARCH").style.display = disp;
 	document.getElementById("searchbox").focus();
-
 }
+/** Makes search box show prompt text when not focused */
 function togglePrompt (box, focus) {
-    //	document.write(box);
-    //box = document.getElementById("searchbox");
     if (box.value != box.defaultValue && box.value != "") {
 		return;
 	}
-    
     box.value = (focus?"":box.defaultValue);
     if (focus) {
 		box.style.cssText = "font-style: normal;color: black;";
@@ -32,12 +30,6 @@ function togglePrompt (box, focus) {
 	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="./">Home</a>
 	</li>
-	<!--<li class="NAVBARLI">
-		<a class="NAVBARITEM" href="common-index.php">Common Names</a>
-	</li>
-	<li class="NAVBARLI">
-		<a class="NAVBARITEM" href="letter-index.php">Latin Names</a>
-	</li> -->
 	<li class="NAVBARLI">
 		<a class="NAVBARITEM" href="query.php">Search</a>
 	</li>

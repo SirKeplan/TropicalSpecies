@@ -101,7 +101,9 @@ ul.NAVBAR {
 	list-style-type:none;
 	margin: 8px 8px 0px 8px;
 	padding:0px;
-	height:25px;/*helps keep the formatting ok on old IE, not needed otherwise*/
+	/*TODO if you can be bother to fix the formatting on old IE versions, 
+	 * the below could be reinstated with some fixes*/
+	/*height:25px;/*helps keep the formatting ok on old IE, not needed otherwise*/
 	overflow:hidden;
 }
 
