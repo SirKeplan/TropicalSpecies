@@ -140,16 +140,6 @@ function toggle_vis() {
 				<option value="40-60">40m-60m</option>
 				<option value="60-100">60m-100m</option>
 			</select></td>
-
- 			<!--
-			<td colspan="3"><input type="checkbox" name="Height" value="0' AND '0.1"/>0-10cm
-			<input type="checkbox" name="Height" value="0' AND '1"/>10cm-1m
-			<input type="checkbox" name="Height" value="1' AND '4"/>1m-4m
-			<input type="checkbox" name="Height" value="4' AND '10"/>4m-10m
-			<input type="checkbox" name="Height" value="10' AND '20"/>10m-20m
-			<input type="checkbox" name="Height" value="20' AND '40"/>20m-40m
-			<input type="checkbox" name="Height" value="40' AND '60"/>40m-60m
-			<input type="checkbox" name="Height" value="60' AND '100"/>60m-100m</td>-->
  		</tr>
 		<tr>
 			<td class="TITLE"><b>Width</b></td>
@@ -161,29 +151,7 @@ function toggle_vis() {
 				<option value="10-20">10m-20m</option>
 				<option value="20-50">20m-50m</option>
 			</select></td>
-
- 			<!--
-			<td><input type="checkbox" name="Width" value="0' AND '1"/>1</td>
-			<td><input type="checkbox" name="Width" value="1' AND '4"/>1-4</td>
-			<td><input type="checkbox" name="Width" value="4' AND '10"/>4-10</td>
-			<td><input type="checkbox" name="Width" value="10' AND '20"/>10-20</td>
-			<td><input type="checkbox" name="Width" value="20' AND '50"/>20-50</td>-->
-		</tr>	<!-- 	
-		<tr>
-			<td class="TITLE"><b>Hardyness</b></td>
-			<td><input type="checkbox" name="Hardyness" value="1"/>1
-			<input type="checkbox" name="Hardyness" value="2"/>2
-			<input type="checkbox" name="Hardyness" value="3"/>3
-			<input type="checkbox" name="Hardyness" value="4"/>4
-			<input type="checkbox" name="Hardyness" value="5"/>5
-			<input type="checkbox" name="Hardyness" value="6"/>6
-			<input type="checkbox" name="Hardyness" value="7"/>7
-			<input type="checkbox" name="Hardyness" value="8"/>8
-			<input type="checkbox" name="Hardyness" value="9"/>9
-			<input type="checkbox" name="Hardyness" value="10"/>10
-		<!-- 	<input type="checkbox" name="Hardyness" value="11"/>11 Hardyness values in DB only go up to 10
-			<input type="checkbox" name="Hardyness" value="12"/>12  </td>
-		</tr> -->
+		</tr>	
 		<tr>
 			<td class="TITLE"><b>Growth Rate</b></td>
 			<td><input type="checkbox" name="Growth rate" value="F"/>Fast
@@ -361,21 +329,9 @@ function toggle_vis() {
 			if ($end) {
 				break;// you get it
 			}
-			##if ($booladded) {
-				$add = $add."') AND ";
-			##} else {
-			##	$add = $add."' AND ";
-			##}
-
+			$add = $add."') AND ";
 		}
-		//if ($anything) {
-			$string = $string.$add."TRUE";
-			//$string = "SELECT * FROM tropicalspecies WHERE `Growth rate`='".implode("' OR `Growth rate`='", $params["growth_rate"])."'";
-			//echo '<pre>';
-			//echo htmlspecialchars(print_r($params, true));
-			//echo '</pre>';
-			//echo $string;
-		//}
+		$string = $string.$add."TRUE";
 	}
 	
     if ($anything == true) {
@@ -445,12 +401,13 @@ function toggle_vis() {
 		//echo "alert(form.elements[\"Acid\"][0].checked);\n";
 		global $params;
 		//echo var_dump($params);
-		foreach ($params as $key => $val) {
-			foreach ($val as $inkey) {
-				if ($key == "Height" OR $key == "Width") {
-					continue;
-				}
-echo <<<EOT
+		if ($params) {
+			foreach ($params as $key => $val) {
+				foreach ($val as $inkey) {
+					if ($key == "Height" OR $key == "Width") {
+						continue;
+					}
+					echo <<<EOT
 		
 		var control = form.elements["$key"];
 		for (var no = 0; no < control.length; no++) {
@@ -468,7 +425,8 @@ echo <<<EOT
 		//control["$inkey"].checked = true;
 
 EOT;
-				
+					
+				}
 			}
 		}
 		?>
