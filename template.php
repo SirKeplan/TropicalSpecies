@@ -90,19 +90,19 @@ EOT;
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
 	<?php
-	$var1 = "";
+	$imgdata = null;
 	$imglist = find_images($row['Latin name']);
+
 	if ($imglist) {
-		$var1 = $imglist[0];
+		$imgdata = $imglist[0];
 	}
-	//$imgdir = "plantimages/";
-	//$var1 = $imgdir.$row['Latin name'].".png";
-	//$var2 = $imgdir.$row['Latin name'].".jpg";
-	if (file_exists($var1)) {
-		//echo <<<EOT
-		//<span class="NOIMAGE">Image Loading.</span>
-		//EOT;
-		echo '<img class="PIC" src="'.$var1.'" alt="'.$row['Latin name'].'"/>';
+
+	if ($imgdata and file_exists($imgdata["file"])) {
+
+		echo '<img class="PIC" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/>';
+		if ($imgdata["caption"]) {
+			echo "	<div class=\"caption\">${imgdata["caption"]}</div>";
+		}
 	} else {
 
 		echo <<<EOT

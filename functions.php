@@ -536,9 +536,9 @@ function BookRef() {
 
 function find_images($name) {
 	$imgs = array();
-	$result = safe_query("SELECT `FileName` FROM `PlantPictures` WHERE `LatinName` = '$name'");
+	$result = safe_query("SELECT `FileName`, `Caption`, `Author` FROM `PlantPictures` WHERE `LatinName` = '$name'");
 	while ($row = mysql_fetch_array($result)) {
-		$imgs[] = $row[0];
+		$imgs[] = array("file" => $row[0], "caption" => $row[1], "author" => $row[2]);
 	}
 	return $imgs;
 
