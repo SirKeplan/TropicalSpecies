@@ -8,7 +8,7 @@
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
 		echo urlencode($row1['Latin name']);?>"><img border="0" src="ArrowLeft.png" height="14"  alt="Previous"/></a></td>
-		<!--<td style=''><a href="letter-index.php">Index</a></td>-->
+		
 		<td style='text-align:right;'><a href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
@@ -32,8 +32,6 @@ if ($row['NomenclatureNotes'] != null) {
 <?php 
 $n = $row['Latin name'];
 $s = "<a href=\"synonyms.php?id=$n\" onClick=\"RefWindow=window.open('synonyms.php?id=$n','RefWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=400,height=610,left=50,top=150'); RefWindow.focus(); return false;\">Synonyms.</a>";
-
-#echo $s;#"<a href=\"synonyms.php?id=".$row['Latin name']."\">Show Synonyms.</a>";#
 
 $full = "123";
 echo <<<EOT
@@ -70,8 +68,6 @@ EOT;
 
 	$result2 = safe_query("SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
 
-	#echo "<h2>Synonyms for $key</h2>\n";
-
 	while ($row2 = mysql_fetch_assoc($result2)) {
 		
 		if ($row2) {
@@ -85,7 +81,6 @@ EOT;
 ?>	
 	</div>
 	</div>
-	
 	
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
@@ -117,17 +112,10 @@ EOT;
 <h3 class="SHORT">General Information</h3><?php echo link_to_book(nl2br($row['GeneralInformation']))?><br>
 
 <h3 class="SHORT">Known Hazards</h3><?php echo link_to_book(nl2br($row['Known hazards']))?><br>
-<h3 class="SHORT">Botanical References</h3><?php echo link_to_book($row['Botanical references'], true)?><br>
-<!--<?php
-if ($row['NomenclatureNotes'] != null) {
-	echo "<h3 class=\"SHORT\">Nomenclature Notes:</h3>".link_to_book(nl2br($row['NomenclatureNotes']))."<br>";
-}
-?>-->
-<!--
-<h3 class="SHORT">Nomenclature Notes:</h3><?php echo $row['NomenclatureNotes']?><br>
--->
-<h3>Range</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
 
+<h3 class="SHORT">Botanical References</h3><?php echo link_to_book($row['Botanical references'], true)?><br>
+
+<h3>Range</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
 
 <h3>Habitat</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
 
@@ -187,21 +175,13 @@ if ($row['NomenclatureNotes'] != null) {
 
 <h3>Medicinal</h3><?php echo link_to_book(nl2br($row['Medicinal']))?><br>
 
-
-
 <?php
 if ($row['AgroforestryUses'] != null) {
 	echo "<h3>Agroforestry Uses:</h3>".link_to_book(nl2br($row['AgroforestryUses']))."<br>";
 }
 ?>
-<!--
-<h3>Agroforestry Uses</h3><p><?php echo link_to_book(nl2br($row['AgroforestryUses']))?></p>
--->
+
 <h3>Other Uses</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
 
 <h3>Propagation</h3><?php echo link_to_book(nl2br($row['Propagation 1']))?><br>
-<!--
-<h3>Conservation Status</h3><p><?php echo $row['ConservationStatus']?></p>
 
-<h3>Weed Potential</h3><p><?php echo $row['WeedPotential']?></p>
--->
