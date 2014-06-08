@@ -84,8 +84,9 @@ margin-bottom:0px;
 	background-image:      -o-linear-gradient(top, #336E1A, #71D339); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #336E1A, #71D339);
 
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#336E1A', EndColorStr='#71D339', GradientType=0)"; /* IE6–IE9 */
-
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#336E1A', EndColorStr='#71D339', GradientType=0); /* IE6–IE9 */
+	/*needed by old IE versions so the filter shows, something to do with items size*/
+	overflow: auto;
 	margin:0px;
 	padding:8px 0px 0px 0px;
 	border:0px;
@@ -100,7 +101,7 @@ ul.NAVBAR {
 	list-style-type:none;
 	margin: 8px 8px 0px 8px;
 	padding:0px;
-
+	height:25px;/*helps keep the formatting ok on old IE, not needed otherwise*/
 	overflow:hidden;
 }
 
