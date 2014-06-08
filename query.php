@@ -105,20 +105,20 @@ function toggle_vis() {
 		<tr>
 			<td class="TITLE"><b>Habit</b></td>
 			<td><select multiple="multiple" name="Habit" size="5">
-				<option id="Annual">Annual</option>
-				<option id="Annual Climber">Annual Climber</option>
-				<option id="Annual/Biennial">Annual/Biennial</option>
-				<option id="Annual/Perennial">Annual/Perennial</option>
-				<option id="Bamboo">Bamboo</option>
-				<option id="Biennial">Biennial</option>
-				<option id="Bulb">Bulb</option>
-				<option id="Climber">Climber</option>
-				<option id="Corm">Corm</option>
-				<option id="Fern">Fern</option>
-				<option id="Perennial">Perennial</option>
-				<option id="Perennial Climber">Perennial Climber</option>
-				<option id="Shrub">Shrub</option>
-				<option id="Tree">Tree</option>
+				<option value="Annual">Annual</option>
+				<option value="Annual Climber">Annual Climber</option>
+				<option value="Annual/Biennial">Annual/Biennial</option>
+				<option value="Annual/Perennial">Annual/Perennial</option>
+				<option value="Bamboo">Bamboo</option>
+				<option value="Biennial">Biennial</option>
+				<option value="Bulb">Bulb</option>
+				<option value="Climber">Climber</option>
+				<option value="Corm">Corm</option>
+				<option value="Fern">Fern</option>
+				<option value="Perennial">Perennial</option>
+				<option value="Perennial Climber">Perennial Climber</option>
+				<option value="Shrub">Shrub</option>
+				<option value="Tree">Tree</option>
 			</select>		
 		</tr>
 		<tr>
@@ -393,53 +393,37 @@ function toggle_vis() {
 	
 <script type="text/javascript">
 
-	//function setFormVars() {
-		//TODO Fix this ajna.......
-		form = document.getElementById('QueryForm');
-		<?php
-		
-		//echo "alert(form.elements[\"Acid\"][0].checked);\n";
-		global $params;
-		//echo var_dump($params);
-		if ($params) {
-			foreach ($params as $key => $val) {
-				foreach ($val as $inkey) {
-					if ($key == "Height" OR $key == "Width") {
-						continue;
-					}
-					echo <<<EOT
-		
-		var control = form.elements["$key"];
-		for (var no = 0; no < control.length; no++) {
-			if (control[no].value == "$inkey") {
-				//alert(control[no].type);
-				if (control[no] instanceof HTMLOptionElement ) {
-					//control[no].value = "$inkey";
-					document.getElementById("$inkey").selected=true;
-				} else {
-					control[no].checked = true;
-				}
+	form = document.getElementById('QueryForm');
+	<?php
+	
+	global $params;
+
+	if ($params) {
+		foreach ($params as $key => $val) {
+			foreach ($val as $inkey) {
+				#if ($key == "Height" OR $key == "Width") {
+				#	continue;
+				#}
+				echo <<<EOT
+	
+	var control = form.elements["$key"];
+	for (var no = 0; no < control.length; no++) {
+		if (control[no].value == "$inkey") {
+			if (control[no] instanceof HTMLOptionElement ) {
+				control[no].selected = true;
+			} else {
+				control[no].checked = true;
 			}
-			//alert(control[no].name);
 		}
-		//control["$inkey"].checked = true;
+	}
 
 EOT;
-					
-				}
+				
 			}
 		}
-		?>
-		//document.write(table);
-		//for (ele in form.elements) {
-		//	document.write(ele.nodeName);
-			//ele.value = 1;
-		//}
-		//document.write(form.elements["Height"].value);
-		//form.elements["Acid"][0].checked = true;
-		//alert(form.elements["Acid"][1].checked);
+	}
+	?>
 
-	//}
 </script>
 </body>
 
