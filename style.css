@@ -84,8 +84,9 @@ margin-bottom:0px;
 	background-image:      -o-linear-gradient(top, #336E1A, #71D339); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #336E1A, #71D339);
 
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#336E1A', EndColorStr='#71D339', GradientType=0)"; /* IE6–IE9 */
-
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#336E1A', EndColorStr='#71D339', GradientType=0); /* IE6–IE9 */
+	/*needed by old IE versions so the filter shows, something to do with items size*/
+	overflow: auto;
 	margin:0px;
 	padding:8px 0px 0px 0px;
 	border:0px;
@@ -100,7 +101,9 @@ ul.NAVBAR {
 	list-style-type:none;
 	margin: 8px 8px 0px 8px;
 	padding:0px;
-
+	/*TODO if you can be bother to fix the formatting on old IE versions, 
+	 * the below could be reinstated with some fixes*/
+	/*height:25px;/*helps keep the formatting ok on old IE, not needed otherwise*/
 	overflow:hidden;
 }
 
@@ -193,15 +196,17 @@ li.SEARCHBUTTON > a > img {
 
 /*code for plant pictures*/
 
+/*this should be a div surrounding the picture and caption*/
 .PBOX {
 	float:right;
-	/*border:1px solid grey;*/
+	border:1px solid silver;
 	width:304px;
 	min-height:220px;
 	/*background-color: #D0D0D0;*/
 	text-align:center;
 	font-size:30px;
-	margin-right:10px;
+	margin:0px;
+	margin-right:0px;
 	margin-left:10px;
 	padding:0px;
 
@@ -234,15 +239,18 @@ li.SEARCHBUTTON > a > img {
 
 	background-position:0 0, 20px 0, 20px -20px, 0px 20px;
 	background-position:0 0, 20px 20px;
+
 	-moz-box-shadow: 1px 1px 8px gray;
 	-webkit-box-shadow: 1px 1px 8px gray;
 	box-shadow: 1px 1px 8px gray;
-
 }
 
+/*a styled div shown when there is no image available*/
 .NOIMAGE {
 	font-style:italic;
 	line-height:200px;
+	min-height:220px;
+
 	z-index:0;	
 }
 
@@ -257,9 +265,12 @@ li.SEARCHBUTTON > a > img {
 	display:block;
 	z-index:100;
 }
-figcaption {
-		font-size: small;
 
+/*text displayed under pictures*/
+.caption {
+	background-color: white;
+	font-size: small;
+	padding	:0.2em;
 }
 
 /*different tables*/
@@ -377,8 +388,6 @@ TABLE#QUERYTABLE {
 
 .mainpage {
 	font-size: larger;
-	display:inlineblock;
-
 }
 .mainpageletters {
 	margin-left:5ex;

@@ -105,20 +105,20 @@ function toggle_vis() {
 		<tr>
 			<td class="TITLE"><b>Habit</b></td>
 			<td><select multiple="multiple" name="Habit" size="5">
-				<option id="Annual">Annual</option>
-				<option id="Annual Climber">Annual Climber</option>
-				<option id="Annual/Biennial">Annual/Biennial</option>
-				<option id="Annual/Perennial">Annual/Perennial</option>
-				<option id="Bamboo">Bamboo</option>
-				<option id="Biennial">Biennial</option>
-				<option id="Bulb">Bulb</option>
-				<option id="Climber">Climber</option>
-				<option id="Corm">Corm</option>
-				<option id="Fern">Fern</option>
-				<option id="Perennial">Perennial</option>
-				<option id="Perennial Climber">Perennial Climber</option>
-				<option id="Shrub">Shrub</option>
-				<option id="Tree">Tree</option>
+				<option value="Annual">Annual</option>
+				<option value="Annual Climber">Annual Climber</option>
+				<option value="Annual/Biennial">Annual/Biennial</option>
+				<option value="Annual/Perennial">Annual/Perennial</option>
+				<option value="Bamboo">Bamboo</option>
+				<option value="Biennial">Biennial</option>
+				<option value="Bulb">Bulb</option>
+				<option value="Climber">Climber</option>
+				<option value="Corm">Corm</option>
+				<option value="Fern">Fern</option>
+				<option value="Perennial">Perennial</option>
+				<option value="Perennial Climber">Perennial Climber</option>
+				<option value="Shrub">Shrub</option>
+				<option value="Tree">Tree</option>
 			</select>		
 		</tr>
 		<tr>
@@ -140,16 +140,6 @@ function toggle_vis() {
 				<option value="40-60">40m-60m</option>
 				<option value="60-100">60m-100m</option>
 			</select></td>
-
- 			<!--
-			<td colspan="3"><input type="checkbox" name="Height" value="0' AND '0.1"/>0-10cm
-			<input type="checkbox" name="Height" value="0' AND '1"/>10cm-1m
-			<input type="checkbox" name="Height" value="1' AND '4"/>1m-4m
-			<input type="checkbox" name="Height" value="4' AND '10"/>4m-10m
-			<input type="checkbox" name="Height" value="10' AND '20"/>10m-20m
-			<input type="checkbox" name="Height" value="20' AND '40"/>20m-40m
-			<input type="checkbox" name="Height" value="40' AND '60"/>40m-60m
-			<input type="checkbox" name="Height" value="60' AND '100"/>60m-100m</td>-->
  		</tr>
 		<tr>
 			<td class="TITLE"><b>Width</b></td>
@@ -161,29 +151,7 @@ function toggle_vis() {
 				<option value="10-20">10m-20m</option>
 				<option value="20-50">20m-50m</option>
 			</select></td>
-
- 			<!--
-			<td><input type="checkbox" name="Width" value="0' AND '1"/>1</td>
-			<td><input type="checkbox" name="Width" value="1' AND '4"/>1-4</td>
-			<td><input type="checkbox" name="Width" value="4' AND '10"/>4-10</td>
-			<td><input type="checkbox" name="Width" value="10' AND '20"/>10-20</td>
-			<td><input type="checkbox" name="Width" value="20' AND '50"/>20-50</td>-->
-		</tr>	<!-- 	
-		<tr>
-			<td class="TITLE"><b>Hardyness</b></td>
-			<td><input type="checkbox" name="Hardyness" value="1"/>1
-			<input type="checkbox" name="Hardyness" value="2"/>2
-			<input type="checkbox" name="Hardyness" value="3"/>3
-			<input type="checkbox" name="Hardyness" value="4"/>4
-			<input type="checkbox" name="Hardyness" value="5"/>5
-			<input type="checkbox" name="Hardyness" value="6"/>6
-			<input type="checkbox" name="Hardyness" value="7"/>7
-			<input type="checkbox" name="Hardyness" value="8"/>8
-			<input type="checkbox" name="Hardyness" value="9"/>9
-			<input type="checkbox" name="Hardyness" value="10"/>10
-		<!-- 	<input type="checkbox" name="Hardyness" value="11"/>11 Hardyness values in DB only go up to 10
-			<input type="checkbox" name="Hardyness" value="12"/>12  </td>
-		</tr> -->
+		</tr>	
 		<tr>
 			<td class="TITLE"><b>Growth Rate</b></td>
 			<td><input type="checkbox" name="Growth rate" value="F"/>Fast
@@ -361,21 +329,9 @@ function toggle_vis() {
 			if ($end) {
 				break;// you get it
 			}
-			##if ($booladded) {
-				$add = $add."') AND ";
-			##} else {
-			##	$add = $add."' AND ";
-			##}
-
+			$add = $add."') AND ";
 		}
-		//if ($anything) {
-			$string = $string.$add."TRUE";
-			//$string = "SELECT * FROM tropicalspecies WHERE `Growth rate`='".implode("' OR `Growth rate`='", $params["growth_rate"])."'";
-			//echo '<pre>';
-			//echo htmlspecialchars(print_r($params, true));
-			//echo '</pre>';
-			//echo $string;
-		//}
+		$string = $string.$add."TRUE";
 	}
 	
     if ($anything == true) {
@@ -437,51 +393,37 @@ function toggle_vis() {
 	
 <script type="text/javascript">
 
-	//function setFormVars() {
-		//TODO Fix this ajna.......
-		form = document.getElementById('QueryForm');
-		<?php
-		
-		//echo "alert(form.elements[\"Acid\"][0].checked);\n";
-		global $params;
-		//echo var_dump($params);
+	form = document.getElementById('QueryForm');
+	<?php
+	
+	global $params;
+
+	if ($params) {
 		foreach ($params as $key => $val) {
 			foreach ($val as $inkey) {
-				if ($key == "Height" OR $key == "Width") {
-					continue;
-				}
-echo <<<EOT
-		
-		var control = form.elements["$key"];
-		for (var no = 0; no < control.length; no++) {
-			if (control[no].value == "$inkey") {
-				//alert(control[no].type);
-				if (control[no] instanceof HTMLOptionElement ) {
-					//control[no].value = "$inkey";
-					document.getElementById("$inkey").selected=true;
-				} else {
-					control[no].checked = true;
-				}
+				#if ($key == "Height" OR $key == "Width") {
+				#	continue;
+				#}
+				echo <<<EOT
+	
+	var control = form.elements["$key"];
+	for (var no = 0; no < control.length; no++) {
+		if (control[no].value == "$inkey") {
+			if (control[no] instanceof HTMLOptionElement ) {
+				control[no].selected = true;
+			} else {
+				control[no].checked = true;
 			}
-			//alert(control[no].name);
 		}
-		//control["$inkey"].checked = true;
+	}
 
 EOT;
 				
 			}
 		}
-		?>
-		//document.write(table);
-		//for (ele in form.elements) {
-		//	document.write(ele.nodeName);
-			//ele.value = 1;
-		//}
-		//document.write(form.elements["Height"].value);
-		//form.elements["Acid"][0].checked = true;
-		//alert(form.elements["Acid"][1].checked);
+	}
+	?>
 
-	//}
 </script>
 </body>
 

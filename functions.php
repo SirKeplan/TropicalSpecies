@@ -471,6 +471,7 @@ function OutputBookRefRecord($row) {
 					if (!parse_url($url, PHP_URL_SCHEME) && $url) {
 						$url = "http://$url";
 					}
+					$url = htmlspecialchars($url);
 					#echo "<a target=\"_blank\" href=\"".$url."\">".$url."</a>";
 					#echo "</dd>\n";
 					$out .= "<a target=\"_blank\" href=\"".$url."\">".$url."</a>";
@@ -484,7 +485,7 @@ function OutputBookRefRecord($row) {
 				#echo "</dd>\n";
 				$out .=  "<dt>".$col_name."</dt>";
 				$out .=  "<dd>";
-				$out .=  link_to_book2($row[$col_name]);
+				$out .=  link_to_book2(htmlspecialchars($row[$col_name]));
 				$out .=  "</dd>\n";
 			}
 		}
@@ -535,9 +536,9 @@ function BookRef() {
 
 function find_images($name) {
 	$imgs = array();
-	$result = safe_query("SELECT `FileName` FROM `PlantPictures` WHERE `LatinName` = '$name'");
+	$result = safe_query("SELECT `FileName`, `Caption`, `Author` FROM `PlantPictures` WHERE `LatinName` = '$name'");
 	while ($row = mysql_fetch_array($result)) {
-		$imgs[] = $row[0];
+		$imgs[] = array("file" => $row[0], "caption" => $row[1], "author" => $row[2]);
 	}
 	return $imgs;
 

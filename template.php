@@ -1,15 +1,14 @@
 <?php include_once 'functions.php'; ?>
 <p>
-
-<table width="100%" style=''>
+<table style="width:100%;">
 	<tr>
 		<td style=''><a href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` < '{$row['Latin name']}' ORDER BY `Latin name` DESC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
 		echo urlencode($row1['Latin name']);?>"><img border="0" src="ArrowLeft.png" height="14"  alt="Previous"/></a></td>
-		<!--<td style=''><a href="letter-index.php">Index</a></td>-->
-		<td align="right" style=''><a href="viewtropical.php?id=<?php
+		
+		<td style='text-align:right;'><a href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
@@ -30,11 +29,6 @@ if ($row['NomenclatureNotes'] != null) {
 }
 ?>
 <?php 
-$n = $row['Latin name'];
-$s = "<a href=\"synonyms.php?id=$n\" onClick=\"RefWindow=window.open('synonyms.php?id=$n','RefWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=400,height=610,left=50,top=150'); RefWindow.focus(); return false;\">Synonyms.</a>";
-
-#echo $s;#"<a href=\"synonyms.php?id=".$row['Latin name']."\">Show Synonyms.</a>";#
-
 $full = "123";
 echo <<<EOT
 	<script type="text/javascript">
@@ -62,15 +56,13 @@ EOT;
 	<div id="synonyms" class="<?php if ($full != null) { echo "synhid"; } else {echo "synshown";} ?>">
 	<div id="measurement">
 	<?php 
-
+	#output an individual synonym.
 	function OutputRecordSyn($row) {
 		echo "<p><b><i>{$row["LatinName"]}</i></b> {$row["Author"]}</p>\n";
 	}
-	$key = $n;
+	$key = $row['Latin name'];
 
 	$result2 = safe_query("SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
-
-	#echo "<h2>Synonyms for $key</h2>\n";
 
 	while ($row2 = mysql_fetch_assoc($result2)) {
 		
@@ -86,23 +78,24 @@ EOT;
 	</div>
 	</div>
 	
-	
 <h4>Common Name: <?php echo $row['Common name']?></h4>
 <div class="PBOX">
 	<?php
-	$var1 = "";
+	#loads an array of images for the record
+	#each array element is an associative array, containing the image path and other data for the image
+	$imgdata = null;
 	$imglist = find_images($row['Latin name']);
+
 	if ($imglist) {
-		$var1 = $imglist[0];
+		$imgdata = $imglist[0];
 	}
-	//$imgdir = "plantimages/";
-	//$var1 = $imgdir.$row['Latin name'].".png";
-	//$var2 = $imgdir.$row['Latin name'].".jpg";
-	if (file_exists($var1)) {
-		//echo <<<EOT
-		//<span class="NOIMAGE">Image Loading.</span>
-		//EOT;
-		echo '<img class="PIC" src="'.$var1.'"/>';
+
+	if ($imgdata and file_exists($imgdata["file"])) {
+
+		echo '<img class="PIC" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/>';
+		if ($imgdata["caption"]) {
+			echo "\n	<div class=\"caption\">${imgdata["caption"]}</div>";
+		}
 	} else {
 
 		echo <<<EOT
@@ -111,31 +104,25 @@ EOT;
 	}
 	
 	?>
-</div>
 
+</div>
 
 <h3 class="SHORT">General Information</h3><?php echo link_to_book(nl2br($row['GeneralInformation']))?><br>
 
 <h3 class="SHORT">Known Hazards</h3><?php echo link_to_book(nl2br($row['Known hazards']))?><br>
-<h3 class="SHORT">Botanical References</h3><?php echo link_to_book($row['Botanical references'], true)?><br>
-<!--<?php
-if ($row['NomenclatureNotes'] != null) {
-	echo "<h3 class=\"SHORT\">Nomenclature Notes:</h3>".link_to_book(nl2br($row['NomenclatureNotes']))."<br>";
-}
-?>-->
-<!--
-<h3 class="SHORT">Nomenclature Notes:</h3><?php echo $row['NomenclatureNotes']?><br>
--->
-<h3>Range</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
 
+<h3 class="SHORT">Botanical References</h3><?php echo link_to_book($row['Botanical references'], true)?><br>
+
+<h3>Range</h3><?php echo link_to_book(nl2br($row['Range']))?><br>
 
 <h3>Habitat</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
 
 <h3>Properties</h3>
 <table class="PROPERTIESTABLE">
 <?php 
+	#output a table, various "properties" of the plant, 
+	#most fields are only output if they contain any data
 	$format = "<tr>\n\t<td class=\"PROPERTIESTABLE\">%s</td><td class=\"PROPERTIESTABLE\">%s</td>\n</tr>\t\n";
-
 		
 	if ($row['WeedPotential']) {
 		$arrayk = array("0", "1");
@@ -187,21 +174,12 @@ if ($row['NomenclatureNotes'] != null) {
 
 <h3>Medicinal</h3><?php echo link_to_book(nl2br($row['Medicinal']))?><br>
 
-
-
 <?php
 if ($row['AgroforestryUses'] != null) {
 	echo "<h3>Agroforestry Uses:</h3>".link_to_book(nl2br($row['AgroforestryUses']))."<br>";
 }
 ?>
-<!--
-<h3>Agroforestry Uses</h3><p><?php echo link_to_book(nl2br($row['AgroforestryUses']))?></p>
--->
+
 <h3>Other Uses</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
 
 <h3>Propagation</h3><?php echo link_to_book(nl2br($row['Propagation 1']))?><br>
-<!--
-<h3>Conservation Status</h3><p><?php echo $row['ConservationStatus']?></p>
-
-<h3>Weed Potential</h3><p><?php echo $row['WeedPotential']?></p>
--->
