@@ -1,7 +1,7 @@
 <?php include_once 'functions.php'; ?>
 <p>
 
-<table width="100%" style=''>
+<table style="width:100%;">
 	<tr>
 		<td style=''><a href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` < '{$row['Latin name']}' ORDER BY `Latin name` DESC LIMIT 1"; 
@@ -9,7 +9,7 @@
 		$row1 = mysql_fetch_assoc($result1);
 		echo urlencode($row1['Latin name']);?>"><img border="0" src="ArrowLeft.png" height="14"  alt="Previous"/></a></td>
 		<!--<td style=''><a href="letter-index.php">Index</a></td>-->
-		<td align="right" style=''><a href="viewtropical.php?id=<?php
+		<td style='text-align:right;'><a href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
@@ -102,7 +102,7 @@ EOT;
 		//echo <<<EOT
 		//<span class="NOIMAGE">Image Loading.</span>
 		//EOT;
-		echo '<img class="PIC" src="'.$var1.'"/>';
+		echo '<img class="PIC" src="'.$var1.'" alt="'.$row['Latin name'].'"/>';
 	} else {
 
 		echo <<<EOT

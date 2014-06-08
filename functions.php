@@ -471,6 +471,7 @@ function OutputBookRefRecord($row) {
 					if (!parse_url($url, PHP_URL_SCHEME) && $url) {
 						$url = "http://$url";
 					}
+					$url = htmlspecialchars($url);
 					#echo "<a target=\"_blank\" href=\"".$url."\">".$url."</a>";
 					#echo "</dd>\n";
 					$out .= "<a target=\"_blank\" href=\"".$url."\">".$url."</a>";
@@ -484,7 +485,7 @@ function OutputBookRefRecord($row) {
 				#echo "</dd>\n";
 				$out .=  "<dt>".$col_name."</dt>";
 				$out .=  "<dd>";
-				$out .=  link_to_book2($row[$col_name]);
+				$out .=  link_to_book2(htmlspecialchars($row[$col_name]));
 				$out .=  "</dd>\n";
 			}
 		}
