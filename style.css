@@ -193,18 +193,27 @@ li.SEARCHBUTTON > a > img {
 
 /*code for plant pictures*/
 
+/*this should be a div surrounding the picture and caption*/
 .PBOX {
 	float:right;
-	/*border:1px solid grey;*/
+	border:1px solid silver;
 	width:304px;
 	min-height:220px;
 	/*background-color: #D0D0D0;*/
 	text-align:center;
 	font-size:30px;
+	margin:0px;
 	margin-right:10px;
 	margin-left:10px;
 	padding:0px;
 
+	-moz-box-shadow: 1px 1px 8px gray;
+	-webkit-box-shadow: 1px 1px 8px gray;
+	box-shadow: 1px 1px 8px gray;
+}
+
+/*a styled div shown when there is no image available*/
+.NOIMAGE {
 	background-image:
 	  -moz-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), 
 	  -moz-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
@@ -234,15 +243,11 @@ li.SEARCHBUTTON > a > img {
 
 	background-position:0 0, 20px 0, 20px -20px, 0px 20px;
 	background-position:0 0, 20px 20px;
-	-moz-box-shadow: 1px 1px 8px gray;
-	-webkit-box-shadow: 1px 1px 8px gray;
-	box-shadow: 1px 1px 8px gray;
-
-}
-
-.NOIMAGE {
+	
 	font-style:italic;
 	line-height:200px;
+		min-height:220px;
+
 	z-index:0;	
 }
 
@@ -257,9 +262,11 @@ li.SEARCHBUTTON > a > img {
 	display:block;
 	z-index:100;
 }
-figcaption {
-		font-size: small;
 
+/*text displayed under pictures*/
+.caption {
+	font-size: small;
+	margin:0.2em;
 }
 
 /*different tables*/
