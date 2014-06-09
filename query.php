@@ -34,7 +34,6 @@ function toggle_vis() {
 	}
 }
   </script>
-	
 <?php
 
 	include 'functions.php';
@@ -55,12 +54,21 @@ function toggle_vis() {
 	}
 	//$full is the fulltext search string, whatever the user entered in the search box
 	if(empty($_GET["full"])) {
-		$full = "";
+		$full = ""; 
+		if(isset($_GET["full"])) {
+			echo "<h2>Empty search string given</h2>\n";
+			echo "</body></html>\n";
+			die;
+		}
 	}
 	else {
 		$full = $_GET["full"];
 		if(mb_ereg('^[\wÁáäãçéèêëíłñóôöüý× ]+$',$full)!=1) {
-			trigger_error("Invalid search term: \"".htmlspecialchars($full)."\", must only contain letters.");
+			//trigger_error("Invalid search term: \"".htmlspecialchars($full)."\", must only contain letters.");
+			echo "<h2>Search string contains invalid characters</h2>\n
+					<p>try removing any non alphanumeric characters</p>\n";
+			echo "</body></html>\n";
+			die;
 		}
 	}
 	//whether to order by best result or alphabetically	
@@ -255,8 +263,9 @@ function toggle_vis() {
     
 	//	echo htmlspecialchars(urldecode($_SERVER['QUERY_STRING']));
 
+	/*a query field search was asked for*/
     if ($full == null && $anything ) {
-		$query  = explode('&', $_SERVER['QUERY_STRING']);
+		$query = explode('&', $_SERVER['QUERY_STRING']);
 		
 		$params = array();
 		global $params;
@@ -334,6 +343,7 @@ function toggle_vis() {
 		$string = $string.$add."TRUE";
 	}
 	
+	/*a text search was asked for*/
     if ($anything == true) {
 	
 		$pageno = empty($_GET["pageno"]) ? 0 : $_GET["pageno"];

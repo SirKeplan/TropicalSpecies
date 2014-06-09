@@ -16,6 +16,17 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	//$dt = date("Y-m-d H:i:s (T)");
 	echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
 	echo "</body></html>\n";
+	$admin = "admin@theferns.info";
+	$subject = "Tropical Database Error.";
+	$message = "Error code: $errno in file $filename\n\n
+	line $linenum: $errmsg\n\n
+	Vars: $vars";
+	
+	if (mail($admin,$subject, $message)) {
+		echo("<p>Message successfully sent!</p>");
+	} else {
+		echo("<p>Message delivery failed...</p>");
+	}
 	//print 'please report bugs to <a href="mailto:webweaver@pfaf.org">webweaver@pfaf.org</a>';
 	die;
 }
