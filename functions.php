@@ -16,11 +16,16 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	$dt = date("Y-m-d H:i:s (T)");
 	echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
 	echo "</body></html>\n";
+	
+	ob_start();
+	var_dump($vars);
+	$dump = ob_get_clean();
+	
 	$admin = "admin@theferns.info";
 	$subject = "Tropical Database Error.";
 	$message = "$dt\nError code: $errno in file $filename\n\n
 	line $linenum: $errmsg\n\n
-	Vars: $vars";
+	Vars: $dump";
 	
 	if (mail($admin,$subject, $message)) {
 		#echo("<p>Message successfully sent!</p>");
