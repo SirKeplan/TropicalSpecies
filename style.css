@@ -512,7 +512,7 @@ dl.refview > dd {
  * a selector that reports touchscreen devices
  * @media only handheld doesnt work
  * */
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 768px) {
 .ref > div {
 	position:fixed;
 	left:0px!important;
