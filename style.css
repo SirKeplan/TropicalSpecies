@@ -506,12 +506,12 @@ dl.refview > dd {
 	word-wrap: break-word;
 }
 
-/*Touchscreen devices, tablets and smaller
- * Don't know if 900px is what we want, idealy there should be
- * a selector that reports touchscreen devices
+/* intended for touchscreen devices, tablets and smaller
+ * Don't know if 1024px is largest common tablet size, idealy there should be
+ * a selector that reports touchscreen devices, not totally happy with this
  * @media only handheld doesnt work
  * */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-device-width: 1024px),  {
 .ref > div {
 	position:fixed;
 	left:0px!important;
