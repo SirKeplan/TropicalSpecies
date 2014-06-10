@@ -461,13 +461,12 @@ TABLE#QUERYTABLE {
 	
 	z-index: 99;
 
-	position:absolute; left:-1px; top:1.25em; width:250px; height:250px;
+	position:absolute; left:-1px; top:1.25em; width:250px;
 	overflow:auto;
 	visibility:hidden;
 	background:#FFD992;
 	border:1px solid;
 	opacity:0;
-	max-height:250px;
 
 	max-width:250px;
 	padding:.5em;
