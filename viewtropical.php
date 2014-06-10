@@ -6,6 +6,12 @@
   <link rel=stylesheet href="style.css" type="text/css">
   <link rel="shortcut icon" href="flower.ico">
 
+<script type="text/javascript">
+function blarp(thing) {
+	return false;
+}
+</script>
+
 <?php
 	function callback($matches) {		
 		$key = $matches[1];
@@ -22,7 +28,7 @@
 		}
 		$out = "";
 		if ($row2) {
-			$out = '<div class="ref"><a href="refs.php#'.$key.'">'.$key.'</a><div class=".entry-unrelated">'.OutputBookRefRecord($row2).'</div></div>';
+			$out = '<div class="ref"><a href="refs.php#'.$key.'" onclick="return blarp(this)" >'.$key.'</a><div class=".entry-unrelated">'.OutputBookRefRecord($row2).'</div></div>';
 		}
 		return $out;
 	}
