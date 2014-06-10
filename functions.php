@@ -485,7 +485,8 @@ function OutputBookRefRecord($row) {
 				#echo "</dd>\n";
 				$out .=  "<dt>".$col_name."</dt>";
 				$out .=  "<dd>";
-				$out .=  link_to_book2(htmlspecialchars($row[$col_name]));
+				$cont = link_to_book2(htmlspecialchars($row[$col_name]));
+				$out .=  $cont == ""?"&nbsp;":$cont;
 				$out .=  "</dd>\n";
 			}
 		}

@@ -507,6 +507,58 @@ dl.refview > dd {
 	word-wrap: break-word;
 }
 
+/*Touchscreen devices, tablets and smaller*/
+@media only screen and (max-width: 900px) {
+.ref > div {
+	position:fixed;
+	left:0px!important;
+	top:auto;
+	bottom:0px; 
+	right:0px; 
+	height:auto;
+	width: auto;
+	max-height:100%;
+	max-width:100%;
+}
+
+.ref:hover > div {  
+}
+
+dl.refview {
+}
+dl.refview > dd:nth-child(2) {
+	text-align:center;
+
+}
+dl.refview > dt {
+	float:left;
+	clear:left;
+	width:6em;
+	text-align:right;
+	margin-right:0.6em;
+} 
+dl.refview > dt:after { 
+	content: ":"; 
+}
+dl.refview > dd {
+	margin-left:6.6em;
+}
+}
+@media only screen and (max-width: 640px) {
+.small {
+	width:100%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.cclicense{
+	display:block;
+	float:none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+}
+
 @media only screen and (max-width: 480px) {
 body {
 	/*not sure if this is needed*/
@@ -544,17 +596,6 @@ body {
 .PIC {
 
 }
-.small {
-	width:100%;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-.cclicense{
-	display:block;
-	float:none;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 li.SEARCHBUTTON {
     display:inline-block;
@@ -586,5 +627,7 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited {
 	width: 100%;
 }
 .ANCHOR { width: auto;}
+
+
 
 }
