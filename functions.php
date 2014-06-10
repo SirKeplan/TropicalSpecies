@@ -23,10 +23,10 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	
 	$admin = "admin@theferns.info";
 	$subject = "Tropical Database Error.";
-	$message = "$dt\nError code: $errno in file $filename\n\n
-	line $linenum: $errmsg\n\n
+	$message = "$dt\nError code: $errno in file $filename\n
+	line $linenum: $errmsg\n
+	From user ${_SERVER["REMOTE_ADDR"]} - ${_SERVER["HTTP_USER_AGENT"]} \n
 	Vars: $dump";
-	
 	if (mail($admin,$subject, $message)) {
 		#echo("<p>Message successfully sent!</p>");
 	} else {
