@@ -53,6 +53,8 @@ EOT;
 		echo "<a href=\"common-index.php?letter=".chr($char)."\">".chr($char)."</a> ";
 	}
 	echo "</b></p>\n";
+	echo "<p class=\"mainpage\"><br>All the information in this database is fully referenced, these references can be viewed when looking at indivudual plants. 
+	<br>There is a full list of references <a href=\"refs.php\">here.</a></p>\n";
 
 	include 'footer.php';
 	mysql_close($db);	

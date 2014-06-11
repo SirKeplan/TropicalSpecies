@@ -22,9 +22,9 @@
 		$row = mysql_fetch_assoc($result);
 		#print_r($row);
 		
-		echo "<a id=".$row["No"]."></a><br/><b>Reference: ".$row["No"]."</b>";
-		echo OutputBookRefRecord($row);
-		echo "<br/>";
+		echo "<a id=".$row["No"]."></a>";
+		echo OutputBookRefRecord($row, false);
+		echo "<hr/>";
 	}
 	
 	#$row = mysql_fetch_assoc($result);
