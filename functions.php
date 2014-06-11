@@ -454,7 +454,7 @@ function link_to_book2($string) {
 	return $newstring;
 }
 
-function OutputBookRefRecord($row) {
+function OutputBookRefRecord($row, $hover = true) {
 	
 	$result = safe_query("DESCRIBE `References`");
 	if (!$result) {
@@ -470,8 +470,16 @@ function OutputBookRefRecord($row) {
 			if(!array_key_exists($col_name,$row)) {
 				continue;
 			}
-			
+			if (!$hover & $col_name == "Title") {
+				$out .=  "<dt>".$col_name."</dt>";
+				$out .=  "<dd><h3 style=\"margin-bottom:0px;\">";
+				$out .=	"Ref: ".$col_no." - ";
+				$out .=  link_to_book2(htmlspecialchars($row[$col_name]));
+				$out .=  "</h3></dd>\n";
+				continue;
+			}
 			if ($col_name == "No") {
+				$col_no = $row[$col_name];
 				continue;
 			}
 			if ($col_name == "Href") {
@@ -500,7 +508,8 @@ function OutputBookRefRecord($row) {
 				#echo "</dd>\n";
 				$out .=  "<dt>".$col_name."</dt>";
 				$out .=  "<dd>";
-				$out .=  link_to_book2(htmlspecialchars($row[$col_name]));
+				$cont = link_to_book2(htmlspecialchars($row[$col_name]));
+				$out .=  $cont == ""?"&nbsp;":$cont;
 				$out .=  "</dd>\n";
 			}
 		}
