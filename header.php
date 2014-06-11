@@ -3,7 +3,7 @@
 function showHideSearch() {
 	var disp = document.getElementById("SEARCH").style.display;
 	if (disp == "block") {
-		disp = "none";
+		disp = "";//the default specified in css file
 	}else {
 		disp = "block";
 	}	
