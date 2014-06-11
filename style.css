@@ -177,23 +177,6 @@ li.SEARCHBUTTON > a > img {
 	display:block;
 }
 
-.CURVELEFT {
-	border-radius: 8px 0px 0px 8px;
-	-moz-border-radius: 8px 0px 0px 8px;
-	/*behavior: url(border-radius.htc);*/
-}
-.CURVERIGHT {
-	border-radius: 0px 8px 8px 0px;
-	-moz-border-radius: 0px 8px 8px 0px;
-	/*behavior: url(border-radius.htc);*/
-
-}
-.CURVEBOTH {
-	border-radius: 8px 8px 8px 8px;
-	-moz-border-radius: 8px 8px 8px 8px;
-	/*behavior: url(border-radius.htc);*/
-}
-
 /*code for plant pictures*/
 
 /*this should be a div surrounding the picture and caption*/
@@ -413,6 +396,17 @@ TABLE#QUERYTABLE {
 
 #mainsearchbox input[type="submit"] {
 	font-size: 100%;	
+}
+.leftrightdiv {
+overflow: hidden;
+}
+#leftnav {
+position:absolute;
+margin-left:3px;
+}
+#rightnav {
+float:right;
+margin-right:3px;
 }
 #options {
     -moz-transition:height .3s ease;
@@ -635,6 +629,34 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited {
 }
 .ANCHOR { width: auto;}
 
+}
+@media print {
+.HEADERBLOCK {
+display:none;
+}
+.NAVDIV{
+display:none;
+}
+a.HOME {    
+	padding-left: 0;
+	/*display:none;*/
+}
+.CONTENT {
+	margin:0px;
+	padding-left:0;
+	padding-right:0;
 
+}.leftrightdiv {
+	display:none;
+}
+.latin_name > h1{
+	margin:0px;
+}
+.PBOX {
+	box-shadow: none;
+}
+@page {
+	margin: 1.5cm;
+}
 
 }
