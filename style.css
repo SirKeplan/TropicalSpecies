@@ -652,6 +652,13 @@ a.HOME {
 .latin_name > h1{
 	margin:0px;
 }
+.author > h4{
+	margin:0px;
+}
+
+.family > h4{
+	margin:0px;
+}
 .PBOX {
 	box-shadow: none;
 }
@@ -659,6 +666,11 @@ a.HOME {
 .refview {
 	page-break-inside:avoid;
 }
+h3 {
+	page-break-after:avoid;/*doesnt really work*/
+	break-after:avoid;/*doesnt really work*/
+}
+
 @page {
 	margin: 1.5cm;
 }
