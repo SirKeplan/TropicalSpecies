@@ -1,20 +1,21 @@
 <?php include_once 'functions.php'; ?>
 <p>
-<table style="width:100%;">
-	<tr>
-		<td style=''><a href="viewtropical.php?id=<?php
+<div class="leftrightdiv">
+	<a id="leftnav" href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` < '{$row['Latin name']}' ORDER BY `Latin name` DESC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
-		echo urlencode($row1['Latin name']);?>"><img border="0" src="ArrowLeft.png" height="14"  alt="Previous"/></a></td>
-		
-		<td style='text-align:right;'><a href="viewtropical.php?id=<?php
+		echo urlencode($row1['Latin name']);?>">
+		<img border="0" src="ArrowLeft.png" height="14"  alt="Previous"/>
+	</a>
+	<a id="rightnav" href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
 		$result1 = safe_query($sql1); 
 		$row1 = mysql_fetch_assoc($result1);
-		echo urlencode($row1['Latin name']);?>"><img border="0" src="ArrowRight.png" height="14" alt="Next"/></a></td>
-	</tr>
-</table>
+		echo urlencode($row1['Latin name']);?>">
+		<img border="0" src="ArrowRight.png" height="14" alt="Next"/>
+	</a>
+</div>
 <?php 
 if ($redir) {
 	echo "<p class=\"redir\">(Redirected from <b>$redir</b>)</p>";
