@@ -1,4 +1,3 @@
-
 body {
 	font-family: Arial, Helvetica, sans-serif; 
 	font-size:small;
@@ -33,13 +32,6 @@ h2{
 	font-size:1.5em;
 }
 
-/*used for a div to surround h1 for latin name*/
-.latin_name{
-	display:inline-block;
-	vertical-align: baseline;
-	padding-right:75px;
-}
-
 /*being used as field headings, maybe i should change to h2?*/
 h3{
 	color:#98bf21;
@@ -51,25 +43,23 @@ h4{
 	font-size:1em;
 }
 
+/*used for a div to surround h1 for latin name*/
+.latin_name{
+	display:inline-block;
+	vertical-align: baseline;
+	padding-right:75px;
+}
+
 /*used for a div to surround h4*/
 .author, .family{
 	display:inline-block;
 	vertical-align: baseline;
 	padding-right:75px;
-
-}
-
-/*TODO delete*/
-h3.SHORT{
-	color:#98bf21;
-	font-weight: bold; 
-	font-size:large;
-	/*margin-RIGHT: 310px;*/	
 }
 
 .redir {
-font-size: larger;
-margin-bottom:0px;
+	font-size: larger;
+	margin-bottom:0px;
 }
 
 /*header formatting below*/
@@ -144,7 +134,6 @@ li.SEARCHBUTTON {
 
 	/*only show in mobile view*/
     display:none;
-
 }
 li.SEARCHBUTTON > a > img {
 
@@ -349,12 +338,11 @@ TABLE#QUERYTABLE {
 .CONTENT {
 	padding-left:25px;
 	padding-right:25px;
-
 }
 
 /* Formatting for main page elements */
 
-.mainimage{
+.mainimage {
 	float:right;
 	margin-left:1em;
 	margin-bottom:1em;	
@@ -397,15 +385,15 @@ TABLE#QUERYTABLE {
 	font-size: 100%;	
 }
 .leftrightdiv {
-overflow: hidden;
+	overflow: hidden;
 }
 #leftnav {
-position:absolute;
-margin-left:3px;
+	position:absolute;
+	margin-left:3px;
 }
 #rightnav {
-float:right;
-margin-right:3px;
+	float:right;
+	margin-right:3px;
 }
 #options {
     -moz-transition:height .3s ease;
@@ -440,7 +428,6 @@ margin-right:3px;
   	overflow: hidden;
 }
 #measurement > p {
-
 	margin-bottom:0px;
 }
 
@@ -449,8 +436,8 @@ margin-right:3px;
 	position:relative;
 }
 
-.ref > div
-{	display:inline;
+.ref > div {
+	display:inline;
 	
 	z-index: 99;
 
@@ -470,8 +457,7 @@ margin-right:3px;
 	-o-transition:visibility 0s linear 0.2s,opacity 0.2s linear;
 }
 
-.ref:hover > div
-{  
+.ref:hover > div {  
 	visibility:visible;
 	opacity:1;
 	transition-delay:0s;
@@ -492,15 +478,16 @@ dl.refview > dd:nth-child(2) {
 	font-weight:bold;
 	font-size: larger;
 	margin:0px;
-
 }
+
 dl.refview > dd {
 	margin-left:1.5em;
 	word-wrap: break-word;
 }
 
+/*make horizontal rules green*/
 hr {
-color:#557711;
+	color:#557711;
 }
 
 /* intended for touchscreen devices, tablets and smaller
@@ -576,7 +563,6 @@ body {
 
 #mainsearchbox input[type="submit"] {
 	float:right;
-
 }
 
 .latin_name{
@@ -595,7 +581,6 @@ body {
 }
 .PIC {
 	max-width:100%;
-
 }
 
 li.SEARCHBUTTON {
@@ -632,14 +617,13 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited {
 }
 @media print {
 .HEADERBLOCK {
-display:none;
+	display:none;
 }
 .NAVDIV{
-display:none;
+	display:none;
 }
 a.HOME {    
 	padding-left: 0;
-	/*display:none;*/
 }
 .CONTENT {
 	margin:0px;
