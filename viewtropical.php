@@ -48,6 +48,8 @@
 	include 'dbconnect.php';
 	
 	if (empty($_GET["id"])) {
+		header('Location: ./', TRUE, 303);
+
 		trigger_error("A plant name must be supplied.");
 	}
 	$key = mysql_real_escape_string($_GET["id"]);
