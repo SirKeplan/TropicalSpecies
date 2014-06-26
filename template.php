@@ -53,7 +53,7 @@ function toggle_vis() {
 EOT;
 ?>
 	
-	<div><a id="syn_text" onclick="toggle_vis();"><b><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Synonyms</b></a></div>
+	<div><a id="syn_text" onclick="toggle_vis();"><?php if ($full != null) { echo "+"; } else {echo "-";} ?> Synonyms</a></div>
 	<div id="synonyms" class="<?php if ($full != null) { echo "synhid"; } else {echo "synshown";} ?>">
 	<div id="measurement">
 	<?php 
