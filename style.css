@@ -405,6 +405,9 @@ TABLE#QUERYTABLE {
   	overflow: hidden;
 	
 }
+#adv_text, syn_text {
+	cursor: pointer; 
+}
 #synonyms {
     -moz-transition:height .3s ease;
     -o-transition:height .3s ease;
