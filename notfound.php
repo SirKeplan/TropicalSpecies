@@ -8,10 +8,10 @@
   <title>Page Not Found - Useful Tropical Plants</title>
 </head>
 <body>
-<?php include 'header.php' ?>
+<?php include 'header.php'; include_once 'functions.php';?>	
 	<h1>Page Not Found</h1>
 	<p>404 - Page not found, Go <a href="javascript:history.back();">Back</a>
 	 or try the <a href="./">Home Page</a>.</p>
 <?php 
-#trigger_error("404 - Page Not Found.");
+emailError("dunno", "404 - Page Not Found.",$_SERVER['REQUEST_URI'],"","");
 include 'footer.php' ?>

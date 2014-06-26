@@ -11,11 +11,17 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 		return;
     }
     include_once "header.php";
-		
-	// timestamp for the error entry
-	$dt = date("Y-m-d H:i:s (T)");
+	
 	echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
 	echo "</body></html>\n";
+		
+	emailError($errno, $errmsg, $filename, $linenum, $vars);
+
+}
+$old_error_handler = set_error_handler("userErrorHandler");
+function emailError($errno, $errmsg, $filename, $linenum, $vars) {
+	// timestamp for the error entry
+	$dt = date("Y-m-d H:i:s (T)");
 	
 	ob_start();
 	var_dump($vars);
@@ -34,7 +40,6 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	}
 	die;
 }
-$old_error_handler = set_error_handler("userErrorHandler");
 
 // wrap a mysql query in code to test for sucessful query
 function safe_query($query)
