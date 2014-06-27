@@ -13,5 +13,5 @@
 	<p>404 - Page not found, Go <a href="javascript:history.back();">Back</a>
 	 or try the <a href="./">Home Page</a>.</p>
 <?php 
-emailError("dunno", "404 - Page Not Found.",$_SERVER['REQUEST_URI'],"","");
+#emailError("dunno", "404 - Page Not Found.",$_SERVER['REQUEST_URI'],"","");
 include 'footer.php' ?>
