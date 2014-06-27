@@ -16,7 +16,7 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 	echo "</body></html>\n";
 		
 	emailError($errno, $errmsg, $filename, $linenum, $vars);
-
+	die;
 }
 $old_error_handler = set_error_handler("userErrorHandler");
 function emailError($errno, $errmsg, $filename, $linenum, $vars) {
@@ -38,7 +38,7 @@ function emailError($errno, $errmsg, $filename, $linenum, $vars) {
 	} else {
 		#echo("<p>Message delivery failed...</p>");
 	}
-	die;
+
 }
 
 // wrap a mysql query in code to test for sucessful query

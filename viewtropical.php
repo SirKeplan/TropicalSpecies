@@ -48,7 +48,7 @@
 	include 'dbconnect.php';
 	
 	if (empty($_GET["id"])) {
-		trigger_error("A plant name must be supplied.");
+		emailError(51, "A plant name must be supplied.",$_SERVER['REQUEST_URI'],"","");
 		//redirect to index page
 		header('Location: ./', TRUE, 303);
 	}
