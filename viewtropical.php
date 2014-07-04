@@ -51,7 +51,7 @@
 		emailError(51, "A plant name must be supplied.",$_SERVER['REQUEST_URI'],"","");
 		//redirect to index page
 		header('Location: ./', TRUE, 303);
-		die
+		die;
 	}
 	$key = mysql_real_escape_string($_GET["id"]);
 
