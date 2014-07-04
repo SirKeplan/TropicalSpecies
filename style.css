@@ -1,13 +1,17 @@
+html {
+	background-color: #E5E5E5;
+}
+
 body {
 	font-family: Arial, Helvetica, sans-serif; 
 	font-size:small;
 	clear:both;
 	margin:0px;
 	height:100%;
-	/*for a later time.
+	/*for a later time.*/
 	margin:auto;
 	max-width:1000px;
-	*/
+	background-color: white;
 }
 
 a:link {color:green;}    /* unvisited link */
@@ -333,7 +337,11 @@ TABLE#QUERYTABLE {
 
 .CONTENT {
 	padding-left:25px;
-	padding-right:25px;
+	padding-right:25px;	height:100%;
+}	
+
+.FOOTER {
+	overflow: auto;
 }
 
 /* Formatting for main page elements */
@@ -531,7 +539,7 @@ dl.refview > dt:after {
 dl.refview > dd {
 	margin-left:6.6em;
 }
-}
+}/*//end tablety*/
 @media only screen and (max-width: 640px) {
 .small {
 	width:100%;
@@ -545,7 +553,7 @@ dl.refview > dd {
     margin-right: auto;
 }
 
-}
+}/*//end 640*/
 
 @media only screen and (max-width: 480px) {
 body {
@@ -615,7 +623,7 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited {
 }
 .ANCHOR { width: auto;}
 
-}
+}/*//end 480*/
 @media print {
 .HEADERBLOCK {
 	display:none;
