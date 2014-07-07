@@ -19,7 +19,7 @@
 		foreach ($imglist as $imgdata) {
 			if ($imgdata and file_exists($imgdata["file"])) {
 				echo '<a href="'.$imgdata["file"].'"><img class="big_pic" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/></a>';
-				if ($imgdata["caption"]) {
+				if ($imgdata["caption"]or $imgdata["author"]) {
 					echo "\n	<div class=\"caption\">${imgdata["caption"]}<br><small style=\"color:grey;\">${imgdata["author"]}</small></div>";
 				}
 			} else {
