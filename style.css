@@ -168,6 +168,10 @@ li.SEARCHBUTTON > a > img {
 
 /*code for plant pictures*/
 
+.big_pic {
+	max-width:100%;
+}
+
 /*this should be a div surrounding the picture and caption*/
 .PBOX {
 	float:right;

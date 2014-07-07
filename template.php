@@ -93,9 +93,9 @@ EOT;
 
 	if ($imgdata and file_exists($imgdata["file"])) {
 
-		echo '<img class="PIC" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/>';
+		echo '<a href="image.php?id='.urlencode($row['Latin name']).'"><img class="PIC" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/></a>';
 		if ($imgdata["caption"]) {
-			echo "\n	<div class=\"caption\">${imgdata["caption"]}</div>";
+			echo "\n	<div class=\"caption\">${imgdata["caption"]}<br><small style=\"color:grey;\">${imgdata["author"]}</small></div>";
 		}
 	} else {
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel=stylesheet href="style.css" type="text/css">
+  <link rel="shortcut icon" href="flower.ico">
+
+
+<?php
+	function output_img_page($row) {	
+		echo "<h1>".$row['Latin name']."</h1>";
+		$imgdata = null;
+		$imglist = find_images($row['Latin name']);
+
+		if (empty($imglist)) {
+			echo '<div class="NOIMAGE">No Image.</div>';
+		}
+		foreach ($imglist as $imgdata) {
+			if ($imgdata and file_exists($imgdata["file"])) {
+				echo '<a href="'.$imgdata["file"].'"><img class="big_pic" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/></a>';
+				if ($imgdata["caption"]) {
+					echo "\n	<div class=\"caption\">${imgdata["caption"]}<br><small style=\"color:grey;\">${imgdata["author"]}</small></div>";
+				}
+			} else {
+				echo '<div class="NOIMAGE">No Image.</div>';
+				trigger_error("Image ".$imgdata["file"]." for ".$row['Latin name']." is in database but the file can not be found!");
+			}
+			echo "<br/>";
+		}		
+	}
+	
+	include 'functions.php';
+	include 'dbconnect.php';
+	
+	if (empty($_GET["id"])) {
+		emailError(51, "A plant name must be supplied.",$_SERVER['REQUEST_URI'],"","");
+		//redirect to index page
+		header('Location: ./', TRUE, 303);
+		die;
+	}
+	$key = mysql_real_escape_string($_GET["id"]);
+
+	$redir = null;
+	if (! empty($_GET["redir"])) {
+		$redir = mysql_real_escape_string($_GET["redir"]);
+	}
+
+	$result = safe_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
+	
+	$row = mysql_fetch_assoc($result);
+	if ($row) {
+		echo "<title>".$row['Latin name']." Images - Useful Tropical Plants</title>";
+		echo "</head>\n<body>";	
+		include 'header.php';
+
+		global $redir;
+		global $row;
+		output_img_page($row);
+	} else {
+		echo "<title>".$key."</title>";
+		echo "</head>\n<body>";
+		include 'header.php';
+		$names = array();
+		#mysql string comparisons aren't case sensitive, no need to convert case
+		$synresult = safe_query('SELECT * FROM `Synonyms`WHERE `LatinName` = "'.$key.'"');
+		while ($row = mysql_fetch_assoc($synresult)) {
+			$names[] = $row["TrueLatinName"];
+		}
+		if (count($names) < 1) {
+			echo "<p>We have no record for <b>\"".$key."\"</b></p>";
+			echo "<p>Try running a search.</p>";
+
+
+		} else if (count($names) == 1) {
+			#redirect...
+			header('Location: image.php?id='.urlencode($names[0]).'&redir='.urlencode($key), TRUE, 303);
+			#script shouldn't actualy reach here in theory
+			echo '<p>You probably want:';
+			echo '<a href="image.php?id='.urlencode($names[0]).'&redir='.urlencode($key).'">'.$names[0].'</a>';
+			echo '</p>';
+		}else {
+			echo "<p>No record for <b>\"".$key."\"</b></p>";
+			echo "<p>\"$key\" is a synonym of the following plants.</p>";
+			mysql_data_seek($synresult, 0);
+			output_table_query($synresult, "Nothing", "Synonyms", null, "TrueLatinName", "image.php", "id",-1 , array("LatinName"), array("TrueLatinName" => "Latin Name", "Author" => "Author"));
+			#print_r( $names);
+		}
+		
+	}
+	mysql_free_result($result);
+	include 'footer.php';
+	mysql_close($db);
+?>
+
+</body>
+</html>
