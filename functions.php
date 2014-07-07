@@ -574,72 +574,38 @@ function find_images($name) {
 }
 
 function output_bananas($no) {
-	$words = array(
-	"0 - The plant has no uses in that category", 
-	"1 - We either have insufficient information (ie ‘The plant".
-	" has medicinal uses’) or its use is incredibly minor or has".
-	" significant negative drawbacks - such as being poisonous.", 
-	"2 - Minor uses, or probably minor uses, with no significant".
-	" drawbacks", 
-	"3 - A probably quite useful plant, often only used locally. There".
-	" are various criteria for judging this. For example, the plant".
-	" might be cultivated locally; it might be gathered from the wild".
-	" and sold in local markets; it might have a reference to being".
-	" locally popular.", 
-	"4 - A very useful plant, probably cultivated outside of its".
-	" native range. Also includes lesser known plants that I feel have".
-	" a big potential.", 
-	"5 - Exceptionally useful. Some of the best known medicinal herbs,".
-	" food etc are included here, but also some lesser known plants".
-	" that I feel have exceptional potential");	
-	return output_graphic($no, "banana.png", $words);
+	return output_graphic($no, "banana.png");
 }
 
 function output_other($no) {
-	$words = array(
-	"0 - The plant has no uses in that category", 
-	"1 - We either have insufficient information (ie ‘The plant".
-	" has medicinal uses’) or its use is incredibly minor or has".
-	" significant negative drawbacks - such as being poisonous.", 
-	"2 - Minor uses, or probably minor uses, with no significant".
-	" drawbacks", 
-	"3 - A probably quite useful plant, often only used locally. There".
-	" are various criteria for judging this. For example, the plant".
-	" might be cultivated locally; it might be gathered from the wild".
-	" and sold in local markets; it might have a reference to being".
-	" locally popular.", 
-	"4 - A very useful plant, probably cultivated outside of its".
-	" native range. Also includes lesser known plants that I feel have".
-	" a big potential.", 
-	"5 - Exceptionally useful. Some of the best known medicinal herbs,".
-	" food etc are included here, but also some lesser known plants".
-	" that I feel have exceptional potential");	
-	return output_graphic($no, "other.png", $words);
+	return output_graphic($no, "other.png");
 }
 
 function output_greeny($no) {
-	$words = array(
-	"0 - The plant has no uses in that category", 
-	"1 - We either have insufficient information (ie ‘The plant".
-	" has medicinal uses’) or its use is incredibly minor or has".
-	" significant negative drawbacks - such as being poisonous.", 
-	"2 - Minor uses, or probably minor uses, with no significant".
-	" drawbacks", 
-	"3 - A probably quite useful plant, often only used locally. There".
-	" are various criteria for judging this. For example, the plant".
-	" might be cultivated locally; it might be gathered from the wild".
-	" and sold in local markets; it might have a reference to being".
-	" locally popular.", 
-	"4 - A very useful plant, probably cultivated outside of its".
-	" native range. Also includes lesser known plants that I feel have".
-	" a big potential.", 
-	"5 - Exceptionally useful. Some of the best known medicinal herbs,".
-	" food etc are included here, but also some lesser known plants".
-	" that I feel have exceptional potential");	
-	return output_graphic($no, "medi.png", $words);
+	return output_graphic($no, "medi.png");
 }
 
-function output_graphic($no, $graphic, $words) {
+function output_graphic($no, $graphic, $words = 1337) {
+	if ($words==1337) {
+		$words = array(
+		"0 - The plant has no uses in that category", 
+		"1 - We either have insufficient information (ie ‘The plant".
+		" has medicinal uses’) or its use is incredibly minor or has".
+		" significant negative drawbacks - such as being poisonous.", 
+		"2 - Minor uses, or probably minor uses, with no significant".
+		" drawbacks", 
+		"3 - A probably quite useful plant, often only used locally. There".
+		" are various criteria for judging this. For example, the plant".
+		" might be cultivated locally; it might be gathered from the wild".
+		" and sold in local markets; it might have a reference to being".
+		" locally popular.", 
+		"4 - A very useful plant, probably cultivated outside of its".
+		" native range. Also includes lesser known plants that I feel have".
+		" a big potential.", 
+		"5 - Exceptionally useful. Some of the best known medicinal herbs,".
+		" food etc are included here, but also some lesser known plants".
+		" that I feel have exceptional potential");
+	}
 	$monkey = "";
 	$banana = '<img src="'.$graphic.'" width="24" alt=" * "/>';
 	for ($i = 0;$i < $no; $i ++) {
