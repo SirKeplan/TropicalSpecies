@@ -9,7 +9,10 @@
 
 <?php
 	function output_img_page($row) {	
-		echo "<h1>".$row['Latin name']."</h1>";
+		echo '<h1 class="latin_name">'.$row['Latin name']." Images</h1>";
+		echo '<a href="viewtropical.php?id='.urlencode($row['Latin name']).'">Back to plant info.</a>';
+		echo '<br/>';
+		
 		$imgdata = null;
 		$imglist = find_images($row['Latin name']);
 
