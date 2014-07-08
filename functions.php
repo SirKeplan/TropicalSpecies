@@ -577,11 +577,11 @@ function find_images($name) {
 /*
  * Return a filename for a downscaled image
  * */
-function sized_image($filename, $w = 480, $h = 360) {
+function sized_image($filename, $w = 480) {
 	//create a new filename for the resized image
 	$ext = substr($filename,-4,4);
 	$pre = substr($filename,0,-4);
-	$resized = $pre."_".$w."x".$h.$ext;
+	$resized = $pre."_".$w."px".$ext;
 	//check for an allready resized image, and return that if possible
 	if (file_exists($resized)) {
 		return $resized;
