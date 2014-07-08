@@ -41,6 +41,8 @@ function emailError($errno, $errmsg, $filename, $linenum, $vars) {
 
 }
 
+$images_path = "plantimages/";
+
 // wrap a mysql query in code to test for sucessful query
 function safe_query($query)
 {
@@ -570,7 +572,46 @@ function find_images($name) {
 		$imgs[] = array("file" => $row[0], "caption" => $row[1], "author" => $row[2]);
 	}
 	return $imgs;
+}
 
+/*
+ * Return a filename for a downscaled image
+ * */
+function sized_image($filename, $w = 480, $h = 360) {
+	//create a new filename for the resized image
+	$ext = substr($filename,-4,4);
+	$pre = substr($filename,0,-4);
+	$resized = $pre."_".$w."x".$h.$ext;
+	//check for an allready resized image, and return that if possible
+	if (file_exists($resized)) {
+		return $resized;
+	} else {
+		list($curr_w, $curr_h, $type) = getimagesize($filename);
+		//don't bother resizing if it's not necesarry
+		if ($curr_w <= $w ) {
+			return $filename;
+		}
+		// keep the image the same aspect ratio
+		$ratio = $curr_w/$curr_h;
+		$h = $w/$ratio;
+		//load depending on format, could use a switch, but i don't like it
+		if ($type == IMAGETYPE_JPEG) {
+			$curr_img = imagecreatefromjpeg($filename);
+		}else if ($type == IMAGETYPE_GIF) {
+			$curr_img = imagecreatefromgif($filename);
+		}else if ($type == IMAGETYPE_PNG) {
+			$curr_img = imagecreatefrompng($filename);
+		}
+		
+		$new_img = imagecreatetruecolor($w,$h);		
+		imagecopyresized($new_img, $curr_img, 0, 0, 0, 0, $w, $h, $curr_w, $curr_h);
+		
+		imagejpeg($new_img, $resized, 99);
+		imagedestroy($curr_img);
+		imagedestroy($new_img);
+		
+		return $resized;
+	}
 }
 
 function output_bananas($no) {

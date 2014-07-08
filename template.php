@@ -90,18 +90,16 @@ EOT;
 	if ($imglist) {
 		$imgdata = $imglist[0];
 	}
-
-	if ($imgdata and file_exists($imgdata["file"])) {
-
-		echo '<a href="image.php?id='.urlencode($row['Latin name']).'"><img class="PIC" src="'.$imgdata["file"].'" alt="'.$row['Latin name'].'"/></a>';
+	global  $images_path;
+	$filename = $images_path.$imgdata["file"];
+	if ($imgdata and file_exists($filename)) {
+		echo '<a href="image.php?id='.urlencode($row['Latin name']).'"><img class="PIC" src="'.sized_image($filename).'" alt="'.$row['Latin name'].'"/></a>';
+		
 		if ($imgdata["caption"]) {
 			echo "\n	<div class=\"caption\">${imgdata["caption"]}<br><small style=\"color:grey;\">${imgdata["author"]}</small></div>";
 		}
 	} else {
-
-		echo <<<EOT
-		<div class="NOIMAGE">No Image.</div>
-EOT;
+		echo '<div class="NOIMAGE">No Image.</div>';
 	}
 	
 	?>
