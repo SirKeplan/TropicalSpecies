@@ -582,6 +582,8 @@ function sized_image($filename, $w = 480) {
 	$ext = substr($filename,-4,4);
 	$pre = substr($filename,0,-4);
 	$resized = $pre."_".$w."px".$ext;
+	
+	$resized = dirname($filename)."/sized/".basename($resized);
 	//check for an allready resized image, and return that if possible
 	if (file_exists($resized)) {
 		return $resized;
@@ -604,7 +606,7 @@ function sized_image($filename, $w = 480) {
 		}
 		
 		$new_img = imagecreatetruecolor($w,$h);		
-		imagecopyresized($new_img, $curr_img, 0, 0, 0, 0, $w, $h, $curr_w, $curr_h);
+		imagecopyresampled($new_img, $curr_img, 0, 0, 0, 0, $w, $h, $curr_w, $curr_h);
 		
 		imagejpeg($new_img, $resized, 99);
 		imagedestroy($curr_img);
