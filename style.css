@@ -340,6 +340,12 @@ TABLE#QUERYTABLE {
 	padding-right:25px;
 }
 
+#ken-email, #admin-email {
+	display:block;
+	margin-top:.5em;
+	margin-left:4em;
+}
+
 /* Formatting for main page elements */
 
 .mainimage {

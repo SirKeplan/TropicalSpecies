@@ -10,8 +10,7 @@
 <body>
 <?php
 	include 'header.php';
-
-	echo <<<EOT
+?>
 	<p>This website and database is regularly updated, please contact us if you find any errors or bugs.</p>
 	<p>For queries about the website and online database contact us at: 
 	<span id="admin-email"><b>email address hidden with javascript to reduce spamming, enable javascript in your browser to view address</b></span></p>
@@ -30,10 +29,7 @@
 		document.getElementById("admin-email").innerHTML="<a href=\""+urly+addr+"\">"+addr+"<\/a>";
 	-->
 	</script>
-	
-EOT;
 
-	echo <<<EOT
 	<p>You can email Ken at: 
 	<span id="ken-email"><b>email address hidden with javascript to reduce spamming, enable javascript in your browser to view address</b></span></p>
 
@@ -51,9 +47,7 @@ EOT;
 		document.getElementById("ken-email").innerHTML="<a href=\""+urly+addr+"\">"+addr+"<\/a>";
 	-->
 	</script>
-	
-EOT;
-	
+<?php
 	include 'footer.php';
 
 	mysql_close($db);	
