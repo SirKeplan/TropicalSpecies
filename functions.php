@@ -574,6 +574,18 @@ function find_images($name) {
 	return $imgs;
 }
 
+function output_image_info($imgdata) {
+	if ($imgdata["caption"]or $imgdata["author"]) {
+		$attribution = "";
+		if ($imgdata["attribution"]) {
+			$attribution = "${imgdata["attribution"]} (<a href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)<br>";
+		}
+		echo "\n	<div class=\"caption\">${imgdata["caption"]}<br>
+		<i>$attribution
+		 Photograph by: ${imgdata["author"]}</i></div>";
+	}
+}
+
 /*
  * Return a filename for a downscaled image
  * */

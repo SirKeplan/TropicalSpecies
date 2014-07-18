@@ -24,11 +24,8 @@
 			$filename = $images_path.$imgdata["file"];
 			if ($imgdata and file_exists($filename)) {
 				echo '<a href="'.$filename.'"><img class="big_pic" src="'.sized_image($filename,960).'" alt="'.$row['Latin name'].'"/></a>';
-				if ($imgdata["caption"]or $imgdata["author"]) {
-					echo "\n	<div class=\"caption\">${imgdata["caption"]}<br>
-					<i>${imgdata["attribution"]} (<a href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)<br>
-					 Photograph by: ${imgdata["author"]}</i></div>";
-				}
+				output_image_info($imgdata);
+
 			} else {
 				echo '<div class="NOIMAGE">No Image.</div>';
 				trigger_error("Image ".$filename." for ".$row['Latin name']." is in database but the file can not be found!");

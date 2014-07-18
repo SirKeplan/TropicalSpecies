@@ -94,12 +94,8 @@ EOT;
 	$filename = $images_path.$imgdata["file"];
 	if ($imgdata and file_exists($filename)) {
 		echo '<a href="image.php?id='.urlencode($row['Latin name']).'"><img class="PIC" src="'.sized_image($filename).'" alt="'.$row['Latin name'].'"/></a>';
-		
-		if ($imgdata["caption"]or $imgdata["author"]) {
-			echo "\n	<div class=\"caption\">${imgdata["caption"]}<br>
-			<i>${imgdata["attribution"]} (<a href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)<br>
-			 Photograph by: ${imgdata["author"]}</i></div>";
-		}
+		output_image_info($imgdata);
+
 	} else {
 		echo '<div class="NOIMAGE">No Image.</div>';
 	}
