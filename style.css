@@ -342,8 +342,8 @@ TABLE#QUERYTABLE {
 
 #ken-email, #admin-email {
 	display:block;
-	margin-top:.5em;
-	margin-left:4em;
+	margin-top:1ex;
+	margin-left:3em;
 }
 
 /* Formatting for main page elements */
@@ -366,13 +366,13 @@ TABLE#QUERYTABLE {
 	font-size: larger;
 }
 .mainpageletters {
-	margin-left:5ex;
+	margin-left:3em;
 	font-size: larger;
 }
 
 #mainsearchbox {
 	font-size: larger;
-	padding-left: 5ex;
+	padding-left: 3em;
 }
 
 #mainsearchbox input[type="text"] {
