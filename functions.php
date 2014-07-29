@@ -567,7 +567,7 @@ function BookRef() {
 
 function find_images($name) {
 	$imgs = array();
-	$result = safe_query("SELECT `FileName`, `Caption`, `Author`, `AuthorRef`, `Attribution`, `AttributionRef` FROM `PlantPictures` WHERE `LatinName` = '$name'");
+	$result = safe_query("SELECT `FileName`, `Caption`, `Author`, `AuthorRef`, `Attribution`, `AttributionRef` FROM `PlantPictures` WHERE `LatinName` = '$name' AND `Shown` = TRUE");
 	while ($row = mysql_fetch_array($result)) {
 		$imgs[] = array("file" => $row[0], "caption" => $row[1], "author" => $row[2], "author_ref" => $row[3], "attribution" => $row[4], "attribution_ref" => $row[5]);
 	}
