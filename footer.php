@@ -22,7 +22,7 @@ echo '</div><div class="FOOTER" prefix="dct: http://purl.org/dc/terms/ cc: http:
 <a rel="cc:license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
 	<img alt="Creative Commons License" class="cclicense" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" />
 </a>
-<span href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">Useful Tropical Plants Database</span> 2012 by 
+<span href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">Useful Tropical Plants Database</span> 2014 by 
 	<a href="http://tropical.theferns.info/" property="cc:attributionName" rel="cc:attributionURL">Ken Fern</a>, 
 	web interface by 
 	<a href="http://ajna.theferns.info/" property="cc:attributionName" rel="cc:attributionURL">Ajna Fern</a>
