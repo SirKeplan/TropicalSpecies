@@ -1,3 +1,7 @@
+<?php
+// use an output buffer to store page contents
+ob_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +111,7 @@
 	mysql_free_result($result);
 	include 'footer.php';
 	mysql_close($db);
+	ob_end_flush();
 ?>
 
 </body>
