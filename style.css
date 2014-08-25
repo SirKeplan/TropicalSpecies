@@ -176,7 +176,7 @@ li.SEARCHBUTTON > a > img {
 .PBOX {
 	float:right;
 	border:1px solid silver;
-	width:304px;
+	width:360px;
 	/*background-color: #D0D0D0;*/
 	text-align:center;
 	font-size:30px;
@@ -223,8 +223,8 @@ li.SEARCHBUTTON > a > img {
 /*a styled div shown when there is no image available*/
 .NOIMAGE {
 	font-style:italic;
-	line-height:200px;
-	min-height:220px;
+	line-height:260px;
+	min-height:260px;
 
 	z-index:0;	
 }
@@ -234,7 +234,7 @@ li.SEARCHBUTTON > a > img {
 	margin-left: auto;
     margin-right: auto;
 	
-	max-width:304px;
+	max-width:360px;
 	
 	display:block;
 	z-index:100;
@@ -587,6 +587,7 @@ body {
 .NOIMAGE {
 	font-style:italic;
 	line-height:200px;
+	min-height:200px;
 	z-index:0;	
 }
 .PIC {
