@@ -21,7 +21,7 @@
 	}
 	echo <<<EOT
 	<div class="mainimage"><img width="200" src="front2.jpg" alt="Carica Papaya (Papaya)"/>
-	<p class="subtext">Carica Papaya (Papaya)<br> growing in a woodland garden.</p>
+	<div class="caption">Carica Papaya (Papaya)<br> growing in a woodland garden.</div>
 	</div>
 	<p class="mainpage">The <i><b>Useful Tropical Plants Database</b></i> contains information on the edible, medicinal and many other uses of several thousand plants that can be grown in tropical regions.<br><br> 
 	It is very much a work in progress, with new records being entered and older records being updated on a regular basis. <br><br> 

@@ -412,7 +412,7 @@ TABLE#QUERYTABLE {
 }
 #adv_text, #syn_text {
 	font-weight: bold; 
-
+	
 	cursor: pointer; 
 }
 #synonyms {
