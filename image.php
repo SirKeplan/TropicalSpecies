@@ -75,7 +75,6 @@
 			echo "<p>We have no record for <b>\"".htmlspecialchars($key)."\"</b></p>";
 			echo "<p>Try running a search.</p>";
 
-
 		} else if (count($names) == 1) {
 			#redirect...
 			header('Location: image.php?id='.urlencode($names[0]).'&redir='.urlencode($key), TRUE, 303);

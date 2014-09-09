@@ -78,7 +78,7 @@ ob_start();
 		echo "<script src=\"boxmove.js\"></script>";
 		
 	} else {
-		echo "<title>".$key."</title>";
+		echo "<title>No Record - Useful Tropical Plants</title>";
 		echo "</head>\n<body>";
 		include 'header.php';
 		$names = array();
@@ -88,9 +88,8 @@ ob_start();
 			$names[] = $row["TrueLatinName"];
 		}
 		if (count($names) < 1) {
-			echo "<p>We have no record for <b>\"".$key."\"</b></p>";
+			echo "<p>We have no record for <b>\"".htmlspecialchars($key)."\"</b></p>";
 			echo "<p>Try running a search.</p>";
-
 
 		} else if (count($names) == 1) {
 			#redirect...
