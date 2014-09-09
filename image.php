@@ -62,7 +62,7 @@
 		global $row;
 		output_img_page($row);
 	} else {
-		echo "<title>".$key."</title>";
+		echo "<title>No Record - Useful Tropical Plants</title>";
 		echo "</head>\n<body>";
 		include 'header.php';
 		$names = array();
@@ -72,7 +72,7 @@
 			$names[] = $row["TrueLatinName"];
 		}
 		if (count($names) < 1) {
-			echo "<p>We have no record for <b>\"".$key."\"</b></p>";
+			echo "<p>We have no record for <b>\"".htmlspecialchars($key)."\"</b></p>";
 			echo "<p>Try running a search.</p>";
 
 
