@@ -578,11 +578,21 @@ function output_image_info($imgdata) {
 	if ($imgdata["caption"]or $imgdata["author"]) {
 		$attribution = "";
 		if ($imgdata["attribution"]) {
-			$attribution = "${imgdata["attribution"]} (<a href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)<br>";
+			$attribution = "${imgdata["attribution"]}";
+			if ($imgdata["attribution_ref"]) {
+				$attribution .= " (<a href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)";
+			}
+			$attribution .= "<br>";
+		}
+		if ($imgdata["author_ref"]) {
+			$author = "<a href=\"${imgdata["author_ref"]}\">${imgdata["author"]}</a>";
+		}else {
+			$author = $imgdata["author"];
 		}
 		echo "\n	<div class=\"caption\">${imgdata["caption"]}<br>
-		<i>$attribution
-		 Photograph by: ${imgdata["author"]}</i></div>";
+		<i>Photograph by: ${author}<br>
+		$attribution
+		</i></div>";
 	}
 }
 
