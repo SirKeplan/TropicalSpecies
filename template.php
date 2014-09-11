@@ -93,13 +93,34 @@ EOT;
 	global  $images_path;
 	$filename = $images_path.$imgdata["file"];
 	if ($imgdata and file_exists($filename)) {
-		echo '<a href="image.php?id='.urlencode($row['Latin name']).'"><img class="PIC" src="'.sized_image($filename).'" alt="'.$row['Latin name'].'"/></a>';
+		echo '<a href="image.php?id='.urlencode($row['Latin name']).'"><img id="PIC" class="PIC" src="'.sized_image($filename).'" alt="'.$row['Latin name'].'"/></a>';
 		output_image_info($imgdata);
 
 	} else {
 		echo '<div class="NOIMAGE">No Image.</div>';
 	}
+	#output thumbnail bar
+	echo <<<EOT
+	<script type="text/javascript">
+function changeThumbnail(value) {
+	var pic = document.getElementById('PIC');
+	pic.src = value;
+	return false;
+}
+</script>
+
+EOT;
 	
+	if (count($imglist) > 1) {
+		echo '<div class="ThumbBar">';
+		for ($i = 0; $i<count($imglist); $i++) {
+			$imgdata = $imglist[$i];
+			$filename = $images_path.$imgdata["file"];
+			echo '<a class="ThumbLink" href="image.php?id='.urlencode($row['Latin name']).'" onclick="return changeThumbnail(\''.sized_image($filename).'\')"><img class="Thumb" src="'.sized_image_h($filename,96).'" alt="'.$row['Latin name'].'"/></a>';
+		
+		}
+		echo '<div style="width:4px;display:inline-block;"></div></div>';
+	}
 	?>
 
 </div>

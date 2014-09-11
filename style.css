@@ -246,7 +246,30 @@ li.SEARCHBUTTON > a > img {
 	font-size: small;
 	padding	:0.2em;
 }
+.ThumbBar{
+	background-color: #555;
+	font-size: 0px;
+	/*have to do this stupidity because firefox and IE ignore padding in the scrollable size of a container*/
+	/*so i add a div with a width in the html to make up for the zero padding on the right*/
+	padding: 4px 0px 4px 4px;
+	overflow:auto;/*adds scrollbars if neccesarry*/
+	white-space:nowrap;
 
+}
+a:hover > .Thumb	{
+	border-width:1px;
+	border-color:red;
+	border-style:solid;
+}
+.ThumbLink{
+	display:inline-block;
+	margin:4px;
+}
+.Thumb{
+	border-width:1px;
+	border-color:green;
+	border-style:solid;	
+}
 /*different tables*/
 
 table.PROPERTIESTABLE {

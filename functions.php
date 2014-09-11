@@ -638,6 +638,49 @@ function sized_image($filename, $w = 480) {
 	}
 }
 
+/*
+ * Return a filename for a downscaled image
+ * */
+function sized_image_h($filename, $h = 96) {
+	
+	list($curr_w, $curr_h, $type) = getimagesize($filename);
+	// keep the image the same aspect ratio
+	$ratio = $curr_w/$curr_h;
+	$w = $h*$ratio;
+	//don't bother resizing if it's not necesarry
+	if ($curr_w <= $w ) {
+		return $filename;
+	}//create a new filename for the resized image
+	$ext = substr($filename,-4,4);
+	$pre = substr($filename,0,-4);
+	$resized = $pre."_".$w."px".$ext;
+	
+	$resized = dirname($filename)."/sized/".basename($resized);
+	//check for an allready resized image, and return that if possible
+	if (file_exists($resized)) {
+		return $resized;
+	} else {
+		
+		//load depending on format, could use a switch, but i don't like it
+		if ($type == IMAGETYPE_JPEG) {
+			$curr_img = imagecreatefromjpeg($filename);
+		}else if ($type == IMAGETYPE_GIF) {
+			$curr_img = imagecreatefromgif($filename);
+		}else if ($type == IMAGETYPE_PNG) {
+			$curr_img = imagecreatefrompng($filename);
+		}
+		
+		$new_img = imagecreatetruecolor($w,$h);		
+		imagecopyresampled($new_img, $curr_img, 0, 0, 0, 0, $w, $h, $curr_w, $curr_h);
+		
+		imagejpeg($new_img, $resized, 99);
+		imagedestroy($curr_img);
+		imagedestroy($new_img);
+		
+		return $resized;
+	}
+}
+
 function output_bananas($no) {
 	return output_graphic($no, "banana.png");
 }
