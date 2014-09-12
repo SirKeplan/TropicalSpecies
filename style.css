@@ -235,6 +235,7 @@ li.SEARCHBUTTON > a > img {
     margin-right: auto;
 	
 	max-width:360px;
+	max-height:300px;
 	
 	display:block;
 	z-index:100;
@@ -256,10 +257,12 @@ li.SEARCHBUTTON > a > img {
 	white-space:nowrap;
 
 }
+
 a:hover > .Thumb	{
-	border-width:1px;
 	border-color:red;
-	border-style:solid;
+}
+a:active > .Thumb	{
+	border-color:#00FF00;
 }
 .ThumbLink{
 	display:inline-block;
