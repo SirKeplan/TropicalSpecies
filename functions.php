@@ -574,7 +574,7 @@ function find_images($name) {
 	return $imgs;
 }
 
-function output_image_info($imgdata) {
+function output_image_info($imgdata, $hidden=false) {
 	if ($imgdata["caption"]or $imgdata["author"]) {
 		$attribution = "";
 		if ($imgdata["attribution"]) {
@@ -589,7 +589,7 @@ function output_image_info($imgdata) {
 		}else {
 			$author = $imgdata["author"];
 		}
-		echo "\n	<div class=\"caption\">${imgdata["caption"]}<br>
+		echo "\n	<div class=\"".($hidden?"hidden":"caption")."\">${imgdata["caption"]}<br>
 		<i>Photograph by: ${author}<br>
 		$attribution
 		</i></div>";

@@ -102,9 +102,12 @@ EOT;
 	#output thumbnail bar
 	echo <<<EOT
 	<script type="text/javascript">
-function changeThumbnail(value) {
+function changeThumbnail(ele, value) {
 	var pic = document.getElementById('PIC');
 	pic.src = value;
+	
+	document.querySelectorAll(".caption")[0].innerHTML = ele.nextSibling.nextSibling.innerHTML;	
+	
 	return false;
 }
 </script>
@@ -116,8 +119,8 @@ EOT;
 		for ($i = 0; $i<count($imglist); $i++) {
 			$imgdata = $imglist[$i];
 			$filename = $images_path.$imgdata["file"];
-			echo '<a class="ThumbLink" href="image.php?id='.urlencode($row['Latin name']).'" onclick="return changeThumbnail(\''.sized_image($filename).'\')"><img class="Thumb" src="'.sized_image_h($filename,96).'" alt="'.$row['Latin name'].'"/></a>';
-		
+			echo '<a class="ThumbLink" href="image.php?id='.urlencode($row['Latin name']).'" onclick="return changeThumbnail(this, \''.sized_image($filename).'\')"><img class="Thumb" src="'.sized_image_h($filename,96).'" alt="'.$row['Latin name'].'"/></a>';
+			output_image_info($imgdata, true);
 		}
 		echo '<div style="width:4px;display:inline-block;"></div></div>';
 	}
