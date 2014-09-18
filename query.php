@@ -369,7 +369,11 @@ function toggle_vis() {
 
 		$result = null;
 		if ($orderbest) {
-			$result = safe_query($string." ORDER BY latinmatch DESC, commonmatch DESC, score DESC LIMIT $pageno, $amount"); 
+			if ($full) {
+				$result = safe_query($string." ORDER BY latinmatch DESC, commonmatch DESC, score DESC LIMIT $pageno, $amount"); 
+			}else {
+				$result = safe_query($string." LIMIT $pageno, $amount"); 
+			}
 		}else {
 			$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
 		}
