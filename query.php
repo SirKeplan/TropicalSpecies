@@ -251,15 +251,20 @@ function toggle_vis() {
 	</div>
 	
 <?php
+	//still needs some improvement doesnt it
+	$fullsql = "*".$full."*";
     $string = 
     "SELECT *,
+		CASE when `Latin name` like \"$fullsql\" then 1 else 0 END as latinmatch, 
+		CASE when `Common name` like \"$fullsql\" then 1 else 0 END as commonmatch,
+
 		MATCH(Author,NomenclatureNotes,`Known hazards`,`Range`,`Habitat`,`GeneralInformation`,
 		`Cultivation details`,`Edible uses`,`Medicinal`,`AgroforestryUses`,`Uses notes`,`Propagation 1`,`Names`) 
-		AGAINST (\"$full\") AS score
+		AGAINST (\"$fullsql\") AS score
 	FROM tropicalspecies
     WHERE MATCH(Author,NomenclatureNotes,`Known hazards`,`Range`,`Habitat`,`GeneralInformation`,
         `Cultivation details`,`Edible uses`,`Medicinal`,`AgroforestryUses`,`Uses notes`,`Propagation 1`,`Names`) 
-        AGAINST (\"$full\")"; // IN BOOLEAN MODE
+        AGAINST (\"$fullsql\" IN BOOLEAN MODE)"; //
     
 	//	echo htmlspecialchars(urldecode($_SERVER['QUERY_STRING']));
 
@@ -361,10 +366,10 @@ function toggle_vis() {
 		
 		//for getting totla record count
 		$all = safe_query($string);
-		
+
 		$result = null;
 		if ($orderbest) {
-			$result = safe_query($string." LIMIT $pageno, $amount"); 
+			$result = safe_query($string." ORDER BY latinmatch DESC, commonmatch DESC, score DESC LIMIT $pageno, $amount"); 
 		}else {
 			$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
 		}
