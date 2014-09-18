@@ -255,8 +255,8 @@ function toggle_vis() {
 	$fullsql = "*".$full."*";
     $string = 
     "SELECT *,
-		CASE when `Latin name` like \"$fullsql\" then 1 else 0 END as latinmatch, 
-		CASE when `Common name` like \"$fullsql\" then 1 else 0 END as commonmatch,
+		CASE when `Latin name` like \"$full\" then 1 else 0 END as latinmatch, 
+		CASE when `Common name` like \"$full\" then 1 else 0 END as commonmatch,
 
 		MATCH(Author,NomenclatureNotes,`Known hazards`,`Range`,`Habitat`,`GeneralInformation`,
 		`Cultivation details`,`Edible uses`,`Medicinal`,`AgroforestryUses`,`Uses notes`,`Propagation 1`,`Names`) 
