@@ -318,6 +318,74 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	padding: 1px 3px;
 }
 
+.comments {
+	margin:1em;
+	border: 1px solid green;
+	width:500px;
+	padding:0.5em 1em;	box-sizing:border-box;
+
+}
+
+.fgroup {
+	display:table;
+	clear:both;
+	position:relative;
+	width: 100%;
+		margin:0.5em 0em;
+	box-sizing:border-box;
+
+}
+.flabel {
+
+	display:block;
+	float:left;
+	width: 25%;
+	height:100%;
+	text-align:right;
+	padding-top:5px;
+	padding-right:12px;
+
+	box-sizing:border-box;
+}
+.fcontrol {
+	box-sizing:border-box;
+	display: block;
+    width: 75%;
+    padding: 4px 6px;
+    font-size: 12px;
+    line-height: 1.42857;
+    border: 1px solid #480;
+    border-radius: 4px;
+
+}
+.fsubmit {
+	    display: block;
+
+	    float:right;
+	height:26px;
+	width: 75px;
+	 background-color: green;
+    border: 1px solid #480;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+.farea {
+	box-sizing:border-box;
+
+	width: 75%;
+	height:250px;
+	display: block;
+    
+    padding: 4px 6px;
+    font-size: 12px;
+    
+    border: 1px solid #480;
+    border-radius: 4px;
+    
+}
+
+
 td.NORMAL {	
 	padding-left: 5px;
 }
