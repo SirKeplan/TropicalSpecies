@@ -24,6 +24,7 @@ function togglePrompt (box, focus) {
 }
 </script>
 <div class="HEADERBLOCK">
+<div class="HEADERINNER">
 <a class="HOME" href="./">Useful Tropical Plants</a>
 <div class="NAVDIV">
 <ul class="NAVBAR" >
@@ -54,5 +55,5 @@ function togglePrompt (box, focus) {
 </ul>
 </div>
 </div>
-
+</div>
 <div class="CONTENT">

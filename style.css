@@ -1,5 +1,4 @@
 html {
-	background-color: #E5E5E5;
 }
 
 body {
@@ -9,9 +8,9 @@ body {
 	margin:0px;
 	height:100%;
 	/*for a later time.*/
-	margin:auto;
-	max-width:1000px;
-	background-color: white;
+	background-color: #E5E5E5;
+
+	//
 }
 
 a:link {color:green;}    /* unvisited link */
@@ -86,9 +85,38 @@ h4{
 	border:0px;
 
 }
+.HEADERINNER {
+	margin:auto;
+	max-width:1050px;
+}
+
+.CONTENT {
+	padding-left:25px;
+	padding-right:25px;
+	
+	padding-bottom:25px;
+		height:100%;
+		margin:auto;
+	max-width:998px;
+	background-color: white;
+	/*overflow: hidden;*/
+	border-top: 1px solid #FFF;
+	-moz-box-shadow: 1px 1px 4px gray;
+	-webkit-box-shadow: 1px 1px 4px gray;
+	box-shadow: 1px 1px 4px gray;
+}	
+
+.FOOTER {
+	overflow: auto;
+}
+
 .NAVDIV {
 	font-size:medium;
 	background-color:#98aa21;
+	
+	/*-moz-box-shadow: 1px 1px 4px gray;
+	-webkit-box-shadow: 1px 1px 4px gray;
+	box-shadow: 1px 1px 4px gray;*/
 }
 
 ul.NAVBAR {
@@ -368,14 +396,6 @@ TABLE#QUERYTABLE {
 	float:left;
 }
 
-.CONTENT {
-	padding-left:25px;
-	padding-right:25px;	height:100%;
-}	
-
-.FOOTER {
-	overflow: auto;
-}
 
 #ken-email, #admin-email {
 	display:block;
