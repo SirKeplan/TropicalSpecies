@@ -95,10 +95,12 @@ h4{
 	padding-right:25px;
 	
 	padding-bottom:25px;
-		height:100%;
-		margin:auto;
+	height:100%;
+	margin:auto;
 	max-width:998px;
 	background-color: white;
+
+	margin-bottom:10px;
 	/*overflow: hidden;*/
 	border-top: 1px solid #FFF;
 	-moz-box-shadow: 1px 1px 4px gray;
