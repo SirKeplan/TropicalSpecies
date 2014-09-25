@@ -30,7 +30,7 @@
 
 	<div id="mainsearchbox">
 	<form action="query.php" method="get">
-	<input type="text" id="searchbox2" name="full"
+	<input type="search" id="searchbox2" name="full"
 		value="Search:" onfocus="togglePrompt(searchbox2, true)"
 		onblur="togglePrompt(searchbox2, false)" />
 	<input type="submit" value="Search" />
