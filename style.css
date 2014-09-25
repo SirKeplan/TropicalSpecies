@@ -725,6 +725,10 @@ dl.refview > dd {
 	padding-bottom:10px;
 }
 
+h3:nth-child(1) {
+	margin:9px 0px 0px 0px;
+}
+
 .comment {
 
 	padding: 1em 10px;
