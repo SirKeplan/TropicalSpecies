@@ -1,9 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="style.css" type="text/css">
-
 <?php
 	
 	
@@ -17,13 +11,20 @@
 	$title = "";//$_POST["title"];
 
 	$prev_page = $_POST["page"];
+	
+	if (!is_valid_email($user_email)) {
+		include 'header.php';
+		echo "<strong>Invalid email address.</strong>";
+		echo '<br>';
+		echo '<a href="www.theferns.info" onclick="window.history.back();">Back</a>';
+		include 'footer.php';
+	}else {
 
-	submit_comment($topic, $user, $user_email, $title, $body);
-	header('Location: '.$prev_page, TRUE, 303);
-
-	echo "<script>window.history.back();</script>";
+		submit_comment($topic, $user, $user_email, $title, $body);
+		mysql_close($db);	
+		header('Location: '.$prev_page, TRUE, 303);
+	}
+	
+	#echo "<script>window.history.back();</script>";
 
 ?>
-</div>
-</body>
-</html>

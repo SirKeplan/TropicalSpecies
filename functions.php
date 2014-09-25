@@ -12,7 +12,8 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
     }
     include_once "header.php";
 	
-	echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
+	#echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
+	echo "<h1>Sorry an error occured</h1>\n<p>the error has been logged</p>\n";
 	echo "</body></html>\n";
 		
 	emailError($errno, $errmsg, $filename, $linenum, $vars);
@@ -722,4 +723,8 @@ function output_graphic($no, $graphic, $words = 1337) {
 	return '<span style="display:block;margin:0px;height:24px" title="'.$words[$no].'">'.$monkey.'</span>';
 }
 
+function is_valid_email($email) {
+	
+	return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
 ?>

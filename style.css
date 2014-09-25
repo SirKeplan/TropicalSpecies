@@ -376,6 +376,10 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	margin: 0px -25px;	
 	overflow: hidden;
 }
+.comment:last-of-type {
+	border:0;
+	padding-bottom:0px;
+}
 
 .avatar {
 	width: 72px;

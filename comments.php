@@ -4,11 +4,10 @@ include_once 'functions.php';
 
 function submit_comment($topic, $user, $user_email, $title, $body) {
 	
-	
-	mysql_query("
+	$body = mysql_real_escape_string($body);
+	safe_query("
 		INSERT INTO `TropicalSpeciesDB`.`Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) 
 		VALUES ('$topic', '$user', '$user_email', '$title', '$body');");
-	echo mysql_error();
 }
 
 
@@ -16,9 +15,9 @@ function submit_comment($topic, $user, $user_email, $title, $body) {
 function output_comments($topic, $curr_page="index.php") {
 	
 	$result = mysql_query("SELECT * FROM `TropicalSpeciesDB`.`Comments` WHERE Topic = '$topic' LIMIT 0 , 30");
-	echo "</div>";
-	echo "<div class=\"PageBox\">";
-	if (mysql_num_rows($result) > 1) {			
+	if (mysql_num_rows($result) > 0) {			
+		echo "</div>";
+		echo "<div class=\"PageBox\">";
 		echo "<h3>Comments</h3>";
 
 		while ($row = mysql_fetch_assoc($result)) {
@@ -37,6 +36,9 @@ function output_comments($topic, $curr_page="index.php") {
 			echo "</div>";
 		}
 	}
+	echo "</div>";
+	echo "<div class=\"PageBox\">";
+	
 	output_comments_form($topic, $curr_page);
 
 	
@@ -68,15 +70,48 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
 
 function output_comments_form($topic, $curr_page) {
 	echo <<<EOT
+	<script>
 	
+	function validate_form() {
+		var user = document.forms["comments"]["user"].value;
+		var email = document.forms["comments"]["email"].value;
+		var body = document.forms["comments"]["body"].value;
+		
+		if (user == "" || user == null) {
+			alert ("You must fill in all the fields when leaving a comment");
+			return false;
+		}
+		if (email == "" || email == null) {
+			alert ("You must fill in all the fields when leaving a comment");
+			return false;
+		}
+		if (body == "" || body == null) {
+			alert ("You must fill in all the fields when leaving a comment");
+			return false;
+		}
+		var atpos = email.indexOf("@");
+		var dotpos = email.lastIndexOf(".");
+		if (atpos< 1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+			alert("You have to enter a real email address.\\nsorry about that.");
+			return false;
+		}
+		
+		if (body.length < 8) {
+			alert ("Please give a meaningful comment :-( ");
+			return false;
+		}
+		return true;
+	}
+	
+	</script>
 	<h3>Add a Comment:</h3>
-	<form class="comments" action="postcomment.php" method="post">
+	<form name="comments" class="comments" action="postcomment.php" onsubmit="return validate_form();" method="post">
 	<input type="hidden" value="$topic" name="topic">
 	<input type="hidden" value="$curr_page" name="page">
 	<div class="fgroup"><label class="flabel">Name:</label><input name="user" class="fcontrol" type="text"></div>
 	<div class="fgroup"><label class="flabel">Email(Private):</label><input name="email" class="fcontrol" type="text"></div>
-	<div class="fgroup"><label class="flabel">Body:</label><div class="labeled"><textarea class="farea" name="body" width="800"></textarea></div></div>
-	<div class="fgroup"><input type="submit" class="fsubmit" value="Post"></div>
+	<div class="fgroup"><label class="flabel">Message:</label><div class="labeled"><textarea class="farea" name="body" width="800"></textarea></div></div>
+	<div class="fgroup"><input type="submit" class="fsubmit" value="Submit"></div>
 	</form>
 EOT;
 }
