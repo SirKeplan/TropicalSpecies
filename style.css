@@ -81,7 +81,7 @@ h4{
 	/*needed by old IE versions so the filter shows, something to do with items size*/
 	overflow: auto;
 	margin:0px;
-	padding:8px 0px 0px 0px;
+	padding:8px 10px 0px 10px;
 	border:0px;
 
 }
@@ -91,6 +91,10 @@ h4{
 }
 
 .CONTENT {
+	padding:0px 10px;
+}	
+
+.PageBox {
 	padding-left:25px;
 	padding-right:25px;
 	
@@ -106,7 +110,7 @@ h4{
 	-moz-box-shadow: 1px 1px 4px gray;
 	-webkit-box-shadow: 1px 1px 4px gray;
 	box-shadow: 1px 1px 4px gray;
-}	
+}
 
 .FOOTER {
 	overflow: auto;
@@ -352,12 +356,39 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	padding: 1px 3px;
 }
 
-.comments {
-	margin:1em;
-	border: 1px solid green;
-	width:500px;
-	padding:0.5em 1em;	box-sizing:border-box;
+.comside {
+	float:left;
+	margin-right:8px;
+}
 
+.combody {
+	margin-left:80px;
+}
+
+.comment {
+	border-bottom: 1px solid grey;
+	
+	padding: 1em 25px;
+	margin: 0px -25px;	
+	overflow: hidden;
+}
+
+.avatar {
+	width: 72px;
+	height:72px;
+	background-color: #C4E2C4;
+	margin-left:auto;
+}
+
+.commenttitle {
+	margin: 0px 0px 0.5em 0px;
+}
+.commenttitle > em {
+	color: grey;
+}
+
+.comments {
+	box-sizing:border-box;
 }
 
 .fgroup {
@@ -365,7 +396,7 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	clear:both;
 	position:relative;
 	width: 100%;
-		margin:0.5em 0em;
+	margin:0.5em 0em 0em 0em;
 	box-sizing:border-box;
 
 }
@@ -373,22 +404,23 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 
 	display:block;
 	float:left;
-	width: 25%;
+	min-width:100px;
 	height:100%;
 	text-align:right;
 	padding-top:5px;
-	padding-right:12px;
+	padding-right:8px;
 
 	box-sizing:border-box;
 }
+
+.labeled {
+	margin-left:100px;
+
+}
 .fcontrol {
-	box-sizing:border-box;
-	display: block;
-    width: 75%;
+	width: 200px;
     padding: 4px 6px;
-    font-size: 12px;
-    line-height: 1.42857;
-    border: 1px solid #480;
+    border: 1px solid grey;
     border-radius: 4px;
 
 }
@@ -398,23 +430,21 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	    float:right;
 	height:26px;
 	width: 75px;
-	 background-color: green;
+	 background-color: #88A54C;
     border: 1px solid #480;
     border-radius: 4px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
-    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    
 }
 .farea {
 	box-sizing:border-box;
 
-	width: 75%;
-	height:250px;
-	display: block;
-    
-    padding: 4px 6px;
+	height:200px;
+	width:100%;
+	padding: 4px 6px;
     font-size: 12px;
     
-    border: 1px solid #480;
+    border: 1px solid grey;
     border-radius: 4px;
     
 }
@@ -479,6 +509,8 @@ TABLE#QUERYTABLE {
 	float:right;
 	margin-left:1em;
 	margin-bottom:1em;	
+	margin-top:1em;
+	font-size: larger;
 }
 .mainimage > img{
 	display:block;

@@ -1,4 +1,5 @@
 <?php include_once 'functions.php'; ?>
+<div class="PageBox">
 <p>
 <div class="leftrightdiv">
 	<a id="leftnav" href="viewtropical.php?id=<?php
@@ -204,3 +205,4 @@ if ($row['AgroforestryUses'] != null) {
 <h3>Other Uses</h3><?php echo link_to_book(nl2br($row['Uses notes']))?><br>
 
 <h3>Propagation</h3><?php echo link_to_book(nl2br($row['Propagation 1']))?><br>
+</div>

@@ -8,15 +8,20 @@
 	
 	
 	include 'comments.php';
-	
+	include 'dbconnect.php';
+
 	$body = $_POST["body"];
 	$topic = $_POST["topic"];
 	$user = $_POST["user"];
-	$user_email = $_POST["user_email"];
-	$title = $_POST["title"];
+	$user_email = $_POST["email"];
+	$title = "";//$_POST["title"];
+
+	$prev_page = $_POST["page"];
 
 	submit_comment($topic, $user, $user_email, $title, $body);
-	echo "hi";
+	header('Location: '.$prev_page, TRUE, 303);
+
+	echo "<script>window.history.back();</script>";
 
 ?>
 </div>

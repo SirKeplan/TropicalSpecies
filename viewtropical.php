@@ -76,6 +76,9 @@ ob_start();
 		global $row;
 		include('template.php' );
 		echo "<script src=\"boxmove.js\"></script>";
+			
+		include_once 'comments.php';
+		output_comments($row['Latin name'], 'viewtropical.php?id='.urlencode($row['Latin name']));
 		
 	} else {
 		echo "<title>No Record - Useful Tropical Plants</title>";
