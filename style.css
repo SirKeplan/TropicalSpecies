@@ -437,8 +437,7 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	float:right;
 	height:26px;
 	width: 75px;
-	 background-color: #B47503;
-    border: 1px solid #480;
+    border: 1px solid;
     border-radius: 4px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
     

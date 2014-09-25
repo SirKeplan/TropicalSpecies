@@ -46,7 +46,7 @@ function togglePrompt (box, focus) {
 	<li class="SEARCH" id="SEARCH">
 		<form action="query.php" method="get">
 			<div>
-				<input type="text" class="searchbox" id="searchbox" name="full"  
+				<input type="search" class="searchbox" id="searchbox" name="full"  
 				value="Search:" onfocus="togglePrompt(searchbox, true)" 
 				onblur="togglePrompt(searchbox, false)" >
 			</div>

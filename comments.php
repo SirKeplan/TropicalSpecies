@@ -109,7 +109,7 @@ function output_comments_form($topic, $curr_page) {
 	<input type="hidden" value="$topic" name="topic">
 	<input type="hidden" value="$curr_page" name="page">
 	<div class="fgroup"><label class="flabel">Name:</label><input name="user" class="fcontrol" type="text"></div>
-	<div class="fgroup"><label class="flabel">Email(Private):</label><input name="email" class="fcontrol" type="text"></div>
+	<div class="fgroup"><label class="flabel">Email(Private):</label><input name="email" class="fcontrol" type="email"></div>
 	<div class="fgroup"><label class="flabel">Message:</label><div class="labeled"><textarea class="farea" name="body" width="800"></textarea></div></div>
 	<div class="fgroup"><input type="submit" class="fsubmit" value="Submit"></div>
 	</form>
