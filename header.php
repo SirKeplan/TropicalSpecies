@@ -57,3 +57,4 @@ function togglePrompt (box, focus) {
 </div>
 </div>
 <div class="CONTENT">
+<div class="PageBox">

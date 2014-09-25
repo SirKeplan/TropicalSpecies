@@ -111,7 +111,9 @@ h4{
 	-webkit-box-shadow: 1px 1px 4px gray;
 	box-shadow: 1px 1px 4px gray;
 }
-
+h3:nth-child(1) {
+	margin:24px 0px 0px 0px;
+}
 .FOOTER {
 	overflow: auto;
 }
@@ -717,6 +719,18 @@ dl.refview > dd {
 }/*//end 640*/
 
 @media only screen and (max-width: 480px) {
+.PageBox {
+	padding-left:10px;
+	padding-right:10px;	
+	padding-bottom:10px;
+}
+
+.comment {
+
+	padding: 1em 10px;
+	margin: 0px -10px;	
+}
+
 body {
 	/*not sure if this is needed*/
 	-moz-text-size-adjust:none;	

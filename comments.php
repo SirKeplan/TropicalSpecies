@@ -16,6 +16,7 @@ function submit_comment($topic, $user, $user_email, $title, $body) {
 function output_comments($topic, $curr_page="index.php") {
 	
 	$result = mysql_query("SELECT * FROM `TropicalSpeciesDB`.`Comments` WHERE Topic = '$topic' LIMIT 0 , 30");
+	echo "</div>";
 	echo "<div class=\"PageBox\">";
 	if (mysql_num_rows($result) > 1) {			
 		echo "<h3>Comments</h3>";
@@ -38,7 +39,6 @@ function output_comments($topic, $curr_page="index.php") {
 	}
 	output_comments_form($topic, $curr_page);
 
-	echo "</div>";
 	
 
 }/**

@@ -20,7 +20,6 @@
 		$numPlants = $numPlantsRow[0];
 	}
 	echo <<<EOT
-	<div class="PageBox">
 	<div class="mainimage"><img width="200" src="front2.jpg" alt="Carica Papaya (Papaya)"/>
 	<div class="caption">Carica Papaya (Papaya)<br> growing in a woodland garden.</div>
 	</div>
@@ -56,7 +55,6 @@ EOT;
 	echo "</b></p>\n";
 	echo "<p class=\"mainpage\"><br>All the information in this database is fully referenced, these references can be viewed when looking at indivudual plants. 
 	<br>There is a full list of references <a href=\"refs.php\">here.</a></p>\n";
-	echo "</div>";
 
 	include 'footer.php';
 	mysql_close($db);	
