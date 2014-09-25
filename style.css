@@ -549,10 +549,12 @@ TABLE#QUERYTABLE {
 	border-color:grey;
 	font-style: italic;
 	color: grey;
+	box-sizing:border-box;
 }
 
 #mainsearchbox input[type="submit"] {
-	font-size: 100%;	
+	font-size: 100%;
+	
 }
 .leftrightdiv {
 	overflow: hidden;
@@ -752,8 +754,9 @@ body {
 	width: 100%;
 }
 
-#mainsearchbox input[type="submit"] {
-	float:right;
+#mainsearchbox input[type="submit"] {	
+	display:block;
+	margin-left:auto;
 }
 
 .latin_name{
