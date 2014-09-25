@@ -539,7 +539,7 @@ TABLE#QUERYTABLE {
 	padding-left: 3em;
 }
 
-#mainsearchbox input[type="text"] {
+#mainsearchbox input[type="search"] {
 	overflow: hidden; width: auto;
 	font-size: 100%;
 	width:40ex;
@@ -748,7 +748,7 @@ body {
 .CONTENT {
 }
 
-#mainsearchbox input[type="text"] {
+#mainsearchbox input[type="search"] {
 	width: 100%;
 }
 
