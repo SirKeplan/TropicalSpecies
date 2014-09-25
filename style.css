@@ -400,7 +400,6 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	width: 100%;
 	margin:0.5em 0em 0em 0em;
 	box-sizing:border-box;
-
 }
 .flabel {
 
@@ -427,12 +426,12 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 
 }
 .fsubmit {
-	    display: block;
+	display: block;
 
-	    float:right;
+	float:right;
 	height:26px;
 	width: 75px;
-	 background-color: #88A54C;
+	 background-color: #B47503;
     border: 1px solid #480;
     border-radius: 4px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -441,7 +440,7 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 .farea {
 	box-sizing:border-box;
 
-	height:200px;
+	height:120px;
 	width:100%;
 	padding: 4px 6px;
     font-size: 12px;
@@ -450,7 +449,6 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
     border-radius: 4px;
     
 }
-
 
 td.NORMAL {	
 	padding-left: 5px;
