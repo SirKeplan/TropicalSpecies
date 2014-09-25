@@ -801,6 +801,23 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited {
 .ANCHOR { width: auto;}
 
 }/*//end 480*/
+@media only screen and (max-width: 360px) {
+.fcontrol {
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;	
+}
+.flabel {
+
+	display:inline;
+	float:none;
+}
+.labeled {
+	margin:0px;
+}
+
+}
 @media print {
 .HEADERBLOCK {
 	display:none;
