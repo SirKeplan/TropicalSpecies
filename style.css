@@ -279,6 +279,8 @@ li.SEARCHBUTTON > a > img {
 	
 	display:block;
 	z-index:100;
+	border: 0px;/*for stupid old IE*/
+
 }
 
 /*text displayed under pictures*/
@@ -768,7 +770,7 @@ body {
 }
 .PIC {
 	max-width:100%;
-	
+
 }
 
 li.SEARCHBUTTON {
