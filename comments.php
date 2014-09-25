@@ -8,13 +8,14 @@ function submit_comment($topic, $user, $user_email, $title, $body) {
 	safe_query("
 		INSERT INTO `TropicalSpeciesDB`.`Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) 
 		VALUES ('$topic', '$user', '$user_email', '$title', '$body');");
+	return mysql_insert_id();
 }
 
 
 
 function output_comments($topic, $curr_page="index.php") {
 	
-	$result = mysql_query("SELECT * FROM `TropicalSpeciesDB`.`Comments` WHERE Topic = '$topic' LIMIT 0 , 30");
+	$result = mysql_query("SELECT * FROM `TropicalSpeciesDB`.`Comments` WHERE Topic = '$topic' AND Approved = 1 LIMIT 0 , 30");
 	if (mysql_num_rows($result) > 0) {			
 		echo "</div>";
 		echo "<div class=\"PageBox\">";
