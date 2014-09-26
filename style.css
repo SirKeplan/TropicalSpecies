@@ -725,19 +725,24 @@ dl.refview > dd {
 
 @media only screen and (max-width: 480px) {
 .PageBox {
-	padding-left:10px;
-	padding-right:10px;	
-	padding-bottom:10px;
+	padding-left:15px;
+	padding-right:15px;	
+	padding-bottom:15px;
 }
 
 h3:nth-child(1) {
-	margin:9px 0px 0px 0px;
+	margin:14px 0px 0px 0px;
 }
-
+.fcontrol {
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;	
+}
 .comment {
 
-	padding: 1em 10px;
-	margin: 0px -10px;	
+	padding: 1em 15px;
+	margin: 0px -15px;	
 }
 
 body {
@@ -812,12 +817,7 @@ a.NAVBARITEM:link, a.NAVBARITEM:visited {
 
 }/*//end 480*/
 @media only screen and (max-width: 360px) {
-.fcontrol {
-	width: 100%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;	
-}
+
 .flabel {
 
 	display:inline;
