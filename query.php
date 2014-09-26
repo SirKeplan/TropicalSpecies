@@ -14,8 +14,11 @@
 		var val = ele.className;
 		if (val == 'synhid') {
 			ele.style.height = "0";
-		}else {			
-			ele.style.height = measure.clientHeight+'px';
+		}else {
+			//not proud of the following code, i added it on a timer because of odd FF mobile behaviour
+			//atleast it can't kill anything if it goes wrong.
+			setTimeout(function(){ele.style.height = measure.clientHeight+'px';},500)
+			//ele.style.height = measure.clientHeight+'px';
 		}
 	}	
 function toggle_vis() {
