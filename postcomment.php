@@ -8,9 +8,20 @@
 	$topic = $_POST["topic"];
 	$user = $_POST["user"];
 	$user_email = $_POST["email"];
+	$ques = $_POST["ques"];
+	$ans = $_POST["captcha"];
 	$title = "";//$_POST["title"];
 
 	$prev_page = $_POST["page"];
+	include 'captcha.php';
+	if (!is_correct($ques, $ans)) {
+		#include 'header.php';
+		echo "<strong>Invalid Captcha, are you sure you're a human?</strong>";
+		echo '<br>';
+		echo '<a href="./" onclick="window.history.back();return false;">Back</a>';
+		#include 'footer.php';
+		die;
+	}
 	
 	if (!is_valid_email($user_email)) {
 		include 'header.php';

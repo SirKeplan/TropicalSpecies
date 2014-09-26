@@ -431,6 +431,11 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
     border-radius: 4px;
 
 }
+
+.short {
+	width:40px;
+}
+
 .fsubmit {
 	display: block;
 
