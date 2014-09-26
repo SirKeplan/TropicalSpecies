@@ -107,6 +107,7 @@ function output_comments_form($topic, $curr_page) {
 	</script>
 	<h3>Add a Comment:</h3>
 	<form name="comments" class="comments" action="postcomment.php" onsubmit="return validate_form();" method="post">
+	<label class="flabel" for="captcha">do be continued</label><input type="check" name="captcha">
 	<input type="hidden" value="$topic" name="topic">
 	<input type="hidden" value="$curr_page" name="page">
 	<div class="fgroup"><label class="flabel">Name:</label><input name="user" class="fcontrol" type="text"></div>
