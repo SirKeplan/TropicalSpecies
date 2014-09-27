@@ -32,6 +32,7 @@ function emailError($errno, $errmsg, $filename, $linenum, $vars) {
 	$subject = "Tropical Database Error.";
 	$message = "$dt\nError code: $errno in file $filename\n
 	line $linenum: $errmsg\n
+	${_SERVER['REQUEST_URI']}\n
 	From user ${_SERVER["REMOTE_ADDR"]} - ${_SERVER["HTTP_USER_AGENT"]} \n
 	Vars: $dump";
 	if (mail($admin,$subject, $message)) {
@@ -51,7 +52,7 @@ function safe_query($query)
 	if(!$res) {
 		//print "<h2>Sorry an Error Occured</h2>\n";
 		$err = mysql_error();
-		$err =  "MySQL error. Query: " . htmlspecialchars($query);
+		$err .=  "\nMySQL error. Query: " . htmlspecialchars($query);
 		trigger_error($err);
 		exit;
 	}

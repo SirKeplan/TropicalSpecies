@@ -4,6 +4,10 @@ include_once 'functions.php';
 
 function submit_comment($topic, $user, $user_email, $title, $body) {
 	
+	$topic = mysql_real_escape_string($topic);// should never be from user input anyway
+	$user = mysql_real_escape_string($user);
+	$user_email = mysql_real_escape_string($user_email);
+	$title = mysql_real_escape_string($title);//not used
 	$body = mysql_real_escape_string($body);
 	safe_query("
 		INSERT INTO `TropicalSpeciesDB`.`Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) 
