@@ -10,7 +10,7 @@ function submit_comment($topic, $user, $user_email, $title, $body) {
 	$title = mysql_real_escape_string($title);//not used
 	$body = mysql_real_escape_string($body);
 	safe_query("
-		INSERT INTO `TropicalSpeciesDB`.`Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) 
+		INSERT INTO `Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) 
 		VALUES ('$topic', '$user', '$user_email', '$title', '$body');");
 	return mysql_insert_id();
 }
@@ -19,7 +19,7 @@ function submit_comment($topic, $user, $user_email, $title, $body) {
 
 function output_comments($topic, $curr_page="index.php") {
 	
-	$result = mysql_query("SELECT * FROM `TropicalSpeciesDB`.`Comments` WHERE Topic = '$topic' AND Approved = 1 LIMIT 0 , 30");
+	$result = safe_query("SELECT * FROM `Comments` WHERE Topic = '$topic' AND Approved = 1 LIMIT 0 , 30");
 	if (mysql_num_rows($result) > 0) {			
 		echo "</div>";
 		echo "<div class=\"PageBox\">";
@@ -113,6 +113,7 @@ function output_comments_form($topic, $curr_page) {
 	
 	</script>
 	<h3>Add a Comment:</h3>
+	<p>If you have any useful information about this plant, please leave a comment. Comments have to be approved before they are shown here.</p>
 	<form name="comments" class="comments" action="postcomment.php" onsubmit="return validate_form();" method="post">
 	<input type="hidden" value="$topic" name="topic">
 	<input type="hidden" value="$curr_page" name="page">

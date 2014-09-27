@@ -16,10 +16,10 @@
 	$op = $_GET["op"];
 	$id = $_GET["id"];
 	if ($op == "a") {
-		safe_query("UPDATE `TropicalSpeciesDB`.`Comments` SET `Approved` = '1' WHERE `Comments`.`ID` =$id;");
+		safe_query("UPDATE `Comments` SET `Approved` = '1' WHERE `Comments`.`ID` =$id;");
 		echo "Done.";
 	}else if ($op == "d") {
-		safe_query("DELETE FROM `TropicalSpeciesDB`.`Comments` WHERE `Comments`.`ID` = $id AND `Approved` = '0'");
+		safe_query("DELETE FROM `Comments` WHERE `Comments`.`ID` = $id AND `Approved` = '0'");
 		if (mysql_affected_rows() > 0) {			
 			echo "Record deleted.";
 		} else {
