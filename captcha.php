@@ -21,6 +21,12 @@ function output_question() {
 
 function is_correct($question_id, $answer) {
 	global $questions;
+	
+	//should allways exist, most likely a hacking attempt otherwise.
+	if (!array_key_exists($question_id, $questions)) {
+		emailError(88, $question_id." is not a valid captcha question", "", "27?", "answer: ".$answer);
+		return false;
+	}
 	return $questions[$question_id] == $answer;
 }
 ?>
