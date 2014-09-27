@@ -9,12 +9,12 @@
 
 <?php
 	function output_img_page($row) {	
-		echo '<h1 class="latin_name">'.$row['Latin name']." Images</h1>";
-		echo '<a href="viewtropical.php?id='.urlencode($row['Latin name']).'">Back to plant info.</a>';
+		echo '<h1 class="latin_name">'.$row['LatinName']." Images</h1>";
+		echo '<a href="viewtropical.php?id='.urlencode($row['LatinName']).'">Back to plant info.</a>';
 		echo '<br/>';
 		
 		$imgdata = null;
-		$imglist = find_images($row['Latin name']);
+		$imglist = find_images($row['LatinName']);
 
 		if (empty($imglist)) {
 			echo '<div class="NOIMAGE">No Image.</div>';
@@ -23,12 +23,12 @@
 			global  $images_path;
 			$filename = $images_path.$imgdata["file"];
 			if ($imgdata and file_exists($filename)) {
-				echo '<a href="'.$filename.'"><img class="big_pic" src="'.sized_image($filename,960).'" alt="'.$row['Latin name'].'"/></a>';
+				echo '<a href="'.$filename.'"><img class="big_pic" src="'.sized_image($filename,960).'" alt="'.$row['LatinName'].'"/></a>';
 				output_image_info($imgdata);
 
 			} else {
 				echo '<div class="NOIMAGE">No Image.</div>';
-				trigger_error("Image ".$filename." for ".$row['Latin name']." is in database but the file can not be found!");
+				trigger_error("Image ".$filename." for ".$row['LatinName']." is in database but the file can not be found!");
 			}
 			echo "<br/>";
 		}		
@@ -50,11 +50,11 @@
 		$redir = mysql_real_escape_string($_GET["redir"]);
 	}
 
-	$result = safe_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
+	$result = safe_query("SELECT * FROM `PlantPictures` WHERE LCASE(`LatinName`) = LCASE('$key')");
 	
 	$row = mysql_fetch_assoc($result);
 	if ($row) {
-		echo "<title>".$row['Latin name']." Images - Useful Tropical Plants</title>";
+		echo "<title>".$row['LatinName']." Images - Useful Tropical Plants</title>";
 		echo "</head>\n<body>";	
 		include 'header.php';
 
@@ -86,7 +86,7 @@
 			echo "<p>No record for <b>\"".$key."\"</b></p>";
 			echo "<p>\"$key\" is a synonym of the following plants.</p>";
 			mysql_data_seek($synresult, 0);
-			output_table_query($synresult, "Nothing", "Synonyms", null, "TrueLatinName", "image.php", "id",-1 , array("LatinName"), array("TrueLatinName" => "Latin Name", "Author" => "Author"));
+			output_table_query($synresult, "Nothing", "Synonyms", null, "TrueLatinName", "image.php", "id",-1 , array("LatinName"), array("TrueLatinName" => "LatinName", "Author" => "Author"));
 			#print_r( $names);
 		}
 		
