@@ -23,14 +23,14 @@
 			global  $images_path;
 			$filename = $images_path.$imgdata["file"];
 			if ($imgdata and file_exists($filename)) {
-				echo '<a href="'.$filename.'"><img class="big_pic" src="'.sized_image($filename,960).'" alt="'.$row['LatinName'].'"/></a>';
+				echo '<a href="'.$filename.'"><img class="big_pic" src="'.sized_image($filename,960).'" id="'.$filename.'" alt="'.$row['LatinName'].'"/></a>';
 				output_image_info($imgdata);
 
 			} else {
 				echo '<div class="NOIMAGE">No Image.</div>';
 				trigger_error("Image ".$filename." for ".$row['LatinName']." is in database but the file can not be found!");
 			}
-			echo "<br/>";
+			echo "<br/>\n";
 		}		
 	}
 	
