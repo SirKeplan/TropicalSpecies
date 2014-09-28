@@ -43,7 +43,7 @@
 		$message .= "\nDelete:\n\t$man_url?op=d&id=$id";
 		mail($to,$subject, $message);
 		
-		header('Location: '.$prev_page, TRUE, 303);
+		header('Location: '.$prev_page."#com".$id, TRUE, 303);
 	}
 	
 	#echo "<script>window.history.back();</script>";

@@ -30,7 +30,7 @@ function output_comments($topic, $curr_page="index.php") {
 		echo "<h3>Comments</h3>";
 
 		while ($row = mysql_fetch_assoc($result)) {
-			echo "<div class=\"comment\">";
+			echo "<div class=\"comment\" id=\"com${row['ID']}\">";
 			echo "<div class=\"commenttitle\"><strong>".$row['User']."</strong>";
 			
 			$format = 'Y-m-d H:i:s';
