@@ -1,5 +1,6 @@
 <?php
 	
+	include 'comment_vars.php';
 	
 	include 'comments.php';
 	include 'dbconnect.php';
@@ -35,11 +36,7 @@
 		setcookie(sha1($topic.$_SERVER["REMOTE_ADDR"]),$id);
 		
 		mysql_close($db);	
-		$man_url="http://localhost/theferns/tropical/admin/manage_comment.php";
-		$man_url="http://tropical.theferns.info/admin/manage_comment.php";
 		
-		$to = "admin@theferns.info, ken@theferns.info";
-		$to = "admin@theferns.info";
 		$subject = "Tropical Database Comment Pending.";
 		$message = "$topic:\n\nUserName:\t$user\nEmail:    \t$user_email\n\n$body";
 		$message .= "\n\nApprove:\n\t$man_url?op=a&id=$id";
