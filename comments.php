@@ -18,8 +18,12 @@ function submit_comment($topic, $user, $user_email, $title, $body) {
 
 
 function output_comments($topic, $curr_page="index.php") {
-	
 	$result = safe_query("SELECT * FROM `Comments` WHERE Topic = '$topic' AND Approved = 1 LIMIT 0 , 30");
+	$str = sha1($topic.$_SERVER["REMOTE_ADDR"]);
+	if (isset($_COOKIE[$str])) {
+		$id = $_COOKIE[$str];
+		$result = safe_query("SELECT * FROM `Comments` WHERE (`Topic` LIKE '$topic' AND `Approved` =1 ) OR `ID` =$id LIMIT 0 , 30");
+	}
 	if (mysql_num_rows($result) > 0) {			
 		echo "</div>";
 		echo "<div class=\"PageBox\">";
@@ -37,7 +41,11 @@ function output_comments($topic, $curr_page="index.php") {
 			echo "<div class=\"avatar\">".get_gravatar($row['UserEmail'], 72, 'mm', 'g', true )."</div>";
 			#echo "<em>".$row['User']."</em><br>";
 			echo "</span>";
-			echo "<div class=\"combody\">".$row['Message']."</div>";
+			if ($row['Approved']) {
+				echo "<div class=\"combody\">".$row['Message']."</div>";
+			}else {
+				echo "<div class=\"combody grey\">".'<strong><em class="black">Awaiting Moderation.</em></strong><br><br>'.$row['Message']."</div>";
+			}
 			echo "</div>";
 		}
 	}
@@ -112,7 +120,7 @@ function output_comments_form($topic, $curr_page) {
 	}
 	
 	</script>
-	<h3>Add a Comment:</h3>
+	<h3 id="comment">Add a Comment:</h3>
 	<p>If you have any useful information about this plant, please leave a comment. Comments have to be approved before they are shown here.</p>
 	<form name="comments" class="comments" action="postcomment.php" onsubmit="return validate_form();" method="post">
 	<input type="hidden" value="$topic" name="topic">

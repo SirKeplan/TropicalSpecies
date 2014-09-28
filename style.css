@@ -28,6 +28,13 @@ a.HOME {
 	/*margin:8px;*/
 }
 
+.grey {
+	color: grey;
+}
+
+.black {
+	color: black;
+}
 /*main headings, eg Latin name*/
 h1{ }
 
