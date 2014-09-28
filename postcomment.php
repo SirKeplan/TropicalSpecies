@@ -34,7 +34,7 @@
 	}else {
 
 		$id=submit_comment($topic, $user, $user_email, $title, $body);
-		setcookie(sha1($topic.$_SERVER["REMOTE_ADDR"]),$id);
+		setcookie(sha1($topic.$_SERVER["REMOTE_ADDR"]),$id, time()+60*60*24);
 		
 		mysql_close($db);	
 		
