@@ -1,3 +1,7 @@
+a > img {
+	border:0
+}
+
 html {
 }
 
@@ -457,7 +461,6 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 .farea {
 	box-sizing:border-box;
 
-	height:120px;
 	width:100%;
 	padding: 4px 6px;
     font-size: 12px;

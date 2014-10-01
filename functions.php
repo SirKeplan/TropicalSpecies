@@ -583,11 +583,13 @@ function output_image_info($imgdata, $hidden=false) {
 			$attribution = "${imgdata["attribution"]}";
 			if ($imgdata["attribution_ref"]) {
 				$attribution .= " (<a href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)";
+				#$attribution .= " (<a href=\"".urlencode($imgdata["attribution_ref"])."\">${imgdata["attribution_ref"]}</a>)";
 			}
 			$attribution .= "<br>";
 		}
 		if ($imgdata["author_ref"]) {
 			$author = "<a href=\"${imgdata["author_ref"]}\">${imgdata["author"]}</a>";
+			#$author = "<a href=\"".urlencode($imgdata["author_ref"])."\">${imgdata["author"]}</a>";
 		}else {
 			$author = $imgdata["author"];
 		}

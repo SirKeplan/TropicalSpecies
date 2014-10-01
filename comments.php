@@ -128,8 +128,8 @@ function output_comments_form($topic, $curr_page) {
 	<input type="hidden" value="$ques" name="ques">
 	<div class="fgroup"><label class="flabel">Name:</label><div class="labeled"><input name="user" class="fcontrol" type="text"></div></div>
 	<div class="fgroup"><label class="flabel">Email(Private):</label><div class="labeled"><input name="email" class="fcontrol" type="email"></div></div>
-	<div class="fgroup"><label class="flabel">Message:</label><div class="labeled"><textarea class="farea" name="body" width="800"></textarea></div></div>
-	<div class="fgroup"><label class="flabel" for="captcha"><strong>Captcha: </strong>$ques</label><input class="fcontrol short" type="text" name="captcha"></div>
+	<div class="fgroup"><label class="flabel">Message:</label><div class="labeled"><textarea class="farea" name="body" rows="6"></textarea></div></div>
+	<div class="fgroup"><label class="flabel" for="captcha"><strong>Captcha: </strong>$ques</label><input class="fcontrol short" type="text" name="captcha" id="captcha"></div>
 	<div class="fgroup"><input type="submit" class="fsubmit" value="Submit"></div>
 	</form>
 EOT;
