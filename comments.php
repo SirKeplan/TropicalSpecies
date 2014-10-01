@@ -4,18 +4,17 @@ include_once 'functions.php';
 function submit_comment($topic, $user, $user_email, $title, $body) {
 	global $db;
 	
-	$topic = mysqli_real_escape_string($db, $topic);// should never be from user input anyway
-	$user = mysqli_real_escape_string($db, $user);
-	$user_email = mysqli_real_escape_string($db, $user_email);
-	$title = mysqli_real_escape_string($db, $title);//not used
-	$body = mysqli_real_escape_string($db, $body);
-	safe_query($db, "
-		INSERT INTO `Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) 
-		VALUES ('$topic', '$user', '$user_email', '$title', '$body');");
+	$statement = mysqli_prepare($db, "INSERT INTO `Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) VALUES (?, ?, ?, ?, ?);");
+
+	mysqli_stmt_bind_param($statement, 'sssss', $topic, $user, $user_email, $title, $body);
+
+	if (!mysqli_stmt_execute($statement)) {
+		echo "Execute failed: (" . $statement->errno . ") " . $statement->error;
+	}
+	mysqli_stmt_close($statement);	
+	
 	return mysqli_insert_id($db);
 }
-
-
 
 function output_comments($topic, $curr_page="index.php") {
 	global $db;

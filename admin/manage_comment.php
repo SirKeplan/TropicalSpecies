@@ -17,11 +17,11 @@
 	$id = $_GET["id"]+0;//make sure it's an int
 	if ($id > 0 && is_int($id)) {
 		if ($op == "a") {
-			safe_query("UPDATE `Comments` SET `Approved` = '1' WHERE `Comments`.`ID` =$id;");
+			safe_query($db, "UPDATE `Comments` SET `Approved` = '1' WHERE `Comments`.`ID` =$id;");
 			echo "Done.";
 		}else if ($op == "d") {
-			safe_query("DELETE FROM `Comments` WHERE `Comments`.`ID` = $id AND `Approved` = '0'");
-			if (mysql_affected_rows() > 0) {			
+			safe_query($db, "DELETE FROM `Comments` WHERE `Comments`.`ID` = $id AND `Approved` = '0'");
+			if (mysqli_affected_rows() > 0) {			
 				echo "Record deleted.";
 			} else {
 				echo "Could not be deleted.";
@@ -29,7 +29,7 @@
 		}
 	}
 	
-	mysql_close($db);	
+	mysqli_close($db);	
 
 ?>
 
