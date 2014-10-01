@@ -50,7 +50,7 @@
 <?php
 	include 'footer.php';
 
-	mysql_close($db);	
+	mysqli_close($db);	
 ?>
 </body>
 </html>

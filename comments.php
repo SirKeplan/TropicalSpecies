@@ -1,35 +1,37 @@
 <?php
 #this file contains functions for loading comments(or it will) ;)
 include_once 'functions.php';
-
 function submit_comment($topic, $user, $user_email, $title, $body) {
+	global $db;
 	
-	$topic = mysql_real_escape_string($topic);// should never be from user input anyway
-	$user = mysql_real_escape_string($user);
-	$user_email = mysql_real_escape_string($user_email);
-	$title = mysql_real_escape_string($title);//not used
-	$body = mysql_real_escape_string($body);
-	safe_query("
+	$topic = mysqli_real_escape_string($db, $topic);// should never be from user input anyway
+	$user = mysqli_real_escape_string($db, $user);
+	$user_email = mysqli_real_escape_string($db, $user_email);
+	$title = mysqli_real_escape_string($db, $title);//not used
+	$body = mysqli_real_escape_string($db, $body);
+	safe_query($db, "
 		INSERT INTO `Comments` (`Topic`, `User`, `UserEmail`, `Title`, `Message`) 
 		VALUES ('$topic', '$user', '$user_email', '$title', '$body');");
-	return mysql_insert_id();
+	return mysqli_insert_id($db);
 }
 
 
 
 function output_comments($topic, $curr_page="index.php") {
-	$result = safe_query("SELECT * FROM `Comments` WHERE Topic = '$topic' AND Approved = 1 LIMIT 0 , 30");
+	global $db;
+	
+	$result = safe_query($db, "SELECT * FROM `Comments` WHERE Topic = '$topic' AND Approved = 1 LIMIT 0 , 30");
 	$str = sha1($topic.$_SERVER["REMOTE_ADDR"]);
 	if (isset($_COOKIE[$str])) {
 		$id = $_COOKIE[$str];
-		$result = safe_query("SELECT * FROM `Comments` WHERE (`Topic` LIKE '$topic' AND `Approved` =1 ) OR `ID` =$id LIMIT 0 , 30");
+		$result = safe_query($db, "SELECT * FROM `Comments` WHERE (`Topic` LIKE '$topic' AND `Approved` =1 ) OR `ID` =$id LIMIT 0 , 30");
 	}
-	if (mysql_num_rows($result) > 0) {			
+	if (mysqli_num_rows($result) > 0) {			
 		echo "</div>";
 		echo "<div class=\"PageBox\">";
 		echo "<h3>Comments</h3>";
 
-		while ($row = mysql_fetch_assoc($result)) {
+		while ($row = mysqli_fetch_assoc($result)) {
 			echo "<div class=\"comment\" id=\"com${row['ID']}\">";
 			echo "<div class=\"commenttitle\"><strong>".$row['User']."</strong>";
 			

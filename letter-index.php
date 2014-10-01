@@ -42,19 +42,19 @@ else
 	
 	$q = "SELECT count(*) FROM `tropicalspecies` WHERE SUBSTRING(`Latin name`, 1, 1) = '$key'";
 	//echo htmlspecialchars($q);
-	$numPlantsRes = safe_query($q);
-	$result = safe_query("SELECT `Latin name`,`Common name` FROM `tropicalspecies` WHERE SUBSTRING(`Latin name`, 1, 1) = '$key' ORDER BY `Latin name` ASC LIMIT $pageno, $amount");
+	$numPlantsRes = safe_query($db, $q);
+	$result = safe_query($db, "SELECT `Latin name`,`Common name` FROM `tropicalspecies` WHERE SUBSTRING(`Latin name`, 1, 1) = '$key' ORDER BY `Latin name` ASC LIMIT $pageno, $amount");
 	$numPlants = 0;
-	$numPlantsRow = mysql_fetch_row($numPlantsRes);
+	$numPlantsRow = mysqli_fetch_row($numPlantsRes);
 	if($numPlantsRow) {
 		$numPlants = $numPlantsRow[0];
 	}
 
 	if($numPlants) {
-		echo "<p>Showing ".mysql_num_rows($result)." of $numPlants plants beginning with $key.</p>\n";
+		echo "<p>Showing ".mysqli_num_rows($result)." of $numPlants plants beginning with $key.</p>\n";
 	}
 	else {
-		echo "<p>Showing ".mysql_num_rows($result)." plants beginning with $key.</p>\n";
+		echo "<p>Showing ".mysqli_num_rows($result)." plants beginning with $key.</p>\n";
 	}
 
 	$http_query = $_GET;
@@ -68,9 +68,9 @@ else
 	nav_controls("letter-index.php", $http_query, $pageno, $amount, $numPlants);
 	
 }
-#mysql_free_result($result);
+#mysqli_free_result($result);
 include 'footer.php';
-mysql_close($db);
+mysqli_close($db);
 ?>
 </body>
 </html>

@@ -36,7 +36,7 @@
 		$id=submit_comment($topic, $user, $user_email, $title, $body);
 		setcookie(sha1($topic.$_SERVER["REMOTE_ADDR"]),$id, time()+60*60*24);
 		
-		mysql_close($db);	
+		mysqli_close($db);	
 		
 		$subject = "Tropical Database Comment Pending.";
 		$message = "$topic:\n\nUserName:\t$user\nEmail:    \t$user_email\n\n$body";

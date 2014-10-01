@@ -3,15 +3,15 @@
 <div class="leftrightdiv">
 	<a id="leftnav" href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` < '{$row['Latin name']}' ORDER BY `Latin name` DESC LIMIT 1"; 
-		$result1 = safe_query($sql1); 
-		$row1 = mysql_fetch_assoc($result1);
+		$result1 = safe_query($db, $sql1); 
+		$row1 = mysqli_fetch_assoc($result1);
 		echo urlencode($row1['Latin name']);?>">
 		<img src="ArrowLeft.png" height="14"  alt="Previous"/>
 	</a>
 	<a id="rightnav" href="viewtropical.php?id=<?php
 		$sql1 = "SELECT * FROM `tropicalspecies` WHERE `Latin name` > '{$row['Latin name']}' ORDER BY `Latin name` ASC LIMIT 1"; 
-		$result1 = safe_query($sql1); 
-		$row1 = mysql_fetch_assoc($result1);
+		$result1 = safe_query($db, $sql1); 
+		$row1 = mysqli_fetch_assoc($result1);
 		echo urlencode($row1['Latin name']);?>">
 		<img src="ArrowRight.png" height="14" alt="Next"/>
 	</a>
@@ -63,9 +63,9 @@ EOT;
 	}
 	$key = $row['Latin name'];
 
-	$result2 = safe_query("SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
+	$result2 = safe_query($db, "SELECT * FROM `Synonyms` WHERE `TrueLatinName` = '$key'");
 
-	while ($row2 = mysql_fetch_assoc($result2)) {
+	while ($row2 = mysqli_fetch_assoc($result2)) {
 		
 		if ($row2) {
 			OutputRecordSyn($row2);
@@ -73,7 +73,7 @@ EOT;
 			echo "<p><b>No record for \"".$key."\"</b></p>";
 		}
 	}
-	mysql_free_result($result2);
+	mysqli_free_result($result2);
 
 ?>	
 	</div>

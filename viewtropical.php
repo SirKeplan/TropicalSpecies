@@ -19,8 +19,9 @@ ob_start();
 
 		} else {
 			if ($key) {
-				$result2 = safe_query("SELECT * FROM `References` WHERE `No` = ".$key);
-				$row2 = mysql_fetch_assoc($result2);
+				global $db;
+				$result2 = safe_query($db, "SELECT * FROM `References` WHERE `No` = ".$key);
+				$row2 = mysqli_fetch_assoc($result2);
 			} else {
 				return $key;
 			}
@@ -57,16 +58,16 @@ ob_start();
 		header('Location: ./', TRUE, 303);
 		die;
 	}
-	$key = mysql_real_escape_string($_GET["id"]);
+	$key = mysqli_real_escape_string($db, $_GET["id"]);
 
 	$redir = null;
 	if (! empty($_GET["redir"])) {
-		$redir = mysql_real_escape_string($_GET["redir"]);
+		$redir = mysqli_real_escape_string($db, $_GET["redir"]);
 	}
 
-	$result = safe_query("SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
+	$result = safe_query($db, "SELECT * FROM `tropicalspecies` WHERE LCASE(`Latin name`) = LCASE('$key')");
 	
-	$row = mysql_fetch_assoc($result);
+	$row = mysqli_fetch_assoc($result);
 	if ($row) {
 		echo "<title>".$row['Latin name']." - Useful Tropical Plants</title>";
 		echo "</head>\n<body>";	
@@ -85,9 +86,9 @@ ob_start();
 		echo "</head>\n<body>";
 		include 'header.php';
 		$names = array();
-		#mysql string comparisons aren't case sensitive, no need to convert case
-		$synresult = safe_query('SELECT * FROM `Synonyms`WHERE `LatinName` = "'.$key.'"');
-		while ($row = mysql_fetch_assoc($synresult)) {
+		#mysqli string comparisons aren't case sensitive, no need to convert case
+		$synresult = safe_query($db, 'SELECT * FROM `Synonyms`WHERE `LatinName` = "'.$key.'"');
+		while ($row = mysqli_fetch_assoc($synresult)) {
 			$names[] = $row["TrueLatinName"];
 		}
 		if (count($names) < 1) {
@@ -104,15 +105,15 @@ ob_start();
 		}else {
 			echo "<p>No record for <b>\"".$key."\"</b></p>";
 			echo "<p>\"$key\" is a synonym of the following plants.</p>";
-			mysql_data_seek($synresult, 0);
+			mysqli_data_seek($synresult, 0);
 			output_table_query($synresult, "Nothing", "Synonyms", null, "TrueLatinName", "viewtropical.php", "id",-1 , array("LatinName"), array("TrueLatinName" => "Latin Name", "Author" => "Author"));
 			#print_r( $names);
 		}
 		
 	}
-	mysql_free_result($result);
+	mysqli_free_result($result);
 	include 'footer.php';
-	mysql_close($db);
+	mysqli_close($db);
 	ob_end_flush();
 ?>
 

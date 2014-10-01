@@ -82,7 +82,7 @@ function toggle_vis() {
 		$orderbest = !($_GET["show"] == "alpha");
 	}
 	//echo "<h1>Tropical Database</h1>\n";
-	$full = mysql_real_escape_string($full);
+	$full = mysqli_real_escape_string($db, $full);
 
 	//where there any arguments passed to the page
 	$anything = (strlen($_SERVER['QUERY_STRING']) > 1);
@@ -368,23 +368,23 @@ function toggle_vis() {
 		$http_query = $_GET;
 		
 		//for getting totla record count
-		$all = safe_query($string);
+		$all = safe_query($db, $string);
 
 		$result = null;
 		if ($orderbest) {
 			if ($full) {
-				$result = safe_query($string." ORDER BY latinmatch DESC, commonmatch DESC, score DESC LIMIT $pageno, $amount"); 
+				$result = safe_query($db, $string." ORDER BY latinmatch DESC, commonmatch DESC, score DESC LIMIT $pageno, $amount"); 
 			}else {
-				$result = safe_query($string." LIMIT $pageno, $amount"); 
+				$result = safe_query($db, $string." LIMIT $pageno, $amount"); 
 			}
 		}else {
-			$result = safe_query($string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
+			$result = safe_query($db, $string." ORDER BY `Latin name` ASC LIMIT $pageno, $amount"); 
 		}
 
-		$allcount = mysql_num_rows($all);
+		$allcount = mysqli_num_rows($all);
 				
 		if($full) {
-			echo "<form action=\"query.php\" method=\"get\"><input type=\"hidden\" name=\"full\" value=\"$full\"><p>".mysql_num_rows($all)." records";
+			echo "<form action=\"query.php\" method=\"get\"><input type=\"hidden\" name=\"full\" value=\"$full\"><p>".mysqli_num_rows($all)." records";
 			#echo " found for <b>\"$full\"</b>".($orderbest? " Showing best results first.":" Showing alphabetically.")."";
 			echo " found for <b>\"$full\"</b> Showing records ";
 			echo "<select name=\"show\" onchange=\"this.form.submit()\">
@@ -392,7 +392,7 @@ function toggle_vis() {
 			<option value=\"alpha\" ".($orderbest?"":"selected").">Alphabetically</option>
 			</select></p></form>";
 		}else{
-			echo "<p>".mysql_num_rows($all)." records";
+			echo "<p>".mysqli_num_rows($all)." records";
 			echo ".</p>";
 		}
 		
@@ -410,7 +410,7 @@ function toggle_vis() {
 
 	include 'footer.php';
 
-	mysql_close($db);
+	mysqli_close($db);
 ?>
 	
 <script type="text/javascript">

@@ -43,16 +43,16 @@
 		header('Location: ./', TRUE, 303);
 		die;
 	}
-	$key = mysql_real_escape_string($_GET["id"]);
+	$key = mysqli_real_escape_string($db, $_GET["id"]);
 
 	$redir = null;
 	if (! empty($_GET["redir"])) {
-		$redir = mysql_real_escape_string($_GET["redir"]);
+		$redir = mysqli_real_escape_string($db, $_GET["redir"]);
 	}
 
-	$result = safe_query("SELECT * FROM `PlantPictures` WHERE LCASE(`LatinName`) = LCASE('$key')");
+	$result = safe_query($db, "SELECT * FROM `PlantPictures` WHERE LCASE(`LatinName`) = LCASE('$key')");
 	
-	$row = mysql_fetch_assoc($result);
+	$row = mysqli_fetch_assoc($result);
 	if ($row) {
 		echo "<title>".$row['LatinName']." Images - Useful Tropical Plants</title>";
 		echo "</head>\n<body>";	
@@ -66,9 +66,9 @@
 		echo "</head>\n<body>";
 		include 'header.php';
 		$names = array();
-		#mysql string comparisons aren't case sensitive, no need to convert case
-		$synresult = safe_query('SELECT * FROM `Synonyms`WHERE `LatinName` = "'.$key.'"');
-		while ($row = mysql_fetch_assoc($synresult)) {
+		#mysqli string comparisons aren't case sensitive, no need to convert case
+		$synresult = safe_query($db, 'SELECT * FROM `Synonyms`WHERE `LatinName` = "'.$key.'"');
+		while ($row = mysqli_fetch_assoc($synresult)) {
 			$names[] = $row["TrueLatinName"];
 		}
 		if (count($names) < 1) {
@@ -85,15 +85,15 @@
 		}else {
 			echo "<p>No record for <b>\"".$key."\"</b></p>";
 			echo "<p>\"$key\" is a synonym of the following plants.</p>";
-			mysql_data_seek($synresult, 0);
+			mysqli_data_seek($synresult, 0);
 			output_table_query($synresult, "Nothing", "Synonyms", null, "TrueLatinName", "image.php", "id",-1 , array("LatinName"), array("TrueLatinName" => "LatinName", "Author" => "Author"));
 			#print_r( $names);
 		}
 		
 	}
-	mysql_free_result($result);
+	mysqli_free_result($result);
 	include 'footer.php';
-	mysql_close($db);
+	mysqli_close($db);
 ?>
 
 </body>

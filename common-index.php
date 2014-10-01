@@ -27,9 +27,9 @@ if (empty($_GET["letter"])) {
 
 	echo "<p>Not all plants have their common name in the database, and many plants have multiple common names.<br>Only one common name is given for each plant in the database.</p>";
 
-	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies` WHERE `Common name` <> ''");
+	$numPlantsRes = safe_query($db, "SELECT count(*) FROM `tropicalspecies` WHERE `Common name` <> ''");
 	$numPlants = 0;
-	$numPlantsRow = mysql_fetch_row($numPlantsRes);
+	$numPlantsRow = mysqli_fetch_row($numPlantsRes);
 	if($numPlantsRow) {
 		$numPlants = $numPlantsRow[0];
 		echo "<p>".$numPlants." plants in this database have common names.</p>";
@@ -51,15 +51,15 @@ else
 		trigger_error("Invalid amount: \"".htmlspecialchars($amount)."\", must be a number.");
 	}
 
-	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies` WHERE SUBSTRING(`Common name`, 1, 1) = '$key'");
-	$result = safe_query("SELECT `Latin name`,`Common name` FROM `tropicalspecies` WHERE SUBSTRING(`Common name`, 1, 1) = '$key' ORDER BY `Common name` ASC LIMIT $pageno, $amount");
-	$numPlantsRow = mysql_fetch_row($numPlantsRes);
+	$numPlantsRes = safe_query($db, "SELECT count(*) FROM `tropicalspecies` WHERE SUBSTRING(`Common name`, 1, 1) = '$key'");
+	$result = safe_query($db, "SELECT `Latin name`,`Common name` FROM `tropicalspecies` WHERE SUBSTRING(`Common name`, 1, 1) = '$key' ORDER BY `Common name` ASC LIMIT $pageno, $amount");
+	$numPlantsRow = mysqli_fetch_row($numPlantsRes);
 	
 	if($numPlantsRow) {
 		$allcount = $numPlantsRow[0];
 	}
 
-	echo "<p>Showing ".mysql_num_rows($result)." of ".$allcount." plants beginning with $key</p>";
+	echo "<p>Showing ".mysqli_num_rows($result)." of ".$allcount." plants beginning with $key</p>";
 
 	$http_query = $_GET;
 
@@ -72,7 +72,7 @@ else
 }
 #mysql_free_result($result);
 include 'footer.php';
-mysql_close($db);
+mysqli_close($db);
 ?>
 </body>
 </html>

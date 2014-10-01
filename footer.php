@@ -4,14 +4,14 @@ include_once 'functions.php';
 include_once 'dbconnect.php';
 
 $numPlants = 5500;
-$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
-$numPlantsRow = mysql_fetch_row($numPlantsRes);
+$numPlantsRes = safe_query($db, "SELECT count(*) FROM `tropicalspecies`");
+$numPlantsRow = mysqli_fetch_row($numPlantsRes);
 if($numPlantsRow) {
 	$numPlants = $numPlantsRow[0];
 }
 
-$words = safe_query("SHOW TABLE STATUS LIKE 'tropicalspecies'");
-$row = mysql_fetch_row($words);
+$words = safe_query($db, "SHOW TABLE STATUS LIKE 'tropicalspecies'");
+$row = mysqli_fetch_row($words);
  $date =  date('Y-m-d', strtotime($row[11]));
 
 echo '</div></div><div class="FOOTER" prefix="dct: http://purl.org/dc/terms/ cc: http://creativecommons.org/ns#"><br/><p class="small"><b>Last update on '.$date.':</b> Now containing '.$numPlants.' plants.</p>';

@@ -14,8 +14,8 @@
 	include 'header.php';
 
 	$numPlants = 5500;
-	$numPlantsRes = safe_query("SELECT count(*) FROM `tropicalspecies`");
-	$numPlantsRow = mysql_fetch_row($numPlantsRes);
+	$numPlantsRes = safe_query($db, "SELECT count(*) FROM `tropicalspecies`");
+	$numPlantsRow = mysqli_fetch_row($numPlantsRes);
 	if($numPlantsRow) {
 		$numPlants = $numPlantsRow[0];
 	}
@@ -57,7 +57,7 @@ EOT;
 	<br>There is a full list of references <a href=\"refs.php\">here.</a></p>\n";
 
 	include 'footer.php';
-	mysql_close($db);	
+	mysqli_close($db);	
 
 ?>
 

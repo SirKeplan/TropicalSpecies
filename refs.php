@@ -14,12 +14,12 @@
 	include 'dbconnect.php';
 	include 'header.php';
 	
-	$result = safe_query("SELECT * FROM `References`");
-	$count = mysql_num_rows($result);
+	$result = safe_query($db, "SELECT * FROM `References`");
+	$count = mysqli_num_rows($result);
 	
 	for ($i = 1; $i< $count; $i++) {
 		#echo "hi";
-		$row = mysql_fetch_assoc($result);
+		$row = mysqli_fetch_assoc($result);
 		#print_r($row);
 		
 		echo "<a id=".$row["No"]."></a>";
@@ -27,13 +27,13 @@
 		echo "<hr/>";
 	}
 	
-	#$row = mysql_fetch_assoc($result);
+	#$row = mysqli_fetch_assoc($result);
 	#print_r($row);
 	#OutputBookRefRecord($row);
 	
 	include 'footer.php';
 
-	mysql_close($db);
+	mysqli_close($db);
 
 
 ?>

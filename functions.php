@@ -2,7 +2,7 @@
 // Set up error reporting to catch all errors
 //error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 //error_reporting(E_ERROR);
-error_reporting(E_ALL ^ E_DEPRECATED);
+error_reporting(E_ALL);
 // Error handeler for reporting errors
 function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
 {
@@ -12,8 +12,8 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
     }
     include_once "header.php";
 	
-	#echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
-	echo "<h1>Sorry an error occured</h1>\n<p>the error has been logged</p>\n";
+	echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
+	#echo "<h1>Sorry an error occured</h1>\n<p>the error has been logged</p>\n";
 	echo "</body></html>\n";
 		
 	emailError($errno, $errmsg, $filename, $linenum, $vars);
@@ -45,14 +45,15 @@ function emailError($errno, $errmsg, $filename, $linenum, $vars) {
 
 $images_path = "plantimages/";
 
-// wrap a mysql query in code to test for sucessful query
-function safe_query($query)
+// wrap a mysqli query in code to test for sucessful query
+function safe_query($db, $query)
 {
-	$res = mysql_query($query);
+	global $db;
+	$res = mysqli_query($db, $query);
 	if(!$res) {
 		//print "<h2>Sorry an Error Occured</h2>\n";
-		$err = mysql_error();
-		$err .=  "\nMySQL error. Query: " . htmlspecialchars($query);
+		$err = mysqli_error();
+		$err .=  "\nmysqli error. Query: " . htmlspecialchars($query);
 		trigger_error($err);
 		exit;
 	}
@@ -98,22 +99,22 @@ function field($row, $col, $col_name) {
 }
 
 function get_col_names($col, $table, $relation, $ignore = array("ID","Dis")) {
-	$result_cols = safe_query("DESCRIBE `$table`");
+	$result_cols = safe_query($db, "DESCRIBE `$table`");
 	if (!$result_cols) {
-		echo 'Could not run query: ' . mysql_error();
+		echo 'Could not run query: ' . mysqli_error();
 		exit;
 	}
-	if (mysql_num_rows($result_cols) <= 0) {
+	if (mysqli_num_rows($result_cols) <= 0) {
 		return;
 	}
 
-	//$result = safe_query("SELECT * FROM `$table` WHERE `$col` = '$relation'");
+	//$result = safe_query($db, "SELECT * FROM `$table` WHERE `$col` = '$relation'");
 	//echo "<table border = \"1\" >\n";
 
 	// put the column names into an array
 	$columns = array();
 	$index = 0;
-	while ($row2 = mysql_fetch_row($result_cols)) {
+	while ($row2 = mysqli_fetch_row($result_cols)) {
 		//echo $ignore;
 		if ($row2[0] == $col || in_array($row2[0], $ignore)) {
 			continue;
@@ -127,32 +128,32 @@ function get_col_names($col, $table, $relation, $ignore = array("ID","Dis")) {
 
 // my nice function
 function output_table($col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $ignore = array("ID","Dis")) {
-	$relation = mysql_real_escape_string($relation);
+	$relation = mysqli_real_escape_string($db, $relation);
 	$sql = "SELECT * FROM `$table` WHERE `$col` = '$relation' ORDER BY `$table`.`$linkwith` ASC";
 	#echo $sql;
 	output_table_sql($sql, $col, $table, $relation, $linkwith, $linkto, $getfield, -1, $ignore);
 }
 
 function output_table_sql($sql, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $ignore = array("ID","Dis")) {
-	$result = safe_query($sql);
+	$result = safe_query($db, $sql);
 	output_table_query($result, $col, $table, $relation, $linkwith, $linkto, $getfield, $trim, $ignore);
 }
 
 // my nice function
 function output_table_query($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $ignore = array("ID","Dis"), $fnames = null) {
 	//include_once "functions.php";
-	/*$result_cols = safe_query("DESCRIBE `$table`");
+	/*$result_cols = safe_query($db, "DESCRIBE `$table`");
 		if (!$result_cols) {
-	echo 'Could not run query: ' . mysql_error();
+	echo 'Could not run query: ' . mysqli_error();
 	exit;
 	}
-	if (mysql_num_rows($result_cols) <= 0) {
+	if (mysqli_num_rows($result_cols) <= 0) {
 	return;
 	}
 	*/
 	$columns = get_col_names($col, $table, $relation, $ignore);
 
-	$result = $query;//safe_query($sql);
+	$result = $query;//safe_query($db, $sql);
 		
 	echo "<table class=\"RECORDTABLE\" >\n";
 	echo "<tr>";
@@ -169,7 +170,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 		// put the column names into an array
 	$columns = array();
 	$index = 0;
-	while ($row2 = mysql_fetch_row($result_cols)) {
+	while ($row2 = mysqli_fetch_row($result_cols)) {
 
 	if ($row2[0] == $col || in_array($row2[0], $ignore)) {
 	continue;
@@ -183,7 +184,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 	//echo "<th>Food</th><th>Notes</th>";
 
 
-	while ($row = mysql_fetch_assoc($result)) {
+	while ($row = mysqli_fetch_assoc($result)) {
 		echo '<tr class="RECORDTABLE">';
 		foreach ($columns as $row2) {
 			//print_r($row2[0].", ");
@@ -210,24 +211,24 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 		}
 		echo "</tr>\n";
 	}
-	mysql_free_result($result);
+	mysqli_free_result($result);
 	echo "</table>\n";
 }
 
 function output_table_query_limited($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $names = array(), $linkfrom = null) {
 	//include_once "functions.php";
-	/*$result_cols = safe_query("DESCRIBE `$table`");
+	/*$result_cols = safe_query($db, "DESCRIBE `$table`");
 		if (!$result_cols) {
-	echo 'Could not run query: ' . mysql_error();
+	echo 'Could not run query: ' . mysqli_error();
 	exit;
 	}
-	if (mysql_num_rows($result_cols) <= 0) {
+	if (mysqli_num_rows($result_cols) <= 0) {
 	return;
 	}
 	*/
 	$columns = $names;//get_col_names($col, $table, $relation, $ignore);
 
-	$result = $query;//safe_query($sql);
+	$result = $query;//safe_query($db, $sql);
 		
 	echo "<table class=\"RECORDTABLE\" >\n";
 	echo "<tr>";
@@ -243,7 +244,7 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 		// put the column names into an array
 	$columns = array();
 	$index = 0;
-	while ($row2 = mysql_fetch_row($result_cols)) {
+	while ($row2 = mysqli_fetch_row($result_cols)) {
 
 	if ($row2[0] == $col || in_array($row2[0], $ignore)) {
 	continue;
@@ -259,7 +260,7 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 	if ($linkfrom != null) {
 		#$linkwith = $linkfrom;
 	}
-	while ($row = mysql_fetch_assoc($result)) {
+	while ($row = mysqli_fetch_assoc($result)) {
 		echo '<tr class="RECORDTABLE">';
 		foreach ($columns as $row2) {
 			//print_r($row2[0].", ");
@@ -296,7 +297,7 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 		}
 		echo "</tr>\n";
 	}
-	mysql_free_result($result);
+	mysqli_free_result($result);
 	echo "</table>\n";
 }
 
@@ -320,14 +321,14 @@ function search($plain_search, $table, $rows, $start = 0, $length = 10000) {
 	} else {
 		$sql = "SELECT * FROM `$table` ORDER BY `$table`.`$rows[0]` ASC LIMIT $start , $length";
 	}
-	$result = safe_query($sql);
-	$total_count = mysql_num_rows(safe_query("SELECT * FROM `$table`"));
+	$result = safe_query($db, $sql);
+	$total_count = mysqli_num_rows(safe_query($db, "SELECT * FROM `$table`"));
 
 	/*if ($plain_search) {
-	 $no = mysql_num_rows($result);
+	 $no = mysqli_num_rows($result);
 	echo "<p>showing $no result".($no == 1?"":"s")." for search '$plain_search'</p>";
 	} else {
-	$no = mysql_num_rows($result);
+	$no = mysqli_num_rows($result);
 	$page = ($start/$length) + 1;
 		
 	echo "<p>showing page $page of $total_count records.</p>";
@@ -343,7 +344,7 @@ function echo_nav($file, $search, $count, $off) {
 }
 
 function echo_text($result, $search, $off, $count, $total_count) {
-	$no = mysql_num_rows($result);
+	$no = mysqli_num_rows($result);
 	$page = ($off/$count) + 1;
 	$total_pages = ceil($total_count/$count);
 	$total_pages = $total_pages < 1 ? 1 : $total_pages;
@@ -464,17 +465,17 @@ function link_to_book2($string) {
 }
 
 function OutputBookRefRecord($row, $hover = true) {
-	
-	$result = safe_query("DESCRIBE `References`");
+	global $db;
+	$result = safe_query($db, "DESCRIBE `References`");
 	if (!$result) {
-		echo 'Could not run query: ' . mysql_error();
+		echo 'Could not run query: ' . mysqli_error();
 		exit;
 	}
 	$out = "";
-	if (mysql_num_rows($result) > 0) {
+	if (mysqli_num_rows($result) > 0) {
 		#echo '<dl class="refview">';
 		$out .= "<dl class=\"refview\">";
-		while ($row1 = mysql_fetch_row($result)) {
+		while ($row1 = mysqli_fetch_row($result)) {
 			$col_name = $row1[0];
 			if(!array_key_exists($col_name,$row)) {
 				continue;
@@ -534,7 +535,7 @@ function BookRef() {
 		trigger_error("A book ID should be specified");
 		return;
 	}
-	$key = mysql_real_escape_string($_GET["id"]);
+	$key = mysqli_real_escape_string($db, $_GET["id"]);
 	
 	if ($key == "K") {
 		echo "<title>Plants for a Future</title>";
@@ -542,13 +543,13 @@ function BookRef() {
 		echo '<div class="CONTENT">';
 		OutputBookRefRecord( array("No" => "K", "Title" => "Plants for a Future", "Author" => "Ken Fern ", "Description" => "Notes from observations, tasting etc at Plants For A Future and on field trips."));
 
-		#mysql_close($db);
+		#mysqli_close($db);
 		return;
 	}
 
-	$result = safe_query("SELECT * FROM `References` WHERE `No` = $key");
+	$result = safe_query($db, "SELECT * FROM `References` WHERE `No` = $key");
 	
-	$row = mysql_fetch_assoc($result);
+	$row = mysqli_fetch_assoc($result);
 	if ($row) {
 		echo "<title>".$row['Title']."</title>";
 		echo "</head>\n<body>";	
@@ -563,14 +564,15 @@ function BookRef() {
 		echo "<p><b>No record for \"".$key."\"</b></p>";
 		
 	}
-	mysql_free_result($result);
+	mysqli_free_result($result);
 
 }
 
 function find_images($name) {
+	global $db;
 	$imgs = array();
-	$result = safe_query("SELECT `FileName`, `Caption`, `Author`, `AuthorRef`, `Attribution`, `AttributionRef` FROM `PlantPictures` WHERE `LatinName` = '$name' AND `Shown` = TRUE ORDER BY Sort");
-	while ($row = mysql_fetch_array($result)) {
+	$result = safe_query($db, "SELECT `FileName`, `Caption`, `Author`, `AuthorRef`, `Attribution`, `AttributionRef` FROM `PlantPictures` WHERE `LatinName` = '$name' AND `Shown` = TRUE ORDER BY Sort");
+	while ($row = mysqli_fetch_array($result)) {
 		$imgs[] = array("file" => $row[0], "caption" => $row[1], "author" => $row[2], "author_ref" => $row[3], "attribution" => $row[4], "attribution_ref" => $row[5]);
 	}
 	return $imgs;
