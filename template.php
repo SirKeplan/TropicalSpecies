@@ -22,7 +22,7 @@ if ($redir) {
 }
 ?>	
 <div class="latin_name"><h1><?php echo $row['Latin name']?></h1></div>
-<div class="author"><h4><?php echo $row['Author']?></h4></div>
+<div class="author"><h4><?php echo htmlspecialchars($row['Author'])?></h4></div>
 <div class="family"><h4><?php echo $row['Family']?></h4></div>
 <?php
 if ($row['NomenclatureNotes'] != null) {
@@ -59,7 +59,7 @@ EOT;
 	<?php 
 	#output an individual synonym.
 	function OutputRecordSyn($row) {
-		echo "<p><b><i>{$row["LatinName"]}</i></b> {$row["Author"]}</p>\n";
+		echo "<p><b><i>{$row["LatinName"]}</i></b> ".htmlspecialchars($row["Author"])."</p>\n";
 	}
 	$key = $row['Latin name'];
 
