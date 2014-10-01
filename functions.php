@@ -474,7 +474,7 @@ function OutputBookRefRecord($row, $hover = true) {
 	$out = "";
 	if (mysqli_num_rows($result) > 0) {
 		#echo '<dl class="refview">';
-		$out .= "<dl class=\"refview\">";
+		$out .= "<dl class=\"refview".($hover?"":" comment refpage")."\">";
 		while ($row1 = mysqli_fetch_row($result)) {
 			$col_name = $row1[0];
 			if(!array_key_exists($col_name,$row)) {
@@ -512,10 +512,7 @@ function OutputBookRefRecord($row, $hover = true) {
 					
 				}
 			} else {
-				#echo "<dt>".$col_name."</dt>";
-				#echo "<dd>";
-				#echo link_to_book2($row[$col_name]);
-				#echo "</dd>\n";
+
 				$out .=  "<dt>".$col_name."</dt>";
 				$out .=  "<dd>";
 				$cont = link_to_book2(htmlspecialchars($row[$col_name]));

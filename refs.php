@@ -24,7 +24,7 @@
 		
 		echo "<a id=".$row["No"]."></a>";
 		echo OutputBookRefRecord($row, false);
-		echo "<hr/>";
+		#echo "<hr/>";
 	}
 	
 	#$row = mysqli_fetch_assoc($result);

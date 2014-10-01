@@ -390,6 +390,10 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
 	padding-bottom:0px;
 }
 
+.refpage {
+	padding-top:0px;
+}
+
 .avatar {
 	width: 72px;
 	height:72px;
@@ -657,7 +661,7 @@ TABLE#QUERYTABLE {
 }
 
 dl.refview {
-	margin:0px;
+	margin-top:0px;
 }
 dl.refview > dt:nth-child(1) {
 	color:red;
