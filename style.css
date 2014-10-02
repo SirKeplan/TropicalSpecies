@@ -722,7 +722,7 @@ dl.refview > dd {
 }
 }/*//end tablety*/
 @media only screen and (max-width: 640px) {
-.tableBase1 {
+.tableRecords {
 	width: 100%;
 }
 .tableRecords td:nth-of-type(1) {width: auto;}
