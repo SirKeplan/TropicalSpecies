@@ -338,9 +338,10 @@ a:active > .Thumb	{
 
 .tableBase1 > tbody > tr:nth-child(even) {background-color: #C4E2C4}
 
-.tableBase1 > tbody > tr > th {
+.tableBase1 th {
 	color:white;
 	background:green;
+	padding: 0.3em 0.5em; 
 }
 
 tbody, tr, th, td {
@@ -362,18 +363,13 @@ tbody, tr, th, td {
 }
 
 .tableRecords {
-   	/*width:remainder;*/
 	/*tableBase1*/
 }
-
-td.NORMAL {	
-	padding-left: 5px;
-}
-
-.NORMAL {  }
-.ANCHORH { /*width: 25%;*/ }
-.ANCHOR { font-weight:bold;	width: 25%; padding: 0.1cm 0.2cm; vertical-align:top;}
-
+.tableRecords td:nth-of-type(1) {font-weight:bold;	width: 25%; padding: 0.3em 0.5em; vertical-align:top;}
+.tableRecords td:nth-of-type(2) {padding-left: 0.5em;}
+/*.ANCHOR {font-weight:bold;	width: 25%; padding: 0.3em 0.5em; vertical-align:top;}
+.NORMAL {padding-left: 0.5em;}
+*/
 .miniBorder {
 	border: 1px solid #386C38;
 	display: inline-block
@@ -726,6 +722,10 @@ dl.refview > dd {
 }
 }/*//end tablety*/
 @media only screen and (max-width: 640px) {
+.tableBase1 {
+	width: 100%;
+}
+.tableRecords td:nth-of-type(1) {width: auto;}
 .small {
 	width:100%;
     margin-left: 0px;
@@ -827,10 +827,6 @@ li.SEARCHBUTTON {
 a.NAVBARITEM:link, a.NAVBARITEM:visited {
 	display:block;
 }
-.RECORDTABLE {
-	width: 100%;
-}
-.ANCHOR { width: auto;}
 
 }/*//end 480*/
 @media only screen and (max-width: 360px) {
