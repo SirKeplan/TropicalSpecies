@@ -329,46 +329,69 @@ a:active > .Thumb	{
 }
 
 /*different tables*/
-
-table.PROPERTIESTABLE {
-	width:remainder;
-	padding: 5px;
-
+.tableBase1 {
 	border-collapse:collapse;
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
 	font-size: small;
-}
-table.PROPERTIESTABLE td + td {
-	min-width:200px;
-
-}
-table.PROPERTIESTABLE td:first-child {
-	/*font-weight:bold;*/
+	border: 1px solid black;
 }
 
-table.RECORDTABLE {
-   	/*width:remainder;*/
-	border-collapse:collapse;
-	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-size: small;
-}
+.tableBase1 > tbody > tr:nth-child(even) {background-color: #C4E2C4}
 
-tr:nth-child(even) {background-color: #C4E2C4}
-
-th {
+.tableBase1 > tbody > tr > th {
 	color:white;
 	background:green;
 }
 
-table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
-	border: 1px solid black;
+tbody, tr, th, td {
+	border: inherit;
 }
 
-.PROPERTIESTABLE {
-	border: 1px solid black;
+.tableProperties {
+	width:remainder;
+	padding: 1px 3px;
+	/*tableBase1*/
+}
+
+.tableProperties td {
 	padding: 1px 3px;
 }
+/*second column*/
+.tableProperties td + td {
+	min-width:200px;
+}
 
+.tableRecords {
+   	/*width:remainder;*/
+	/*tableBase1*/
+}
+
+td.NORMAL {	
+	padding-left: 5px;
+}
+
+.NORMAL {  }
+.ANCHORH { /*width: 25%;*/ }
+.ANCHOR { font-weight:bold;	width: 25%; padding: 0.1cm 0.2cm; vertical-align:top;}
+
+.miniBorder {
+	border: 1px solid #386C38;
+	display: inline-block
+}
+
+.tableQuery {
+	margin: -2px;
+	border-collapse:separate;
+	border:0;
+}
+
+.tableQuery tr:nth-child(even) {background-color: #FFF !important}
+.tableQuery tr:nth-child(odd) {background-color: #559655}
+.tableQuery td:nth-of-type(1) {background-color: #78A578}
+
+.tableQuery td, table th  { border-collapse:separate; }
+
+/*comment stuff*/
 .comside {
 	float:left;
 	margin-right:8px;
@@ -471,29 +494,6 @@ table.RECORDTABLE, th, td.NORMAL, td.ANCHOR {
     border-radius: 4px;
     
 }
-
-td.NORMAL {	
-	padding-left: 5px;
-}
-.TABLETITLE {margin-left: 25px; margin-bottom: 0px;}
-.NORMAL {  }
-.ANCHORH { /*width: 25%;*/ }
-.ANCHOR { font-weight:bold;	width: 25%; padding: 0.1cm 0.2cm; vertical-align:top;}
-
-#fancy {
-	border: 1px solid #386C38;
-	display: inline-block
-}
-
-TABLE#QUERYTABLE {
-	margin: -2px;
-}
-
-#QUERYTABLE tr:nth-child(even) {background-color: #FFF}
-#QUERYTABLE tr:nth-child(odd) {background-color: #559655}
-#QUERYTABLE td:nth-of-type(1) {background-color: #78A578}
-
-#QUERYTABLE td, table th  {  }
 
 .INVISIBLE {
 	border-collapse:collapse;

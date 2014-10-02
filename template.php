@@ -141,11 +141,11 @@ EOT;
 <h3>Habitat</h3><?php echo link_to_book(nl2br($row['Habitat']))?><br>
 
 <h3>Properties</h3>
-<table class="PROPERTIESTABLE">
+<table class="tableBase1 tableProperties">
 <?php 
 	#output a table, various "properties" of the plant, 
 	#most fields are only output if they contain any data
-	$format = "<tr>\n\t<td class=\"PROPERTIESTABLE\">%s</td><td class=\"PROPERTIESTABLE\">%s</td>\n</tr>\t\n";
+	$format = "<tr>\n\t<td>%s</td><td>%s</td>\n</tr>\t\n";
 		
 	if ($row['WeedPotential']) {
 		$arrayk = array("0", "1");

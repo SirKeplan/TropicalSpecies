@@ -111,8 +111,8 @@ function toggle_vis() {
 	Note: currently a lot of this information is incomplete and some fields will return few results.<br/>
 	Fields marked with * have incomplete information</p>
 	<form id="QueryForm" method="get" action="query.php">
-	<div id="fancy">
-	<table id="QUERYTABLE">
+	<div class="miniBorder">
+	<table id="QUERYTABLE" class="tableBase1 tableQuery">
 		<tr>
 			<td class="TITLE"><b>Habit</b></td>
 			<td><select multiple="multiple" name="Habit" size="5">

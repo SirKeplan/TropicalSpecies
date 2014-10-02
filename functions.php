@@ -12,8 +12,8 @@ function userErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
     }
     include_once "header.php";
 	
-	echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
-	#echo "<h1>Sorry an error occured</h1>\n<p>the error has been logged</p>\n";
+	#echo "<h1>Sorry an error occured</h1>\n<p>line $linenum: $errmsg</p>\n";
+	echo "<h1>Sorry an error occured</h1>\n<p>the error has been logged</p>\n";
 	echo "</body></html>\n";
 		
 	emailError($errno, $errmsg, $filename, $linenum, $vars);
@@ -230,7 +230,7 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 
 	$result = $query;//safe_query($db, $sql);
 		
-	echo "<table class=\"RECORDTABLE\" >\n";
+	echo "<table class=\"tableBase1 tableRecords\" >\n";
 	echo "<tr>";
 	foreach ($columns as $row2) {
 		if ($linkwith != null && $linkwith == $row2) {
@@ -581,13 +581,13 @@ function output_image_info($imgdata, $hidden=false) {
 		if ($imgdata["attribution"]) {
 			$attribution = "${imgdata["attribution"]}";
 			if ($imgdata["attribution_ref"]) {
-				$attribution .= " (<a href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)";
+				$attribution .= " (<a target=\"_blank\" href=\"${imgdata["attribution_ref"]}\">${imgdata["attribution_ref"]}</a>)";
 				#$attribution .= " (<a href=\"".urlencode($imgdata["attribution_ref"])."\">${imgdata["attribution_ref"]}</a>)";
 			}
 			$attribution .= "<br>";
 		}
 		if ($imgdata["author_ref"]) {
-			$author = "<a href=\"${imgdata["author_ref"]}\">${imgdata["author"]}</a>";
+			$author = "<a target=\"_blank\" href=\"${imgdata["author_ref"]}\">${imgdata["author"]}</a>";
 			#$author = "<a href=\"".urlencode($imgdata["author_ref"])."\">${imgdata["author"]}</a>";
 		}else {
 			$author = $imgdata["author"];
