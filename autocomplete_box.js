@@ -6,6 +6,25 @@
 	var original = "";
 	//var pass = true;
 	
+window.onload=function() {
+	// onfocus="togglePrompt(this, true)" onblur="togglePrompt(this, false)" 
+	//	onkeydown="return selectItem(event, this);" onkeyup="return getResults(event, this, this.value);"
+	
+	
+	// onmousedown="return doSomething(event, this.boo);" onmouseover="return onHover(event, this.boo);" onmouseout="return onUnHover(event, this.boo);" oninput="selected(event, boo, searchResults)"
+	var box = document.getElementById("boo");
+	box.onfocus = function () {togglePrompt(this, true)};
+	box.onblur = function () {togglePrompt(this, false)};
+	
+	box.onkeydown = function (e) {return selectItem(e, this)};
+	box.onkeyup = function (e) {return getResults(e, this, this.value)};
+	
+	document.getElementById("searchResults").onmousedown = function (e) {return doSomething(e, box);};
+	document.getElementById("searchResults").onmouseover = function (e) {return onHover(e, box);};
+	document.getElementById("searchResults").onmouseout = function (e) {return onUnHover(e, box);};
+
+}
+	
 function togglePrompt (box, focus) {
 	var ele = document.getElementById("searchResults");
 	//if (pass) {
@@ -24,6 +43,7 @@ function togglePrompt (box, focus) {
 	}
 }
 
+//click
 function doSomething(e, box) {
     if (e.target !== e.currentTarget) {
 		box.style.cssText = "font-style: normal;color: black;";
@@ -35,6 +55,8 @@ function doSomething(e, box) {
         var ele = document.getElementById("searchResults");
 		ele.style.display = "none"; 
 		box.focus();
+		box.setSelectionRange(box.value.length,box.value.length);
+
 		return false;
 
     }
@@ -58,7 +80,7 @@ function onHover(e, box) {
 }
 function onUnHover(e, box) {
 	if (e.target !== e.currentTarget) {
-        //e.target.className = "searchRes";
+        e.target.className = "searchRes";//TODO: remove
     }
 }
 
@@ -66,7 +88,7 @@ function scroll(e, box, index) {
 	scrolling = true;
 	var ele = document.getElementById("searchResults");
 	if (selected >= 0) {
-		item = ele.children[selected];
+		var item = ele.children[selected];
 		item.className = "searchRes";
 		ele.children[selected] = item;
 	}
@@ -82,7 +104,7 @@ function scroll(e, box, index) {
 		return false;
 	}
 	
-	item = ele.children[selected];//
+	var item = ele.children[selected];//
 	item.className += " searchResHover";
 	ele.children[selected] = item;
 	e.stopPropagation();
@@ -117,7 +139,6 @@ function getResults(e, box, typed) {
 	ele.style.display = "block";
 	if (scrolling) {
 		scrolling = false;
-
 		return false;
 	}
 	selected =-1;
@@ -126,20 +147,19 @@ function getResults(e, box, typed) {
 	len = typed.length;
 
 	var xmlhttp;
-	if (typed.length==0)
-	  { 
-	  document.getElementById("searchResults").innerHTML="";
-	 // document.getElementById("searchResults").size=0;
-	  return;
-	  }
-	if (window.XMLHttpRequest)
-	  {// code for IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp=new XMLHttpRequest();
-	  }
-	else
-	  {// code for IE6, IE5
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
+	if (typed.length==0) { 
+		ele.innerHTML="";
+		ele.style.display = "none"; 
+		//alert("yo");
+		// document.getElementById("searchResults").size=0;
+		return;
+	}
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	 }
+	else {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
 	xmlhttp.onreadystatechange=function()  {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200){
 			var strings = xmlhttp.responseText.split(";");
@@ -155,7 +175,7 @@ function getResults(e, box, typed) {
 			//	var e = evt || event;
 			var key = e.which || e.keyCode;
 
-			if (key == 8) {
+			if (key == 8) {//backspace
 				//box.setSelectionRange(len,box.value.length);
 
 				//box.value = typed.substring(0,typed.length-1);
@@ -167,7 +187,7 @@ function getResults(e, box, typed) {
 			//len = typed.length;
 
 		}
-	  }
+	}
 	xmlhttp.open("GET","tsresults.php?typed="+typed,true);
 	xmlhttp.send();
 }
