@@ -17,12 +17,12 @@
 	<p></p>
 	<form class="searchform">
 		<input type="search" Value="poo" id="boo" autocomplete="off" onfocus="togglePrompt(boo, true)" onblur="togglePrompt(boo, false)" 
-		onkeydown="return selectItem(event, boo);" onkeyup="getResults(event, this, this.value)">
+		onkeydown="return selectItem(event, boo);" onkeyup="return getResults(event, this, this.value);">
 <!--	<select id="searchResults" style="display:none;" size="6" onmousedown="doSomething(event, boo)" oninput="selected(event, boo, searchResults)"></select>
 -->
-	<div id="searchResults" onmousedown="doSomething(event, boo)" oninput="selected(event, boo, searchResults)"></div>
+	<div id="searchResults" style="display:none;" onmousedown="return doSomething(event, boo);" onmouseover="return onHover(event, boo);" onmouseout="return onUnHover(event, boo);" oninput="selected(event, boo, searchResults)"></div>
 
-	<p>Layout stuffs...</p></form>
+	<p id="out">Layout stuffs...</p></form>
 </body>
 
 </html>

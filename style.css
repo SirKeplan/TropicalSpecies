@@ -603,7 +603,7 @@ tbody, tr, th, td {
 	overflow: hidden;
 }
 
-.searchRes:hover {
+.searchResHover {
 	background-color: #357CFF;
 	display:block;
 }

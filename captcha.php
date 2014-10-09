@@ -8,6 +8,8 @@ $questions = array(
 		"a square has how many sides?" => 4,
 		"3 times 3 is?" => 9,
 		"what is half of 100?" => 50,
+		"10 times 10 is?" => 100,
+		"6 plus 6 is?" => 12,
 		"subtract 1 from 12" => 11
 	);
 if (($q = (null&&$_GET["q"])) && ($a = (null&&$_GET["a"]))) {
@@ -27,6 +29,7 @@ function is_correct($question_id, $answer) {
 		emailError(88, $question_id." is not a valid captcha question", "", "27?", "answer: ".$answer);
 		return false;
 	}
+	emailError(0, $question_id." is a captcha question", "", "30?", "answer: ".$answer);
 	return $questions[$question_id] == $answer;
 }
 ?>
