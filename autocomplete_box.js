@@ -17,7 +17,7 @@ window.onload=function() {
 	box.onblur = function () {togglePrompt(this, false)};
 	
 	box.onkeydown = function (e) {return selectItem(e, this)};
-	box.onkeyup = function (e) {return getResults(e, this, this.value)};
+	box.onkeyup = function (e) {return getResults(e, this, this.value)};//shouls use onkeypress instead?
 	
 	document.getElementById("searchResults").onmousedown = function (e) {return doSomething(e, box);};
 	document.getElementById("searchResults").onmouseover = function (e) {return onHover(e, box);};
@@ -127,7 +127,7 @@ function selectItem(e, box) {
 //keyup
 function getResults(e, box, typed) {	
 	
-	if (e.ctrlKey==1 || e.keyCode == 17) {
+	if (e.ctrlKey==1 || e.keyCode == 17) {//ctrl was down?
 		return;
 	}
 	lastLen = len;
@@ -148,7 +148,9 @@ function getResults(e, box, typed) {
 
 	var xmlhttp;
 	if (typed.length==0) { 
-		ele.innerHTML="";
+		while (ele.firstChild) {
+			ele.removeChild(ele.firstChild);
+		}
 		ele.style.display = "none"; 
 		//alert("yo");
 		// document.getElementById("searchResults").size=0;
@@ -167,11 +169,18 @@ function getResults(e, box, typed) {
 			if (strings.length <= 1) {
 				return;
 			}
-			for (var index = 0; index < (strings.length-1); index++) {
-				out += "   <div class=\"searchRes\" value="+index+">"+strings[index]+"</div>\n";
+			while (ele.firstChild) {
+				ele.removeChild(ele.firstChild);
 			}
-			document.getElementById("searchResults").innerHTML=out;//xmlhttp.responseText.split("\n");
-			document.getElementById("searchResults").size=6;
+			for (var index = 0; index < (strings.length-1); index++) {
+				//out += "   <div class=\"searchRes\" value="+index+">"+strings[index]+"</div>\n";
+				var div=document.createElement("div");
+				div.className = "searchRes";
+				div.textContent = strings[index];
+				ele.appendChild(div);
+			}
+			//document.getElementById("searchResults").innerHTML=out;//xmlhttp.responseText.split("\n");
+			//document.getElementById("searchResults").size=6;
 			//	var e = evt || event;
 			var key = e.which || e.keyCode;
 
