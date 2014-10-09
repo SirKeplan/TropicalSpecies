@@ -565,6 +565,49 @@ tbody, tr, th, td {
 	box-sizing:border-box;
 }
 
+.searchform {
+	font-size: larger;
+	padding-left: 3em;
+	display:inline:block;
+	width:200px;
+}
+
+.searchform input[type="search"] {
+	overflow: hidden; width: auto;
+	font-size: 100%;
+	/*width:40ex;*/
+	width: 200px;
+	border-style:solid;
+	border-width:1px;
+	border-color:grey;
+	font-style: italic;
+	color: grey;
+	box-sizing:border-box;
+}
+
+#searchResults {
+	display:block;
+	position: absolute;
+	border: 1px solid grey;
+	border-top:0;
+	background-color: #FFF ;
+	box-shadow: 1px 1px 4px gray;
+	width: 200px;
+	box-sizing:border-box;
+}
+
+.searchRes {
+	cursor:pointer;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.searchRes:hover {
+	background-color: #357CFF;
+	display:block;
+}
+
 #mainsearchbox input[type="submit"] {
 	font-size: 100%;
 	
@@ -722,6 +765,7 @@ dl.refview > dd {
 }
 }/*//end tablety*/
 @media only screen and (max-width: 640px) {
+
 .tableRecords {
 	width: 100%;
 }
@@ -741,6 +785,10 @@ dl.refview > dd {
 }/*//end 640*/
 
 @media only screen and (max-width: 480px) {
+.mainpageletters {
+	margin-left:0;
+	font-size: larger;
+}
 .PageBox {
 	padding-left:15px;
 	padding-right:15px;	
