@@ -18,6 +18,9 @@
 	<form class="searchform" name="searchform">
 		<input type="search" Value="poo" id="boo" name="boo" autocomplete="off">
 		<div id="searchResults" style="display:none;"></div>
+		<script>
+			attachEvents("boo", "searchResults");
+		</script>
 		<p id="out">Layout stuffs...</p>
 	</form>
 </body>

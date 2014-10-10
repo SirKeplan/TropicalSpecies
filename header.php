@@ -23,6 +23,8 @@ function togglePrompt (box, focus) {
 	}
 }
 </script>
+<script src="autocomplete_box.js">
+</script>
 <div class="HEADERBLOCK">
 <div class="HEADERINNER">
 <a class="HOME" href="./">Useful Tropical Plants</a>
@@ -47,9 +49,13 @@ function togglePrompt (box, focus) {
 		<form action="query.php" method="get">
 			<div>
 				<input type="search" class="searchbox" id="searchbox" name="full"  
-				value="Search:" onfocus="togglePrompt(searchbox, true)" 
-				onblur="togglePrompt(searchbox, false)" >
+				value="Search:" autocomplete="off">
 			</div>
+			<div id="searchResults" class="autoCompleteList" style="display:none;"></div>
+		
+			<script>
+			attachEvents("searchbox", "searchResults");
+		</script>
 		</form>
 	</li>
 </ul>

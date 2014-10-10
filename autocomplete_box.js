@@ -4,29 +4,32 @@
 	var lastLen = 0;
 	var selected = -1;// -1 = no item in list/just typed text, 0 or greater is the index in the list
 	var original = "";
+	
+	var ele = null;//document.getElementById("searchResults");
+
 	//var pass = true;
 	
-window.onload=function() {
+function attachEvents(box,results) {
 	// onfocus="togglePrompt(this, true)" onblur="togglePrompt(this, false)" 
 	//	onkeydown="return selectItem(event, this);" onkeyup="return getResults(event, this, this.value);"
 	
 	
 	// onmousedown="return doSomething(event, this.boo);" onmouseover="return onHover(event, this.boo);" onmouseout="return onUnHover(event, this.boo);" oninput="selected(event, boo, searchResults)"
-	var box = document.getElementById("boo");
-	box.onfocus = function () {togglePrompt(this, true)};
-	box.onblur = function () {togglePrompt(this, false)};
+	var box = document.getElementById(box);
+	box.onfocus = function () {togglePrompt2(this, true)};
+	box.onblur = function () {togglePrompt2(this, false)};
 	
 	box.onkeydown = function (e) {return selectItem(e, this)};
 	box.onkeyup = function (e) {return getResults(e, this, this.value)};//shouls use onkeypress instead?
 	
-	document.getElementById("searchResults").onmousedown = function (e) {return doSomething(e, box);};
-	document.getElementById("searchResults").onmouseover = function (e) {return onHover(e, box);};
-	document.getElementById("searchResults").onmouseout = function (e) {return onUnHover(e, box);};
+	ele = document.getElementById(results);
+	ele.onmousedown = function (e) {return doSomething(e, box);};
+	ele.onmouseover = function (e) {return onHover(e, box);};
+	ele.onmouseout = function (e) {return onUnHover(e, box);};
 
 }
 	
-function togglePrompt (box, focus) {
-	var ele = document.getElementById("searchResults");
+function togglePrompt2 (box, focus) {
 	//if (pass) {
 		ele.style.display = "none";
 		//(focus?"block":"none");
@@ -52,7 +55,6 @@ function doSomething(e, box) {
 		//alert(e.target.innerHTML);
         box.value = e.target.innerHTML;	
         
-        var ele = document.getElementById("searchResults");
 		ele.style.display = "none"; 
 		box.focus();
 		box.setSelectionRange(box.value.length,box.value.length);
@@ -74,22 +76,21 @@ function findRow3(node)
 
 function onHover(e, box) {
 	if (e.target !== e.currentTarget) {
-        e.target.className += " searchResHover";
+        e.target.className += " autoListItemHover";
         scroll(e, box, findRow3(e.target));
     }
 }
 function onUnHover(e, box) {
 	if (e.target !== e.currentTarget) {
-        e.target.className = "searchRes";//TODO: remove
+        e.target.className = "autoListItem";//TODO: remove
     }
 }
 
 function scroll(e, box, index) {
 	scrolling = true;
-	var ele = document.getElementById("searchResults");
 	if (selected >= 0) {
 		var item = ele.children[selected];
-		item.className = "searchRes";
+		item.className = "autoListItem";
 		ele.children[selected] = item;
 	}
 	selected = index;
@@ -105,7 +106,7 @@ function scroll(e, box, index) {
 	}
 	
 	var item = ele.children[selected];//
-	item.className += " searchResHover";
+	item.className += " autoListItemHover";
 	ele.children[selected] = item;
 	e.stopPropagation();
 	box.value = item.innerHTML;
@@ -134,7 +135,6 @@ function getResults(e, box, typed) {
 	if (typed.length == lastLen) {
 		return;
 	}
-	var ele = document.getElementById("searchResults");
 	
 	ele.style.display = "block";
 	if (scrolling) {
@@ -175,7 +175,7 @@ function getResults(e, box, typed) {
 			for (var index = 0; index < (strings.length-1); index++) {
 				//out += "   <div class=\"searchRes\" value="+index+">"+strings[index]+"</div>\n";
 				var div=document.createElement("div");
-				div.className = "searchRes";
+				div.className = "autoListItem";
 				div.textContent = strings[index];
 				ele.appendChild(div);
 			}

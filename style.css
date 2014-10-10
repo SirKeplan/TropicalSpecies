@@ -563,6 +563,8 @@ tbody, tr, th, td {
 	font-style: italic;
 	color: grey;
 	box-sizing:border-box;
+	vertical-align:bottom;
+
 }
 
 .searchform {
@@ -585,7 +587,7 @@ tbody, tr, th, td {
 	box-sizing:border-box;
 }
 
-#searchResults {
+.autoCompleteList {
 	display:block;
 	position: absolute;
 	border: 1px solid grey;
@@ -596,14 +598,14 @@ tbody, tr, th, td {
 	box-sizing:border-box;
 }
 
-.searchRes {
+.autoListItem {
 	cursor:pointer;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }
 
-.searchResHover {
+.autoListItemHover {
 	background-color: #357CFF;
 	display:block;
 }
