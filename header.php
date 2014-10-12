@@ -54,7 +54,8 @@ function togglePrompt (box, focus) {
 			<div id="searchResults" class="autoCompleteList" style="display:none;"></div>
 		
 			<script>
-			attachEvents("searchbox", "searchResults");
+			var handler2 = new AutoCompleteBox("searchbox", "searchResults");
+
 		</script>
 		</form>
 	</li>

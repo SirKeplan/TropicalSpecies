@@ -17,9 +17,10 @@
 	<p></p>
 	<form class="searchform" name="searchform">
 		<input type="search" Value="poo" id="boo" name="boo" autocomplete="off">
-		<div id="searchResults" style="display:none;"></div>
+		<div id="searchResults" class="autoCompleteList" style="display:none;"></div>
 		<script>
-			attachEvents("boo", "searchResults");
+			var handler = new AutoCompleteBox("boo", "searchResults");
+			//attachEvents("boo", "searchResults");
 		</script>
 		<p id="out">Layout stuffs...</p>
 	</form>

@@ -33,7 +33,7 @@
 	<input type="search" id="searchbox2" name="full" value="Search:" autocomplete="off"/>
 		<div id="searchResultsMain" class="autoCompleteList" style="display:none;"></div>
 		<script>
-			//attachEvents("searchbox2", "searchResultsMain");
+			var handler = new AutoCompleteBox("searchbox2", "searchResultsMain");
 		</script>
 		
 	<input type="submit" value="Search" />
