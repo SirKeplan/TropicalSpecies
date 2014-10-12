@@ -103,6 +103,14 @@ function AutoCompleteBox(param_box,param_results) {
 		}	
 	}
 	//keyup
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var abortRequest = false;
 
 	this.getResults = function (e, typed) {	
 		
@@ -124,7 +132,6 @@ function AutoCompleteBox(param_box,param_results) {
 		
 		len = typed.length;
 
-		var xmlhttp;
 		if (typed.length==0) { 
 			while (ele.firstChild) {
 				ele.removeChild(ele.firstChild);
@@ -133,14 +140,14 @@ function AutoCompleteBox(param_box,param_results) {
 
 			return;
 		}
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		 }
-		else {// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		
+		if (abortRequest) {
+			xmlhttp.abort();
 		}
+		abortRequest = true;
 		xmlhttp.onreadystatechange=function()  {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				abortRequest = false;
 				var strings = xmlhttp.responseText.split(";");
 				var out = "";
 				if (strings.length <= 1) {
