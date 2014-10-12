@@ -597,6 +597,7 @@ tbody, tr, th, td {
 	box-sizing:border-box;
 	max-height:300px;
 	overflow-y: scroll;
+	z-index:100;
 }
 
 .autoListItem {

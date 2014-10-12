@@ -20,11 +20,9 @@ function AutoCompleteBox(param_box,param_results) {
 	var that = this;
 
 	this.togglePrompt2 = function (focus) {
-		//if (pass) {
-			ele.style.display = "none";
-			//(focus?"block":"none");
-			//pass = true;
-		//}
+
+		ele.style.display = "none";
+
 		if (box.value != box.defaultValue && box.value != "") {
 			return;
 		}
@@ -39,8 +37,6 @@ function AutoCompleteBox(param_box,param_results) {
 		if (e.target !== e.currentTarget) {
 			box.style.cssText = "font-style: normal;color: black;";
 
-			//pass = false;
-			//alert(e.target.innerHTML);
 			box.value = e.target.innerHTML;	
 			
 			ele.style.display = "none"; 
@@ -90,12 +86,12 @@ function AutoCompleteBox(param_box,param_results) {
 			ele.scrollTop = (item.offsetTop-ele.offsetHeight)+item.offsetHeight;
 		}
 		ele.children[selected] = item;
-		//scrollIntoView(false);
+
 		e.stopPropagation();
 		box.value = item.innerHTML;
 		box.setSelectionRange(len,box.value.length);
 	}
-		//keydown
+	//keydown
 	this.selectItem = function (e) {
 		var key = e.which || e.keyCode;
 		if (key == 38) {//up
@@ -134,8 +130,7 @@ function AutoCompleteBox(param_box,param_results) {
 				ele.removeChild(ele.firstChild);
 			}
 			ele.style.display = "none"; 
-			//alert("yo");
-			// document.getElementById("searchResults").size=0;
+
 			return;
 		}
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -155,15 +150,12 @@ function AutoCompleteBox(param_box,param_results) {
 					ele.removeChild(ele.firstChild);
 				}
 				for (var index = 0; index < (strings.length-1); index++) {
-					//out += "   <div class=\"searchRes\" value="+index+">"+strings[index]+"</div>\n";
 					var div=document.createElement("div");
 					div.className = "autoListItem";
 					div.textContent = strings[index];
 					ele.appendChild(div);
 				}
-				//document.getElementById("searchResults").innerHTML=out;//xmlhttp.responseText.split("\n");
-				//document.getElementById("searchResults").size=6;
-				//	var e = evt || event;
+
 				var key = e.which || e.keyCode;
 
 				if (key == 8) {//backspace
@@ -173,7 +165,7 @@ function AutoCompleteBox(param_box,param_results) {
 					return;
 				}
 				 
-				box.value += strings[0].substring(typed.length,strings[0].length);
+				box.value = typed + strings[0].substring(typed.length,strings[0].length);
 				box.setSelectionRange(typed.length,strings[0].length);
 				//len = typed.length;
 
