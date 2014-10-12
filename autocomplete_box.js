@@ -56,7 +56,7 @@ function AutoCompleteBox(param_box,param_results) {
 	this.onHover = function(e) {
 		if (e.target !== e.currentTarget) {
 			e.target.className += " autoListItemHover";
-			that.scroll(e, findRow3(e.target));
+			that.scroll(e, findRow3(e.target), false);
 		}
 	}
 	this.onUnHover = function (e) {
@@ -65,7 +65,7 @@ function AutoCompleteBox(param_box,param_results) {
 		}
 	}
 	
-	this.scroll = function (e, index) {
+	this.scroll = function (e, index, keyNav) {
 		scrolling = true;
 		if (selected >= 0) {
 			var item = ele.children[selected];
@@ -86,7 +86,11 @@ function AutoCompleteBox(param_box,param_results) {
 		
 		var item = ele.children[selected];//
 		item.className += " autoListItemHover";
+		if (keyNav) {
+			ele.scrollTop = (item.offsetTop-ele.offsetHeight)+item.offsetHeight;
+		}
 		ele.children[selected] = item;
+		//scrollIntoView(false);
 		e.stopPropagation();
 		box.value = item.innerHTML;
 		box.setSelectionRange(len,box.value.length);
@@ -95,10 +99,10 @@ function AutoCompleteBox(param_box,param_results) {
 	this.selectItem = function (e) {
 		var key = e.which || e.keyCode;
 		if (key == 38) {//up
-			that.scroll(e, selected -1);
+			that.scroll(e, selected -1, true);
 			return false;
 		} else if (key == 40) {  //down
-			that.scroll(e, selected +1);
+			that.scroll(e, selected +1, true);
 			return false;
 		}	
 	}

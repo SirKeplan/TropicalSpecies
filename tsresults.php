@@ -4,8 +4,7 @@ $typed = $_GET["typed"];
 	include 'dbconnect.php';
 $result = safe_query($db, "SELECT `Latin name`
 FROM `tropicalspecies`
-WHERE `Latin name` LIKE '$typed%'
-LIMIT 0 , 10");
+WHERE `Latin name` LIKE '$typed%'");
 while ($row = mysqli_fetch_array($result)) {
 	echo $row[0].";";
 }
