@@ -164,9 +164,10 @@ function AutoCompleteBox(param_box,param_results) {
 					//box.value = typed.substring(0,typed.length-1);
 					return;
 				}
-				 
+				/*temp 
 				box.value = typed + strings[0].substring(typed.length,strings[0].length);
 				box.setSelectionRange(typed.length,strings[0].length);
+				*/
 				//len = typed.length;
 
 			}
