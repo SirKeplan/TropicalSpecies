@@ -195,16 +195,15 @@ li.SEARCHBUTTON > a > img {
 
 .SEARCH {
 	float:right;
-    padding:0px; 
+    padding:1px; 
     margin:0px; 
 	min-width:80px;
-	width:196px;
+	width:194px;
 }
 
 .searchbox {
 	min-width:80px;
 	width:190px;
-	margin:1px; 
 	border-style:solid;
 	border-width:1px;
 	border-color:gray;
@@ -860,7 +859,7 @@ li.SEARCHBUTTON {
 .SEARCH {
 	display:none;
 	float:right;
-    padding:0px; 
+    padding: 1px 0px;
     margin:0px; 
 	width:100%;
 }
