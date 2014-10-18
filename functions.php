@@ -108,9 +108,6 @@ function get_col_names($col, $table, $relation, $ignore = array("ID","Dis")) {
 		return;
 	}
 
-	//$result = safe_query($db, "SELECT * FROM `$table` WHERE `$col` = '$relation'");
-	//echo "<table border = \"1\" >\n";
-
 	// put the column names into an array
 	$columns = array();
 	$index = 0;
@@ -141,19 +138,10 @@ function output_table_sql($sql, $col, $table, $relation, $linkwith = null, $link
 
 // my nice function
 function output_table_query($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $ignore = array("ID","Dis"), $fnames = null) {
-	//include_once "functions.php";
-	/*$result_cols = safe_query($db, "DESCRIBE `$table`");
-		if (!$result_cols) {
-	echo 'Could not run query: ' . mysqli_error();
-	exit;
-	}
-	if (mysqli_num_rows($result_cols) <= 0) {
-	return;
-	}
-	*/
+
 	$columns = get_col_names($col, $table, $relation, $ignore);
 
-	$result = $query;//safe_query($db, $sql);
+	$result = $query;
 		
 	echo "<table class=\"RECORDTABLE\" >\n";
 	echo "<tr>";
@@ -166,20 +154,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 		}
 	}
 	echo "</tr>\n";
-	/*
-		// put the column names into an array
-	$columns = array();
-	$index = 0;
-	while ($row2 = mysqli_fetch_row($result_cols)) {
-
-	if ($row2[0] == $col || in_array($row2[0], $ignore)) {
-	continue;
-	}
-	$columns[$index] = $row2[0];
-	echo ("<th>".$row2[0]."</th>");
-	$index ++;
-	}
-	*/
+	
 	echo "\n";
 	//echo "<th>Food</th><th>Notes</th>";
 
@@ -187,12 +162,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 	while ($row = mysqli_fetch_assoc($result)) {
 		echo '<tr class="RECORDTABLE">';
 		foreach ($columns as $row2) {
-			//print_r($row2[0].", ");
-			//echo "<td class=\"DISEASE\">";
-			//echo "<a href = \"viewrecord.php?disease=".$row["Disease"]."\">".$row["Disease"]."</a>";
-			//echo "</td>\n";
-
-			//echo "<td class=\"".strtoupper($row2)."\">";
+			
 			if ($linkwith != null && $linkwith == $row2) {
 				echo "<td class=\"ANCHOR\">";
 				echo "<a href = \"$linkto?$getfield=".$row[$row2]."\">".$row[$row2]."</a>";
@@ -205,9 +175,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 				}
 			}
 			echo "</td>\n";
-			/*echo "<td class=\"NOTES\" >";
-				echo $row["Notes"];
-			echo "</td>";*/
+			
 		}
 		echo "</tr>\n";
 	}
@@ -216,16 +184,7 @@ function output_table_query($query, $col, $table, $relation, $linkwith = null, $
 }
 
 function output_table_query_limited($query, $col, $table, $relation, $linkwith = null, $linkto = null, $getfield = null, $trim = -1, $names = array(), $linkfrom = null) {
-	//include_once "functions.php";
-	/*$result_cols = safe_query($db, "DESCRIBE `$table`");
-		if (!$result_cols) {
-	echo 'Could not run query: ' . mysqli_error();
-	exit;
-	}
-	if (mysqli_num_rows($result_cols) <= 0) {
-	return;
-	}
-	*/
+
 	$columns = $names;//get_col_names($col, $table, $relation, $ignore);
 
 	$result = $query;//safe_query($db, $sql);
@@ -240,22 +199,8 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 		}
 	}
 	echo "</tr>\n";
-	/*
-		// put the column names into an array
-	$columns = array();
-	$index = 0;
-	while ($row2 = mysqli_fetch_row($result_cols)) {
 
-	if ($row2[0] == $col || in_array($row2[0], $ignore)) {
-	continue;
-	}
-	$columns[$index] = $row2[0];
-	echo ("<th>".$row2[0]."</th>");
-	$index ++;
-	}
-	*/
 	echo "\n";
-	//echo "<th>Food</th><th>Notes</th>";
 
 	if ($linkfrom != null) {
 		#$linkwith = $linkfrom;
@@ -263,12 +208,7 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 	while ($row = mysqli_fetch_assoc($result)) {
 		echo '<tr class="RECORDTABLE">';
 		foreach ($columns as $row2) {
-			//print_r($row2[0].", ");
-			//echo "<td class=\"DISEASE\">";
-			//echo "<a href = \"viewrecord.php?disease=".$row["Disease"]."\">".$row["Disease"]."</a>";
-			//echo "</td>\n";
 
-			//echo "<td class=\"".strtoupper($row2)."\">";
 			$nicevar = null;
 			if ($linkwith != null && $linkwith == $row2) {
 				if ($linkfrom != null) {
@@ -291,9 +231,7 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 				}
 			}
 			echo "</td>\n";
-			/*echo "<td class=\"NOTES\" >";
-				echo $row["Notes"];
-			echo "</td>";*/
+
 		}
 		echo "</tr>\n";
 	}
@@ -304,11 +242,10 @@ function output_table_query_limited($query, $col, $table, $relation, $linkwith =
 
 function search($plain_search, $table, $rows, $start = 0, $length = 10000) {
 	$sql = NULL;
-	//$plain_search = $_GET["search"];
+
 	$search="%".$plain_search."%";
 	if ($search) {
 		$search = strtolower($search);
-		//$search_sql = "WHERE `Latin Name` LIKE '$search' || `Common Name` LIKE '$search' ";
 		 
 		$search_sql = "WHERE LOWER(`$rows[0]`) LIKE '$search' ";
 
@@ -324,15 +261,6 @@ function search($plain_search, $table, $rows, $start = 0, $length = 10000) {
 	$result = safe_query($db, $sql);
 	$total_count = mysqli_num_rows(safe_query($db, "SELECT * FROM `$table`"));
 
-	/*if ($plain_search) {
-	 $no = mysqli_num_rows($result);
-	echo "<p>showing $no result".($no == 1?"":"s")." for search '$plain_search'</p>";
-	} else {
-	$no = mysqli_num_rows($result);
-	$page = ($start/$length) + 1;
-		
-	echo "<p>showing page $page of $total_count records.</p>";
-	}*/
 	return $result;
 }
 
@@ -353,8 +281,6 @@ function echo_text($result, $search, $off, $count, $total_count) {
 	} else {
 		echo "<p>Showing page $page of $total_pages pages ($total_count records)</p>";
 	}
-
-
 }
 
 function echo_count_chooser($file, $search, $count) {
@@ -404,7 +330,7 @@ function shorten($string, $length = 150, $ellipse = "...") {
 * Nice function does nice stuff
 */
 function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
-	//echo htmlspecialchars(var_dump($http_query));
+
 	$http_query["pageno"] = 0;
 	echo "<p><a href=\"$page?".http_build_query($http_query,"","&amp;")."\">First</a> ";
 
@@ -412,7 +338,6 @@ function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
 	if ((($pageno/$amount)+1) > 1) {
 		$http_query["pageno"] = $pageno-$amount;
 		echo " <a href=\"$page?".http_build_query($http_query,"","&amp;")."\">Prev</a> ";
-		//echo "<a href=query.php?full=$full&pageno=".($pageno-$amount)."&amount=".($amount).">Prev page</a> ";
 	}
 	echo " Page ";
 	echo (($pageno/$amount)+1);
@@ -422,11 +347,8 @@ function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
 	if ((($pageno/$amount)+1) < ceil(($allcount/$amount))) {
 		$http_query["pageno"] = $pageno+$amount;
 		echo " <a href=\"$page?".http_build_query($http_query,"","&amp;")."\">Next</a> ";
-
-		//echo "<a href=query.php?full=$full&pageno=".($pageno+$amount)."&amount=".($amount).">Next page</a> ";
-
 	}
-	//echo $allcount - $amount;
+
 	if (($allcount - $amount)>0) {
 		$http_query["pageno"] = ceil(($allcount - $amount)/$amount)*$amount;//round($allcount - $amount, -2);
 
@@ -439,13 +361,12 @@ function nav_controls($page, $http_query, $pageno, $amount, $allcount) {
 
 function letter_index($page, $class) {
 	echo "<p class=\"$class\"><b>";
-	#echo chr(65);#.to_string();
+
 	for ($char = 65; $char <= 90; $char++) {
 		echo "<a href=\"$page?letter=".chr($char)."\">".chr($char)."</a> ";
 	}
 	echo "</b></p>\n";
 }
-
 
 
 function link_to_book2($string) {
@@ -473,7 +394,6 @@ function OutputBookRefRecord($row, $hover = true) {
 	}
 	$out = "";
 	if (mysqli_num_rows($result) > 0) {
-		#echo '<dl class="refview">';
 		$out .= "<dl class=\"refview".($hover?"":" comment refpage")."\">";
 		while ($row1 = mysqli_fetch_row($result)) {
 			$col_name = $row1[0];
@@ -494,8 +414,7 @@ function OutputBookRefRecord($row, $hover = true) {
 			}
 			if ($col_name == "Href") {
 				if(!empty($row[$col_name]) ) {
-					#echo "<dt>Website</dt>";
-					#echo "<dd>";
+
 					$out .= "<dt>Website</dt>";
 					$out .= "<dd>";
 					
@@ -505,8 +424,7 @@ function OutputBookRefRecord($row, $hover = true) {
 						$url = "http://$url";
 					}
 					$url = htmlspecialchars($url);
-					#echo "<a target=\"_blank\" href=\"".$url."\">".$url."</a>";
-					#echo "</dd>\n";
+
 					$out .= "<a target=\"_blank\" href=\"".$url."\">".$url."</a>";
 					$out .= "</dd>\n";
 					
@@ -520,7 +438,7 @@ function OutputBookRefRecord($row, $hover = true) {
 				$out .=  "</dd>\n";
 			}
 		}
-		#echo "</dl>\n";
+
 		$out .=  "</dl>\n";
 	}
 	return $out;
