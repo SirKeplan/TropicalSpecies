@@ -8,7 +8,7 @@ if (mysqli_connect_errno()) {
 }
 #mb_internal_encoding( 'utf-8' );
 
-#safe_query($db, "SET NAMES 'utf8'");
-#safe_query($db, "SET CHARACTER SET utf8");
-#safe_query($db, "SET CHARACTER_SET_RESULTS=utf8'");
+mysqli_query($db, "SET NAMES 'utf8'");
+#mysqli_query($db, "SET CHARACTER SET utf8");
+#mysqli_query($db, "SET CHARACTER_SET_RESULTS=utf8'");
 ?>
