@@ -20,7 +20,7 @@
 		echo "<strong>Invalid Captcha, are you sure you're a human?</strong>";
 		echo '<br>';
 		echo '<a href="./" onclick="window.history.back();return false;">Back</a>';
-		emailError(89, "invalid captcha", "", "23?", "\nemail: ".$user_email."\nuser: ".$user."\nbody: ".$body);
+		//emailError(89, "invalid captcha", "", "23?", "\nemail: ".$user_email."\nuser: ".$user."\nbody: ".$body);
 		#include 'footer.php';
 		die;
 	}
