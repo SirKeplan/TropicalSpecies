@@ -43,9 +43,9 @@ function output_comments($topic, $curr_page="index.php") {
 			#echo "<em>".$row['User']."</em><br>";
 			echo "</span>";
 			if ($row['Approved']) {
-				echo "<div class=\"combody\">".$row['Message']."</div>";
+				echo "<div class=\"combody\">".nl2br($row['Message'])."</div>";
 			}else {
-				echo "<div class=\"combody grey\">".'<strong><em class="black">Awaiting Moderation.</em></strong><br><br>'.$row['Message']."</div>";
+				echo "<div class=\"combody grey\">".'<strong><em class="black">Awaiting Moderation.</em></strong><br><br>'.nl2br($row['Message'])."</div>";
 			}
 			echo "</div>";
 		}
