@@ -1,3 +1,14 @@
+<?php
+	include 'functions.php';
+	include 'dbconnect.php';
+	
+	if (empty($_GET["id"])) {
+		emailError(51, "A plant name must be supplied.",$_SERVER['REQUEST_URI'],"","");
+		//redirect to index page
+		header('Location: ./', TRUE, 303);
+		die;
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,15 +45,6 @@
 		}		
 	}
 	
-	include 'functions.php';
-	include 'dbconnect.php';
-	
-	if (empty($_GET["id"])) {
-		emailError(51, "A plant name must be supplied.",$_SERVER['REQUEST_URI'],"","");
-		//redirect to index page
-		header('Location: ./', TRUE, 303);
-		die;
-	}
 	$key = mysqli_real_escape_string($db, $_GET["id"]);
 
 	$redir = null;
