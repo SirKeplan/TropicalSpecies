@@ -518,30 +518,28 @@ function output_image_info($imgdata, $hidden=false) {
 }
 
 /*
- * Return a filename for a downscaled image
+ * Return a filename for a downscaled image, the returned image's dimensions will not be greater then those imput
  * */
-function sized_image_bounded($filename, $w = 480, $h = 400) {
+function sized_image_bounded($filename, $maxw = 480, $maxh = 400) {
 	//read exif data to find if it's rotated, if so flip width and height
 	if (is90degrees($filename)) { 
 		list($curr_h, $curr_w, $type) = getimagesize($filename);
 	} else {
 		list($curr_w, $curr_h, $type) = getimagesize($filename);
 	}
-	
-	// keep the image the same aspect ratio
-	$ratio = $curr_w/$curr_h;
 	//don't bother resizing if it's not necesarry
-	if ($curr_w <= $w && $curr_h <= $h) {
+	if ($curr_w <= $maxw && $curr_h <= $maxh) {
 		return $filename;
 	}
-	if ($h <= $curr_h) {
-		$w = $h*$ratio;
-	}
-	if ($w <= $curr_w) {
-		$h = $w/$ratio;
-	}
-	$w = round($w);
-	$h = round($h);
+	$scale1 = $maxh/$curr_h;
+	
+	$scale2 = $maxw/$curr_w;
+	
+	$scale = $scale1 < $scale2 ? $scale1:$scale2;
+	
+	$w = round($curr_w*$scale);
+	$h = round($curr_h*$scale);
+
 	//create a new filename for the resized image
 	$ext = substr($filename,-4,4);
 	$pre = substr($filename,0,-4);
