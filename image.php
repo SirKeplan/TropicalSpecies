@@ -34,7 +34,7 @@
 			global  $images_path;
 			$filename = $images_path.$imgdata["file"];
 			if ($imgdata and file_exists($filename)) {
-				echo '<a href="'.$filename.'"><img class="big_pic" src="'.sized_image($filename,960).'" id="'.$filename.'" alt="'.$row['LatinName'].'"/></a>';
+				echo '<a href="'.$filename.'"><img class="big_pic" src="'.sized_image_bounded($filename,960, 9999).'" id="'.$filename.'" alt="'.$row['LatinName'].'"/></a>';
 				output_image_info($imgdata);
 
 			} else {

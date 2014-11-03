@@ -520,7 +520,28 @@ function output_image_info($imgdata, $hidden=false) {
 /*
  * Return a filename for a downscaled image
  * */
-function sized_image($filename, $w = 480) {
+function sized_image_bounded($filename, $w = 480, $h = 400) {
+	//read exif data to find if it's rotated, if so flip width and height
+	if (is90degrees($filename)) { 
+		list($curr_h, $curr_w, $type) = getimagesize($filename);
+	} else {
+		list($curr_w, $curr_h, $type) = getimagesize($filename);
+	}
+	
+	// keep the image the same aspect ratio
+	$ratio = $curr_w/$curr_h;
+	//don't bother resizing if it's not necesarry
+	if ($curr_w <= $w && $curr_h <= $h) {
+		return $filename;
+	}
+	if ($h <= $curr_h) {
+		$w = $h*$ratio;
+	}
+	if ($w <= $curr_w) {
+		$h = $w/$ratio;
+	}
+	$w = round($w);
+	$h = round($h);
 	//create a new filename for the resized image
 	$ext = substr($filename,-4,4);
 	$pre = substr($filename,0,-4);
@@ -531,14 +552,7 @@ function sized_image($filename, $w = 480) {
 	if (file_exists($resized)) {
 		return $resized;
 	} else {
-		list($curr_w, $curr_h, $type) = getimagesize($filename);
-		//don't bother resizing if it's not necesarry
-		if ($curr_w <= $w ) {
-			return $filename;
-		}
-		// keep the image the same aspect ratio
-		$ratio = $curr_w/$curr_h;
-		$h = $w/$ratio;
+		
 		//load depending on format, could use a switch, but i don't like it
 		if ($type == IMAGETYPE_JPEG) {
 			$curr_img = imagecreatefromjpeg($filename);
@@ -547,10 +561,13 @@ function sized_image($filename, $w = 480) {
 		}else if ($type == IMAGETYPE_PNG) {
 			$curr_img = imagecreatefrompng($filename);
 		}
-		
+		$curr_img = orient($curr_img, $filename);
+
 		$new_img = imagecreatetruecolor($w,$h);		
+
 		imagecopyresampled($new_img, $curr_img, 0, 0, 0, 0, $w, $h, $curr_w, $curr_h);
-		
+				
+
 		imagejpeg($new_img, $resized, 99);
 		imagedestroy($curr_img);
 		imagedestroy($new_img);
@@ -559,47 +576,37 @@ function sized_image($filename, $w = 480) {
 	}
 }
 
-/*
- * Return a filename for a downscaled image
- * */
-function sized_image_h($filename, $h = 96) {
-	
-	list($curr_w, $curr_h, $type) = getimagesize($filename);
-	// keep the image the same aspect ratio
-	$ratio = $curr_w/$curr_h;
-	$w = $h*$ratio;
-	//don't bother resizing if it's not necesarry
-	if ($curr_w <= $w ) {
-		return $filename;
-	}//create a new filename for the resized image
-	$ext = substr($filename,-4,4);
-	$pre = substr($filename,0,-4);
-	$resized = $pre."_".$w."px".$ext;
-	
-	$resized = dirname($filename)."/sized/".basename($resized);
-	//check for an allready resized image, and return that if possible
-	if (file_exists($resized)) {
-		return $resized;
-	} else {
-		
-		//load depending on format, could use a switch, but i don't like it
-		if ($type == IMAGETYPE_JPEG) {
-			$curr_img = imagecreatefromjpeg($filename);
-		}else if ($type == IMAGETYPE_GIF) {
-			$curr_img = imagecreatefromgif($filename);
-		}else if ($type == IMAGETYPE_PNG) {
-			$curr_img = imagecreatefrompng($filename);
+function is90degrees ($filename) {
+	$exif = exif_read_data($filename);
+	if(!empty($exif['Orientation'])) {
+		switch($exif['Orientation']) {
+			case 8:
+				return true;
+				break;
+			case 6:
+				return true;
+				break;
 		}
-		
-		$new_img = imagecreatetruecolor($w,$h);		
-		imagecopyresampled($new_img, $curr_img, 0, 0, 0, 0, $w, $h, $curr_w, $curr_h);
-		
-		imagejpeg($new_img, $resized, 99);
-		imagedestroy($curr_img);
-		imagedestroy($new_img);
-		
-		return $resized;
 	}
+	return false;
+}
+
+function orient ($image, $filename) {
+	$exif = exif_read_data($filename);
+	if(!empty($exif['Orientation'])) {
+		switch($exif['Orientation']) {
+			case 8:
+				$image = imagerotate($image,90,0);
+				break;
+			case 3:
+				$image = imagerotate($image,180,0);
+				break;
+			case 6:
+				$image = imagerotate($image,-90,0);
+				break;
+		}
+	}
+	return $image;
 }
 
 function output_bananas($no) {
