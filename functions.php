@@ -564,7 +564,6 @@ function sized_image_bounded($filename, $maxw = 480, $maxh = 400) {
 		$new_img = imagecreatetruecolor($w,$h);		
 
 		imagecopyresampled($new_img, $curr_img, 0, 0, 0, 0, $w, $h, $curr_w, $curr_h);
-				
 
 		imagejpeg($new_img, $resized, 99);
 		imagedestroy($curr_img);
@@ -575,7 +574,7 @@ function sized_image_bounded($filename, $maxw = 480, $maxh = 400) {
 }
 
 function is90degrees ($filename) {
-	$exif = exif_read_data($filename);
+	$exif = @exif_read_data($filename);
 	if(!empty($exif['Orientation'])) {
 		switch($exif['Orientation']) {
 			case 8:
@@ -590,7 +589,7 @@ function is90degrees ($filename) {
 }
 
 function orient ($image, $filename) {
-	$exif = exif_read_data($filename);
+	$exif = @exif_read_data($filename);
 	if(!empty($exif['Orientation'])) {
 		switch($exif['Orientation']) {
 			case 8:
