@@ -403,6 +403,11 @@ tbody, tr, th, td {
 	margin: 0px -25px;	
 	overflow: hidden;
 }
+
+.indent {
+	margin-left:2em;
+}
+
 .comment:last-of-type {
 	border:0;
 	padding-bottom:0px;

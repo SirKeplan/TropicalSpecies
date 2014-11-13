@@ -31,7 +31,11 @@ function output_comments($topic, $curr_page="index.php") {
 		echo "<h3>Comments</h3>";
 
 		while ($row = mysqli_fetch_assoc($result)) {
-			echo "<div class=\"comment\" id=\"com${row['ID']}\">";
+			if ($row['ReplyTo'] > 0 ) {
+				echo "<div class=\"comment indent\" id=\"com${row['ID']}\">";
+			} else {
+				echo "<div class=\"comment\" id=\"com${row['ID']}\">";
+			}
 			echo "<div class=\"commenttitle\"><strong>".$row['User']."</strong>";
 			
 			$format = 'Y-m-d H:i:s';
