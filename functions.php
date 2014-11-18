@@ -52,7 +52,7 @@ function safe_query($db, $query)
 	$res = mysqli_query($db, $query);
 	if(!$res) {
 		//print "<h2>Sorry an Error Occured</h2>\n";
-		$err = mysqli_error();
+		$err = mysqli_error($db);
 		$err .=  "\nmysqli error. Query: " . htmlspecialchars($query);
 		trigger_error($err);
 		exit;
